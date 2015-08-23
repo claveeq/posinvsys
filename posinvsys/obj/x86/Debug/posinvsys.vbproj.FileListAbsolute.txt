@@ -1,0 +1,9 @@
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\bin\Debug\posinvsys.exe
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\bin\Debug\posinvsys.pdb
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\bin\Debug\posinvsys.xml
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Login_Form.resources
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Resources.resources
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbproj.GenerateResource.Cache
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.exe
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.xml
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.pdb
