@@ -32,6 +32,7 @@ Partial Class Login_Form
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         Me.Panel3.SuspendLayout()
@@ -54,7 +55,7 @@ Partial Class Login_Form
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(534, 33)
+        Me.Panel1.Size = New System.Drawing.Size(400, 33)
         Me.Panel1.TabIndex = 3
         '
         'Button4
@@ -63,7 +64,7 @@ Partial Class Login_Form
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(444, 0)
+        Me.Button4.Location = New System.Drawing.Point(310, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(45, 33)
         Me.Button4.TabIndex = 12
@@ -76,7 +77,7 @@ Partial Class Login_Form
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(489, 0)
+        Me.Button3.Location = New System.Drawing.Point(355, 0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(45, 33)
         Me.Button3.TabIndex = 2
@@ -105,7 +106,7 @@ Partial Class Login_Form
         Me.Panel2.BackColor = System.Drawing.Color.White
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.TextBox1)
-        Me.Panel2.Location = New System.Drawing.Point(175, 86)
+        Me.Panel2.Location = New System.Drawing.Point(104, 89)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(192, 30)
         Me.Panel2.TabIndex = 8
@@ -115,14 +116,14 @@ Partial Class Login_Form
         Me.Panel3.BackColor = System.Drawing.Color.White
         Me.Panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel3.Controls.Add(Me.TextBox2)
-        Me.Panel3.Location = New System.Drawing.Point(175, 121)
+        Me.Panel3.Location = New System.Drawing.Point(104, 124)
         Me.Panel3.Name = "Panel3"
         Me.Panel3.Size = New System.Drawing.Size(192, 30)
         Me.Panel3.TabIndex = 9
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(175, 157)
+        Me.Button1.Location = New System.Drawing.Point(104, 160)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(192, 30)
         Me.Button1.TabIndex = 10
@@ -131,19 +132,28 @@ Partial Class Login_Form
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(175, 193)
+        Me.Button2.Location = New System.Drawing.Point(104, 196)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(192, 30)
         Me.Button2.TabIndex = 11
         Me.Button2.Text = "Create account"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(137, 232)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(0, 14)
+        Me.Label2.TabIndex = 12
+        '
         'Login_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 14.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ButtonFace
-        Me.ClientSize = New System.Drawing.Size(534, 284)
+        Me.ClientSize = New System.Drawing.Size(400, 300)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Panel3)
@@ -160,6 +170,7 @@ Partial Class Login_Form
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -172,5 +183,6 @@ Partial Class Login_Form
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Label2 As System.Windows.Forms.Label
 
 End Class

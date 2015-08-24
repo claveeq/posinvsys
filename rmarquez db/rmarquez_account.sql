@@ -24,13 +24,16 @@ DROP TABLE IF EXISTS `account`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `account` (
   `acc_id` int(11) NOT NULL AUTO_INCREMENT,
-  `acc_name` varchar(45) DEFAULT NULL,
-  `acc_surname` varchar(45) DEFAULT NULL,
+  `acc_name` varchar(45) NOT NULL,
+  `acc_surname` varchar(45) NOT NULL,
   `acc_age` int(11) DEFAULT NULL,
-  `acc_pass` varchar(45) DEFAULT NULL,
-  `acc_bday` date DEFAULT NULL,
+  `acc_pass` varchar(45) NOT NULL,
+  `acc_bday` date DEFAULT '0000-00-00',
+  `acc_admin` tinyint(1) unsigned zerofill DEFAULT '0',
+  `acc_address` varchar(100) DEFAULT NULL,
+  `acc_gender` tinyint(1) unsigned zerofill DEFAULT '0',
   PRIMARY KEY (`acc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +42,6 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'admin',NULL,NULL,'1234',NULL);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-23 19:03:26
+-- Dump completed on 2015-08-24 13:18:13

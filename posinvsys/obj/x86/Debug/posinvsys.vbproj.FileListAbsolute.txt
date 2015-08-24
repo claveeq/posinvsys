@@ -7,3 +7,5 @@ D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.v
 D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.exe
 D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.xml
 D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.pdb
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Product_Form.resources
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Registration_Form.resources
