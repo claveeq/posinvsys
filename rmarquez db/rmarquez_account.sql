@@ -33,7 +33,7 @@ CREATE TABLE `account` (
   `acc_address` varchar(100) DEFAULT NULL,
   `acc_gender` tinyint(1) unsigned zerofill DEFAULT '0',
   PRIMARY KEY (`acc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'Clave','Quimbo',NULL,'1234','1996-09-08',0,'1662 A&V Subd. Sulucan, Bocaue, bulacan',0),(2,'Lem','De Guzman',NULL,'1234','1995-05-17',0,'1037 v.Mauricio st. Turo,Bocaue,Bulacan',0);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-24 13:18:13
+-- Dump completed on 2015-08-25 22:10:19

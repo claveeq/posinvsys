@@ -24,16 +24,16 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
   `prod_id` int(11) NOT NULL AUTO_INCREMENT,
-  `prod_barcode` int(11) DEFAULT NULL,
-  `prod_name` varchar(45) DEFAULT NULL,
+  `prod_barcode` int(11) NOT NULL,
+  `prod_name` varchar(45) NOT NULL,
   `prod_description` varchar(100) DEFAULT NULL,
   `prod_type` varchar(45) DEFAULT NULL,
   `prod_brand` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`prod_id`),
+  PRIMARY KEY (`prod_id`,`prod_barcode`),
   UNIQUE KEY `prod_id_UNIQUE` (`prod_id`),
-  UNIQUE KEY `prod_name_UNIQUE` (`prod_name`),
-  UNIQUE KEY `prod_barcode_UNIQUE` (`prod_barcode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  UNIQUE KEY `prod_barcode_UNIQUE` (`prod_barcode`),
+  UNIQUE KEY `prod_name_UNIQUE` (`prod_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,6 +42,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
+INSERT INTO `product` VALUES (1,91213216,'Pampers Diaper','Mahimbing ang Tulog ni baby!','',''),(6,91231231,'Baby oil','Smooth skin!','',''),(7,91241241,'Candy','For the cavity!','','');
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +55,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-24 13:18:13
+-- Dump completed on 2015-08-25 22:10:18

@@ -23,7 +23,7 @@ Public Class Login_Form
     End Sub
     Private Sub Label1_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Label1.MouseDown
         If e.Button = MouseButtons.Left Then
-            Loc = e.Location
+            loc = e.Location
         End If
     End Sub
     'for windows to move
