@@ -23,21 +23,12 @@ DROP TABLE IF EXISTS `pricing`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `pricing` (
-  `price_id` int(11) NOT NULL,
+  `price_barcode` int(11) NOT NULL,
   `price_supply` int(11) DEFAULT NULL,
   `price_markup` int(11) DEFAULT NULL,
-  PRIMARY KEY (`price_id`)
+  PRIMARY KEY (`price_barcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pricing`
---
-
-LOCK TABLES `pricing` WRITE;
-/*!40000 ALTER TABLE `pricing` DISABLE KEYS */;
-/*!40000 ALTER TABLE `pricing` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -48,4 +39,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-08-25 22:10:19
+-- Dump completed on 2015-09-09 22:23:14

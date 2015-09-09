@@ -16,24 +16,18 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `product`
+-- Table structure for table `brand`
 --
 
-DROP TABLE IF EXISTS `product`;
+DROP TABLE IF EXISTS `brand`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `product` (
-  `prod_id` int(11) NOT NULL AUTO_INCREMENT,
-  `prod_barcode` int(11) NOT NULL,
-  `prod_name` varchar(45) NOT NULL,
-  `prod_description` varchar(100) DEFAULT NULL,
-  `prod_type` varchar(45) DEFAULT NULL,
-  `prod_brand` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`prod_id`,`prod_barcode`),
-  UNIQUE KEY `prod_id_UNIQUE` (`prod_id`),
-  UNIQUE KEY `prod_barcode_UNIQUE` (`prod_barcode`),
-  UNIQUE KEY `prod_name_UNIQUE` (`prod_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+CREATE TABLE `brand` (
+  `brand_id` int(11) NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`brand_id`),
+  UNIQUE KEY `brand_id_UNIQUE` (`brand_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

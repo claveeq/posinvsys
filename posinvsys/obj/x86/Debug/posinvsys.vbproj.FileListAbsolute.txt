@@ -12,3 +12,7 @@ D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.R
 C:\Users\EQ\Desktop\posinvsys\posinvsys\obj\x86\Debug\posinvsys.exe
 C:\Users\EQ\Desktop\posinvsys\posinvsys\obj\x86\Debug\posinvsys.xml
 C:\Users\EQ\Desktop\posinvsys\posinvsys\obj\x86\Debug\posinvsys.pdb
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Categories.resources
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addbrand.resources
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addloc.resources
+D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addtype.resources
