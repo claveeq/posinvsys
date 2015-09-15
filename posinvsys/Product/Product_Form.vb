@@ -6,6 +6,8 @@ Public Class Product_Form
     Dim MysqlConn As MySqlConnection 'MySQL
     Dim COMMAND As MySqlCommand     'MySQL
     Dim Query As String
+    Dim dbdataset As New DataTable  'bago tong tatlo for the table
+    Dim DV As New DataView(dbdataset) 'for search filter
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
             Me.Location += e.Location - loc
@@ -32,12 +34,12 @@ Public Class Product_Form
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
         Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
-        Dim dbdataset As New DataTable  'bago tong tatlo for the table
+
         Dim bsource As New BindingSource 'bago tong tatlo for the table
         Try
             MysqlConn.Open()
             Query =
-            "select prod_barcode as Barcode,prod_name as Product, prod_description as Description, prod_type as ""Product Type"", prod_brand as ""Product Brand"" from rmarquez.product;"
+            "select prod_barcode as Barcode,prod_name as Product, prod_description as Description, prod_type as Type, prod_brand as Brand, prod_loc as Location from rmarquez.product;"
             COMMAND = New MySqlCommand(Query, MysqlConn)
 
             Sda.SelectCommand = COMMAND
@@ -66,6 +68,7 @@ Public Class Product_Form
             While Reader.Read
                 Dim stype = Reader.GetString("type_name")
                 ComboBox1.Items.Add(stype)
+                ComboBox4.Items.Add(stype)
             End While
             ComboBox1.Items.Add("Add Type")
             MysqlConn.Close()
@@ -86,6 +89,7 @@ Public Class Product_Form
             While Reader.Read
                 Dim sbrand = Reader.GetString("brand_name")
                 ComboBox2.Items.Add(sbrand)
+                ComboBox5.Items.Add(sbrand)
             End While
             ComboBox2.Items.Add("Add Brand")
             MysqlConn.Close()
@@ -106,6 +110,7 @@ Public Class Product_Form
             While Reader.Read
                 Dim sloc = Reader.GetString("loc_name")
                 ComboBox3.Items.Add(sloc)
+                ComboBox6.Items.Add(sloc)
             End While
             ComboBox3.Items.Add("Add Loc")
             MysqlConn.Close()
@@ -184,5 +189,29 @@ Public Class Product_Form
         If ComboBox3.SelectedIndex = lastitem - 1 Then
             addloc.Show()
         End If
+    End Sub
+
+    Private Sub TextBox9_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox9.TextChanged
+        DV.RowFilter = String.Format("Product Like '%" & TextBox9.Text & "%'")
+        DataGridView1.DataSource = DV
+        If (TextBox9.Text = "") Then
+            ComboBox4.SelectedIndex = -1
+            ComboBox5.SelectedIndex = -1
+            ComboBox6.SelectedIndex = -1
+        End If
+
+    End Sub
+    Private Sub ComboBox4_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox4.SelectedIndexChanged
+        DV.RowFilter = String.Format("Type Like '%" & ComboBox4.Text & "%'")
+        DataGridView1.DataSource = DV
+    End Sub
+
+    Private Sub ComboBox5_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox5.SelectedIndexChanged
+        DV.RowFilter = String.Format("Brand Like '%" & ComboBox5.Text & "%'")
+        DataGridView1.DataSource = DV
+    End Sub
+    Private Sub ComboBox6_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox6.SelectedIndexChanged
+        DV.RowFilter = String.Format("Location Like '%" & ComboBox6.Text & "%'")
+        DataGridView1.DataSource = DV
     End Sub
 End Class
