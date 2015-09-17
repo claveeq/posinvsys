@@ -24,10 +24,11 @@ DROP TABLE IF EXISTS `brand`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `brand` (
   `brand_id` int(11) NOT NULL AUTO_INCREMENT,
-  `brand_name` varchar(45) DEFAULT NULL,
+  `brand_name` varchar(45) NOT NULL,
   PRIMARY KEY (`brand_id`),
-  UNIQUE KEY `brand_id_UNIQUE` (`brand_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `brand_id_UNIQUE` (`brand_id`),
+  UNIQUE KEY `brand_name_UNIQUE` (`brand_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -39,4 +40,4 @@ CREATE TABLE `brand` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-09 22:23:13
+-- Dump completed on 2015-09-17 20:31:18

@@ -59,6 +59,8 @@ Partial Class Product_Form
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.ComboBox6 = New System.Windows.Forms.ComboBox()
         Me.ComboBox5 = New System.Windows.Forms.ComboBox()
         Me.ComboBox4 = New System.Windows.Forms.ComboBox()
@@ -68,7 +70,6 @@ Partial Class Product_Form
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -420,6 +421,7 @@ Partial Class Product_Form
         'Panel5
         '
         Me.Panel5.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Panel5.Controls.Add(Me.Button2)
         Me.Panel5.Controls.Add(Me.TextBox10)
         Me.Panel5.Controls.Add(Me.ComboBox6)
         Me.Panel5.Controls.Add(Me.ComboBox5)
@@ -434,6 +436,26 @@ Partial Class Product_Form
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(503, 149)
         Me.Panel5.TabIndex = 24
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(82, 92)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 32
+        Me.Button2.Text = "Button2"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'TextBox10
+        '
+        Me.TextBox10.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.TextBox10.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.TextBox10.Location = New System.Drawing.Point(98, 8)
+        Me.TextBox10.Name = "TextBox10"
+        Me.TextBox10.ReadOnly = True
+        Me.TextBox10.Size = New System.Drawing.Size(63, 13)
+        Me.TextBox10.TabIndex = 13
         '
         'ComboBox6
         '
@@ -517,17 +539,6 @@ Partial Class Product_Form
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(146, 46)
         Me.Panel6.TabIndex = 25
-        '
-        'TextBox10
-        '
-        Me.TextBox10.BackColor = System.Drawing.SystemColors.MenuHighlight
-        Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox10.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.TextBox10.Location = New System.Drawing.Point(98, 8)
-        Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.ReadOnly = True
-        Me.TextBox10.Size = New System.Drawing.Size(63, 13)
-        Me.TextBox10.TabIndex = 13
         '
         'Product_Form
         '
@@ -617,4 +628,5 @@ Partial Class Product_Form
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
+    Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class

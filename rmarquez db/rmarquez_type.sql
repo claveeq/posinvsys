@@ -24,9 +24,11 @@ DROP TABLE IF EXISTS `type`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `type` (
   `type_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type_name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `type_name` varchar(45) NOT NULL,
+  PRIMARY KEY (`type_id`),
+  UNIQUE KEY `type_name_UNIQUE` (`type_name`),
+  UNIQUE KEY `type_id_UNIQUE` (`type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -38,4 +40,4 @@ CREATE TABLE `type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-09 22:23:13
+-- Dump completed on 2015-09-17 20:31:18

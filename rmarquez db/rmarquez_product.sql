@@ -24,15 +24,16 @@ DROP TABLE IF EXISTS `product`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `product` (
   `prod_id` int(11) NOT NULL AUTO_INCREMENT,
-  `prod_barcode` int(11) NOT NULL,
+  `prod_barcode` varchar(45) NOT NULL,
   `prod_name` varchar(45) NOT NULL,
   `prod_description` varchar(100) DEFAULT NULL,
   `prod_type` varchar(45) DEFAULT NULL,
   `prod_brand` varchar(45) DEFAULT NULL,
+  `prod_loc` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`prod_id`,`prod_barcode`),
   UNIQUE KEY `prod_id_UNIQUE` (`prod_id`),
-  UNIQUE KEY `prod_barcode_UNIQUE` (`prod_barcode`),
-  UNIQUE KEY `prod_name_UNIQUE` (`prod_name`)
+  UNIQUE KEY `prod_name_UNIQUE` (`prod_name`),
+  UNIQUE KEY `prod_barcode_UNIQUE` (`prod_barcode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -45,4 +46,4 @@ CREATE TABLE `product` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-09 22:23:13
+-- Dump completed on 2015-09-17 20:31:18

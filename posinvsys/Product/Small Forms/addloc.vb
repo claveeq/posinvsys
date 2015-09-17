@@ -30,6 +30,9 @@ Public Class addloc
             MysqlConn.Dispose()
         End Try
     End Sub
+
+
+
     Private Sub addloc_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles Me.MouseDown
         If e.Button = MouseButtons.Left Then
             loc = e.Location
