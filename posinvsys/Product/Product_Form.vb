@@ -1,4 +1,6 @@
 ﻿Imports MySql.Data.MySqlClient
+Imports CoreScanner
+
 Public Class Product_Form
     Dim loc As Point ' for movable window
 
@@ -8,6 +10,9 @@ Public Class Product_Form
     Dim Query As String
     Dim dbdataset As New DataTable  'bago tong tatlo for the table
     Dim DV As New DataView(dbdataset) 'for search filter
+
+    Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
+
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
             Me.Location += e.Location - loc
@@ -128,6 +133,8 @@ Public Class Product_Form
         combobox_type()
         combobox_brand()
         combobox_loc()
+        Barcode()
+
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
@@ -213,5 +220,60 @@ Public Class Product_Form
     Private Sub ComboBox6_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox6.SelectedIndexChanged
         DV.RowFilter = String.Format("Location Like '%" & ComboBox6.Text & "%'")
         DataGridView1.DataSource = DV
+    End Sub
+
+    Private Sub Barcode()
+        Try
+            'Call Open API
+            Dim scannerTypes() As Short = New Short((1) - 1) {}
+            'Scanner Types you are interested in
+            scannerTypes(0) = 1
+            ' 1 for all scanner types
+            Dim numberOfScannerTypes As Short = 1
+            ' Size of the scannerTypes array
+            Dim status As Integer
+            ' Extended API return code
+            cCoreScannerClass.Open(0, scannerTypes, numberOfScannerTypes, status)
+            ' Subscribe for barcode events in cCoreScannerClass
+            AddHandler cCoreScannerClass.BarcodeEvent, AddressOf Me.OnBarcodeEvent
+            ' Let's subscribe for events
+            Dim opcode As Integer = 1001
+            ' Method for Subscribe events
+            Dim outXML As String
+            ' XML Output
+            Dim inXML As String = ("<inArgs>" + ("<cmdArgs>" + ("<arg-int>1</arg-int>" + ("<arg-int>1</arg-int>" + ("</cmdArgs>" + "</inArgs>")))))
+            cCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
+            Console.WriteLine(outXML)
+        Catch exp As Exception
+            Console.WriteLine(("Something wrong please check... " + exp.Message))
+        End Try
+    End Sub
+    Public Sub OnBarcodeEvent(ByVal eventType As Short, ByRef pscanData As String) ' eventfunction for barcode_scanner
+        Dim barcode As String = pscanData
+        Me.Invoke(DirectCast(Sub() TextBox10.Text = barcode, MethodInvoker))
+    End Sub
+
+    Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
+        TextBox2.Clear()
+    End Sub
+
+    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
+
+    End Sub
+
+    Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
+        Dim code As String
+        Dim raw As String
+        raw = TextBox10.Lines(9).ToString()
+        code = raw.Replace("0x3", "")
+        code = code.Replace("<datalabel>", "")
+        code = code.Replace("</datalabel>", "")
+        code = code.Replace(" ", "")
+        code = code.Trim()
+        TextBox2.Text = code
+    End Sub
+
+    Private Sub Panel5_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel5.Paint
+
     End Sub
 End Class
