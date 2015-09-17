@@ -2,16 +2,15 @@
 Imports CoreScanner
 
 Public Class Product_Form
-    Dim loc As Point ' for movable window
+    Dim loc As Point ' to move windows
 
     Dim Reader As MySqlDataReader
     Dim MysqlConn As MySqlConnection 'MySQL
     Dim COMMAND As MySqlCommand     'MySQL
     Dim Query As String
+
     Dim dbdataset As New DataTable  'bago tong tatlo for the table
     Dim DV As New DataView(dbdataset) 'for search filter
-
-
 
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
 
@@ -36,41 +35,7 @@ Public Class Product_Form
         End If
     End Sub
     'for windows to move
-    Public Sub connection()
-        MysqlConn = New MySqlConnection
-        MysqlConn.ConnectionString =
-            "server=localhost;userid=root;password=1234;database=rmarquez"
-    End Sub
-
-    Private Sub table_refresh() 'To refresh or load the data from datagridview
-        MysqlConn = New MySqlConnection
-        MysqlConn.ConnectionString =
-            "server=localhost;userid=root;password=1234;database=rmarquez"
-        Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
-        Dim dbdataset As New DataTable  'bago tong tatlo for the table
-        Dim bsource As New BindingSource 'bago tong tatlo for the table
-        Try
-            MysqlConn.Open()
-            connection()
-            Query =
-            "select prod_barcode as Barcode,prod_name as Product, prod_description as Description, prod_type as Type, prod_brand as Brand, prod_loc as Location from rmarquez.product;"
-            COMMAND = New MySqlCommand(Query, MysqlConn)
-
-            Sda.SelectCommand = COMMAND
-            Sda.Fill(dbdataset)
-            bsource.DataSource = dbdataset
-            DataGridView1.DataSource = bsource
-            Sda.Update(dbdataset)
-
-            'default
-            MysqlConn.Close() 'default
-        Catch ex As MySqlException
-            MessageBox.Show(ex.Message)
-        Finally
-            MysqlConn.Dispose()
-        End Try
-
-    End Sub
+  
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Me.WindowState = FormWindowState.Minimized 'minimize button
     End Sub
@@ -81,6 +46,7 @@ Public Class Product_Form
     Public Sub combobox_type()
         'for populating the type,brand,location combobox
         ComboBox1.Items.Clear() 'para reset all items
+        ComboBox4.Items.Clear()
         Try
             MysqlConn.Open()
             Query = "select * from rmarquez.type;"
@@ -101,6 +67,7 @@ Public Class Product_Form
     End Sub
     Public Sub combobox_brand()
         ComboBox2.Items.Clear()
+        ComboBox5.Items.Clear()
         Try
             MysqlConn.Open()
             Dim Query As String
@@ -122,6 +89,7 @@ Public Class Product_Form
     End Sub
     Public Sub combobox_loc()
         ComboBox3.Items.Clear()
+        ComboBox6.Items.Clear()
         Try
             MysqlConn.Open()
             Dim Query As String
@@ -142,15 +110,41 @@ Public Class Product_Form
         End Try
     End Sub
 
+    Private Sub table_refresh() 'To refresh or load the data from datagridview
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=1234;database=rmarquez"
+        Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
+        Dim dbdataset As New DataTable  'bago tong tatlo for the table
+        Dim bsource As New BindingSource 'bago tong tatlo for the table
+        Try
+            MysqlConn.Open()
+            Query =
+            "select prod_barcode as Barcode,prod_name as Product, prod_description as Description, prod_type as Type, prod_brand as Brand, prod_loc as Location from rmarquez.product;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+
+            Sda.SelectCommand = COMMAND
+            Sda.Fill(dbdataset)
+            bsource.DataSource = dbdataset
+            DataGridView1.DataSource = bsource
+            Sda.Update(dbdataset)
+
+            'default
+            MysqlConn.Close() 'default
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+
+    End Sub
     Private Sub Product_Form_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Click
         Barcode()
 
     End Sub
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         table_refresh() ' from the private sub table_refresh() to load from the beginning of the form
-        MysqlConn = New MySqlConnection
-        MysqlConn.ConnectionString =
-            "server=localhost;userid=root;password=1234;database=rmarquez"
+     
 
         combobox_type()
         combobox_brand()
@@ -159,7 +153,6 @@ Public Class Product_Form
 
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-
         Try
             MysqlConn.Open()
             Dim Query As String
@@ -217,6 +210,7 @@ Public Class Product_Form
     End Sub
 
     Private Sub TextBox9_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox9.TextChanged
+
         DV.RowFilter = String.Format("Product Like '%" & TextBox9.Text & "%'")
         DataGridView1.DataSource = DV
         If (TextBox9.Text = "") Then
@@ -239,7 +233,6 @@ Public Class Product_Form
         DV.RowFilter = String.Format("Location Like '%" & ComboBox6.Text & "%'")
         DataGridView1.DataSource = DV
     End Sub
-
     Private Sub Barcode()
         Try
             'Call Open API
@@ -286,21 +279,11 @@ Public Class Product_Form
         TextBox2.Text = code
     End Sub
 
-    Private Sub Panel5_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel5.Paint
-
-    End Sub
-
-    Private Sub Panel6_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel6.Paint
-
-    End Sub
-
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         table_refresh()
-
-
     End Sub
 
-    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
+    Private Sub Panel3_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel3.Paint
 
     End Sub
 End Class

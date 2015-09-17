@@ -59,7 +59,6 @@ Partial Class Product_Form
         Me.Label13 = New System.Windows.Forms.Label()
         Me.TextBox9 = New System.Windows.Forms.TextBox()
         Me.Panel5 = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox10 = New System.Windows.Forms.TextBox()
         Me.ComboBox6 = New System.Windows.Forms.ComboBox()
         Me.ComboBox5 = New System.Windows.Forms.ComboBox()
@@ -421,7 +420,6 @@ Partial Class Product_Form
         'Panel5
         '
         Me.Panel5.BackColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Panel5.Controls.Add(Me.Button2)
         Me.Panel5.Controls.Add(Me.TextBox10)
         Me.Panel5.Controls.Add(Me.ComboBox6)
         Me.Panel5.Controls.Add(Me.ComboBox5)
@@ -436,15 +434,6 @@ Partial Class Product_Form
         Me.Panel5.Name = "Panel5"
         Me.Panel5.Size = New System.Drawing.Size(503, 149)
         Me.Panel5.TabIndex = 24
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(82, 92)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 32
-        Me.Button2.Text = "Button2"
-        Me.Button2.UseVisualStyleBackColor = True
         '
         'TextBox10
         '
@@ -628,5 +617,4 @@ Partial Class Product_Form
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
-    Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class
