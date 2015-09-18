@@ -117,6 +117,7 @@ Public Class Product_Form
             "server=localhost;userid=root;password=1234;database=rmarquez"
         Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
         Dim bsource As New BindingSource 'bago tong tatlo for the table
+        Dim dbdataset As New DataTable  'bago tong tatlo for the table
         Try
             MysqlConn.Open()
             Query =
