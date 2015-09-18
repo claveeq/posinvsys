@@ -13,6 +13,7 @@ Public Class Product_Form
     Dim DV As New DataView(dbdataset) 'for search filter
 
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
+    Dim Bar As String
 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -254,6 +255,7 @@ Public Class Product_Form
             Dim inXML As String = ("<inArgs>" + ("<cmdArgs>" + ("<arg-int>1</arg-int>" + ("<arg-int>1</arg-int>" + ("</cmdArgs>" + "</inArgs>")))))
             cCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
             Console.WriteLine(outXML)
+            trim_rawdata()
         Catch exp As Exception
             Console.WriteLine(("Something wrong please check... " + exp.Message))
         End Try
@@ -261,21 +263,24 @@ Public Class Product_Form
     Public Sub OnBarcodeEvent(ByVal eventType As Short, ByRef pscanData As String) ' eventfunction for barcode_scanner
         Dim barcode As String = pscanData
         Me.Invoke(DirectCast(Sub() TextBox10.Text = barcode, MethodInvoker))
+
     End Sub
 
     Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
         TextBox2.Clear()
     End Sub
-    Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
-        Dim code As String
+    Public Sub trim_rawdata() 'rawdata ng barcode label
         Dim raw As String
         raw = TextBox10.Lines(9).ToString()
-        code = raw.Replace("0x3", "")
-        code = code.Replace("<datalabel>", "")
-        code = code.Replace("</datalabel>", "")
-        code = code.Replace(" ", "")
-        code = code.Trim()
-        TextBox2.Text = code
+        Bar = raw.Replace("0x3", "")
+        Bar = Bar.Replace("<datalabel>", "")
+        Bar = Bar.Replace("</datalabel>", "")
+        Bar = Bar.Replace(" ", "")
+        Bar = Bar.Trim()
+        TextBox2.Text = Bar
+    End Sub
+    Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
+        trim_rawdata()
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -283,6 +288,19 @@ Public Class Product_Form
     End Sub
 
     Private Sub Panel3_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel3.Paint
+
+    End Sub
+
+    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
+
+    End Sub
+
+    Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Bar = TextBox2.Text
+        TextBox3.Text = Bar
+    End Sub
+
+    Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
 
     End Sub
 End Class

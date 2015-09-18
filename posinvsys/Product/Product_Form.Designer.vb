@@ -69,6 +69,7 @@ Partial Class Product_Form
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -80,6 +81,7 @@ Partial Class Product_Form
         '
         'Panel1
         '
+        Me.Panel1.Controls.Add(Me.Button2)
         Me.Panel1.Controls.Add(Me.Button4)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Label1)
@@ -176,7 +178,7 @@ Partial Class Product_Form
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.Color.White
-        Me.TextBox2.Location = New System.Drawing.Point(6, 14)
+        Me.TextBox2.Location = New System.Drawing.Point(21, 13)
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(134, 20)
@@ -232,9 +234,9 @@ Partial Class Product_Form
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(168, 39)
+        Me.DataGridView1.Location = New System.Drawing.Point(168, 88)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(642, 356)
+        Me.DataGridView1.Size = New System.Drawing.Size(642, 307)
         Me.DataGridView1.TabIndex = 18
         '
         'Label7
@@ -283,7 +285,7 @@ Partial Class Product_Form
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(9, 108)
+        Me.TextBox5.Location = New System.Drawing.Point(8, 108)
         Me.TextBox5.Name = "TextBox5"
         Me.TextBox5.Size = New System.Drawing.Size(131, 20)
         Me.TextBox5.TabIndex = 6
@@ -299,7 +301,7 @@ Partial Class Product_Form
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(9, 69)
+        Me.TextBox4.Location = New System.Drawing.Point(8, 69)
         Me.TextBox4.Name = "TextBox4"
         Me.TextBox4.Size = New System.Drawing.Size(131, 20)
         Me.TextBox4.TabIndex = 4
@@ -315,7 +317,7 @@ Partial Class Product_Form
         '
         'TextBox3
         '
-        Me.TextBox3.Location = New System.Drawing.Point(9, 30)
+        Me.TextBox3.Location = New System.Drawing.Point(8, 30)
         Me.TextBox3.Name = "TextBox3"
         Me.TextBox3.Size = New System.Drawing.Size(131, 20)
         Me.TextBox3.TabIndex = 2
@@ -348,14 +350,14 @@ Partial Class Product_Form
         Me.Panel4.Controls.Add(Me.TextBox6)
         Me.Panel4.Controls.Add(Me.Label14)
         Me.Panel4.Controls.Add(Me.Label13)
-        Me.Panel4.Location = New System.Drawing.Point(171, 401)
+        Me.Panel4.Location = New System.Drawing.Point(161, 401)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(130, 149)
+        Me.Panel4.Size = New System.Drawing.Size(140, 149)
         Me.Panel4.TabIndex = 8
         '
         'TextBox8
         '
-        Me.TextBox8.Location = New System.Drawing.Point(6, 108)
+        Me.TextBox8.Location = New System.Drawing.Point(10, 108)
         Me.TextBox8.Name = "TextBox8"
         Me.TextBox8.Size = New System.Drawing.Size(119, 20)
         Me.TextBox8.TabIndex = 6
@@ -363,7 +365,7 @@ Partial Class Product_Form
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(6, 92)
+        Me.Label16.Location = New System.Drawing.Point(13, 92)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(86, 13)
         Me.Label16.TabIndex = 5
@@ -371,7 +373,7 @@ Partial Class Product_Form
         '
         'TextBox7
         '
-        Me.TextBox7.Location = New System.Drawing.Point(6, 69)
+        Me.TextBox7.Location = New System.Drawing.Point(10, 69)
         Me.TextBox7.Name = "TextBox7"
         Me.TextBox7.Size = New System.Drawing.Size(119, 20)
         Me.TextBox7.TabIndex = 4
@@ -379,7 +381,7 @@ Partial Class Product_Form
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(3, 53)
+        Me.Label15.Location = New System.Drawing.Point(10, 53)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(74, 13)
         Me.Label15.TabIndex = 3
@@ -387,7 +389,7 @@ Partial Class Product_Form
         '
         'TextBox6
         '
-        Me.TextBox6.Location = New System.Drawing.Point(6, 30)
+        Me.TextBox6.Location = New System.Drawing.Point(10, 30)
         Me.TextBox6.Name = "TextBox6"
         Me.TextBox6.Size = New System.Drawing.Size(119, 20)
         Me.TextBox6.TabIndex = 2
@@ -395,7 +397,7 @@ Partial Class Product_Form
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(3, 13)
+        Me.Label14.Location = New System.Drawing.Point(10, 13)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(72, 13)
         Me.Label14.TabIndex = 1
@@ -430,9 +432,9 @@ Partial Class Product_Form
         Me.Panel5.Controls.Add(Me.Label18)
         Me.Panel5.Controls.Add(Me.Label17)
         Me.Panel5.Controls.Add(Me.TextBox9)
-        Me.Panel5.Location = New System.Drawing.Point(307, 401)
+        Me.Panel5.Location = New System.Drawing.Point(301, 401)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(503, 149)
+        Me.Panel5.Size = New System.Drawing.Size(508, 149)
         Me.Panel5.TabIndex = 24
         '
         'TextBox10
@@ -524,10 +526,19 @@ Partial Class Product_Form
         '
         Me.Panel6.BackColor = System.Drawing.Color.DimGray
         Me.Panel6.Controls.Add(Me.TextBox2)
-        Me.Panel6.Location = New System.Drawing.Point(15, 39)
+        Me.Panel6.Location = New System.Drawing.Point(0, 39)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(146, 46)
+        Me.Panel6.Size = New System.Drawing.Size(821, 46)
         Me.Panel6.TabIndex = 25
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(318, 8)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 13
+        Me.Button2.Text = "Test"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Product_Form
         '
@@ -617,4 +628,5 @@ Partial Class Product_Form
     Friend WithEvents Label17 As System.Windows.Forms.Label
     Friend WithEvents Panel6 As System.Windows.Forms.Panel
     Friend WithEvents TextBox10 As System.Windows.Forms.TextBox
+    Friend WithEvents Button2 As System.Windows.Forms.Button
 End Class
