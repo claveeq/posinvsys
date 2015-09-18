@@ -23,6 +23,7 @@ Partial Class Product_Form
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -69,7 +70,6 @@ Partial Class Product_Form
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +89,15 @@ Partial Class Product_Form
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(821, 33)
         Me.Panel1.TabIndex = 4
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(318, 8)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.TabIndex = 13
+        Me.Button2.Text = "Test"
+        Me.Button2.UseVisualStyleBackColor = True
         '
         'Button4
         '
@@ -183,7 +192,6 @@ Partial Class Product_Form
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(134, 20)
         Me.TextBox2.TabIndex = 12
-        Me.TextBox2.Text = "Barcode"
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'RichTextBox1
@@ -530,15 +538,6 @@ Partial Class Product_Form
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(821, 46)
         Me.Panel6.TabIndex = 25
-        '
-        'Button2
-        '
-        Me.Button2.Location = New System.Drawing.Point(318, 8)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
-        Me.Button2.TabIndex = 13
-        Me.Button2.Text = "Test"
-        Me.Button2.UseVisualStyleBackColor = True
         '
         'Product_Form
         '

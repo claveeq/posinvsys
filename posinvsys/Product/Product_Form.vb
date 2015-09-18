@@ -12,6 +12,7 @@ Public Class Product_Form
     Dim dbdataset As New DataTable  'bago tong tatlo for the table
     Dim DV As New DataView(dbdataset) 'for search filter
 
+
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
     Dim Bar As String
 
@@ -117,7 +118,8 @@ Public Class Product_Form
             "server=localhost;userid=root;password=1234;database=rmarquez"
         Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
         Dim bsource As New BindingSource 'bago tong tatlo for the table
-        Dim dbdataset As New DataTable  'bago tong tatlo for the table
+
+        dbdataset.Clear()
         Try
             MysqlConn.Open()
             Query =
@@ -293,12 +295,14 @@ Public Class Product_Form
     End Sub
 
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
-
+        DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
+        DataGridView1.DataSource = DV
     End Sub
 
     Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Bar = TextBox2.Text
         TextBox3.Text = Bar
+        table_refresh()
     End Sub
 
     Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
