@@ -171,10 +171,7 @@ Public Class Product_Form
             ComboBox1.Text = ""
             ComboBox2.Text = ""
             ComboBox3.Text = ""
-
             table_refresh()
-            Barcode()
-
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
@@ -394,11 +391,7 @@ Public Class Product_Form
 
     End Sub
 
-    Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-        TextBox11.Text = TextBox10.Lines(9).ToString()
-        table_refresh()
-    End Sub
 
     Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
 
