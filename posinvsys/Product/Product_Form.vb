@@ -12,9 +12,9 @@ Public Class Product_Form
     Dim dbdataset As New DataTable  'bago tong tatlo for the table
     Dim DV As New DataView(dbdataset) 'for search filter
 
-
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
-    Dim Bar As String
+    Dim Bar As String 'raw data
+
 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -275,11 +275,105 @@ Public Class Product_Form
     Public Sub trim_rawdata() 'rawdata ng barcode label
         Dim raw As String
         raw = TextBox10.Lines(9).ToString()
-        Bar = raw.Replace("0x3", "")
+        Bar = raw.Trim
         Bar = Bar.Replace("<datalabel>", "")
         Bar = Bar.Replace("</datalabel>", "")
+        Bar = Bar.Replace("0x20", " ")
+        Bar = Bar.Replace("0x21 ", "!")
+        Bar = Bar.Replace("0x22 ", """")
+        Bar = Bar.Replace("0x23 ", "#")
+        Bar = Bar.Replace("0x24 ", "$")
+        Bar = Bar.Replace("0x25 ", "%")
+        Bar = Bar.Replace("0x26 ", "&")
+        Bar = Bar.Replace("0x27", "'")
+        Bar = Bar.Replace("0x28", "(")
+        Bar = Bar.Replace("0x29", ")")
+        Bar = Bar.Replace("0x2A", "*")
+        Bar = Bar.Replace("0x2B", "+")
+        Bar = Bar.Replace("0x2C", ",")
+        Bar = Bar.Replace("0x2D", "-")
+        Bar = Bar.Replace("0x2E", ".")
+        Bar = Bar.Replace("0x2F", "/")
+        Bar = Bar.Replace("0x30", "0")
+        Bar = Bar.Replace("0x31", "1")
+        Bar = Bar.Replace("0x32", "2")
+        Bar = Bar.Replace("0x33", "3")
+        Bar = Bar.Replace("0x34", "4")
+        Bar = Bar.Replace("0x35", "5")
+        Bar = Bar.Replace("0x36", "6")
+        Bar = Bar.Replace("0x37", "7")
+        Bar = Bar.Replace("0x38", "8")
+        Bar = Bar.Replace("0x39", "9")
+        Bar = Bar.Replace("0x3A", ":")
+        Bar = Bar.Replace("0x3B", ";")
+        Bar = Bar.Replace("0x3C", "<")
+        Bar = Bar.Replace("0x3D", "=")
+        Bar = Bar.Replace("0x3E", ">")
+        Bar = Bar.Replace("0x3F", "?")
+        Bar = Bar.Replace("0x40", "@")
+        Bar = Bar.Replace("0x41", "A")
+        Bar = Bar.Replace("0x42", "B")
+        Bar = Bar.Replace("0x43", "C")
+        Bar = Bar.Replace("0x44", "D")
+        Bar = Bar.Replace("0x45", "E")
+        Bar = Bar.Replace("0x46", "F")
+        Bar = Bar.Replace("0x47", "G")
+        Bar = Bar.Replace("0x48", "H")
+        Bar = Bar.Replace("0x49", "I")
+        Bar = Bar.Replace("0x4A", "J")
+        Bar = Bar.Replace("0x4B", "K")
+        Bar = Bar.Replace("0x4C", "L")
+        Bar = Bar.Replace("0x4D", "M")
+        Bar = Bar.Replace("0x4E", "N")
+        Bar = Bar.Replace("0x4F", "O")
+        Bar = Bar.Replace("0x50", "P")
+        Bar = Bar.Replace("0x51", "Q")
+        Bar = Bar.Replace("0x52", "R")
+        Bar = Bar.Replace("0x53", "S")
+        Bar = Bar.Replace("0x54", "T")
+        Bar = Bar.Replace("0x55", "U")
+        Bar = Bar.Replace("0x56", "V")
+        Bar = Bar.Replace("0x57", "W")
+        Bar = Bar.Replace("0x58", "X")
+        Bar = Bar.Replace("0x59", "Y")
+        Bar = Bar.Replace("0x5A", "Z")
+        Bar = Bar.Replace("0x5B", "[")
+        Bar = Bar.Replace("0x5C", "\")
+        Bar = Bar.Replace("0x5D", "]")
+        Bar = Bar.Replace("0x5E", "^")
+        Bar = Bar.Replace("0x5F", "_")
+        Bar = Bar.Replace("0x60", "`")
+        Bar = Bar.Replace("0x61", "a")
+        Bar = Bar.Replace("0x62", "b")
+        Bar = Bar.Replace("0x63", "c")
+        Bar = Bar.Replace("0x64", "d")
+        Bar = Bar.Replace("0x65", "e")
+        Bar = Bar.Replace("0x66", "f")
+        Bar = Bar.Replace("0x67", "g")
+        Bar = Bar.Replace("0x68", "h")
+        Bar = Bar.Replace("0x69", "i")
+        Bar = Bar.Replace("0x6A", "j")
+        Bar = Bar.Replace("0x6B", "k")
+        Bar = Bar.Replace("0x6C", "l")
+        Bar = Bar.Replace("0x6D", "m")
+        Bar = Bar.Replace("0x6E", "n")
+        Bar = Bar.Replace("0x6F", "o")
+        Bar = Bar.Replace("0x70", "p")
+        Bar = Bar.Replace("0x71", "q")
+        Bar = Bar.Replace("0x72", "r")
+        Bar = Bar.Replace("0x73", "s")
+        Bar = Bar.Replace("0x74", "t")
+        Bar = Bar.Replace("0x75", "u")
+        Bar = Bar.Replace("0x76", "v")
+        Bar = Bar.Replace("0x77", "w")
+        Bar = Bar.Replace("0x78", "x")
+        Bar = Bar.Replace("0x79", "y")
+        Bar = Bar.Replace("0x7A", "z")
+        Bar = Bar.Replace("0x7B", "{")
+        Bar = Bar.Replace("0x7C", "|")
+        Bar = Bar.Replace("0x7D", "}")
+        Bar = Bar.Replace("0x7E", "~")
         Bar = Bar.Replace(" ", "")
-        Bar = Bar.Trim()
         TextBox2.Text = Bar
     End Sub
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
@@ -297,15 +391,20 @@ Public Class Product_Form
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
         DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
         DataGridView1.DataSource = DV
+
     End Sub
 
-    Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        Bar = TextBox2.Text
-        TextBox3.Text = Bar
+    Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+        TextBox11.Text = TextBox10.Lines(9).ToString()
         table_refresh()
     End Sub
 
     Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
+
+    End Sub
+
+    Private Sub Panel6_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel6.Paint
 
     End Sub
 End Class
