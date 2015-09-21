@@ -452,7 +452,7 @@ Partial Class Product_Form
         '
         Me.TextBox10.BackColor = System.Drawing.SystemColors.MenuHighlight
         Me.TextBox10.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox10.ForeColor = System.Drawing.SystemColors.HighlightText
+        Me.TextBox10.ForeColor = System.Drawing.SystemColors.MenuHighlight
         Me.TextBox10.Location = New System.Drawing.Point(98, 8)
         Me.TextBox10.Name = "TextBox10"
         Me.TextBox10.Size = New System.Drawing.Size(63, 13)
@@ -576,13 +576,14 @@ Partial Class Product_Form
         '
         'Button6
         '
-        Me.Button6.BackColor = System.Drawing.Color.MediumVioletRed
+        Me.Button6.BackColor = System.Drawing.SystemColors.MenuHighlight
         Me.Button6.FlatAppearance.BorderSize = 0
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(713, 16)
+        Me.Button6.Location = New System.Drawing.Point(721, 0)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(72, 20)
+        Me.Button6.Size = New System.Drawing.Size(91, 51)
         Me.Button6.TabIndex = 15
         Me.Button6.Text = "Back"
         Me.Button6.UseVisualStyleBackColor = False

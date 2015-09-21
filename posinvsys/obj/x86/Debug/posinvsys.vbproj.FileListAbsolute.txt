@@ -35,3 +35,4 @@ D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.v
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\Interop.CoreScanner.dll
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbproj.ResolveComReference.cache
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.main_menu.resources
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Checkout_Form.resources

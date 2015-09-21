@@ -493,9 +493,14 @@ Public Class Product_Form
         Barcode()
     End Sub
 
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         main_menu.Show()
         Me.Hide()
 
+    End Sub
+
+    Private Sub Button6_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
+        main_menu.Show()
+        Me.Hide()
     End Sub
 End Class
