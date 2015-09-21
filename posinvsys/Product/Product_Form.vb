@@ -161,8 +161,8 @@ Public Class Product_Form
             Query = "Insert into rmarquez.product (prod_name,prod_barcode,prod_description,prod_type,prod_brand,prod_loc) values ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & RichTextBox1.Text & "','" & ComboBox1.Text & "','" & ComboBox2.Text & "','" & ComboBox3.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
-            'Event na mag rurun after click ng button
 
+            'Event na mag rurun after click ng button
             MessageBox.Show("Product Successfully Added")
             TextBox1.Clear()
             TextBox2.Clear()
@@ -232,7 +232,6 @@ Public Class Product_Form
         DataGridView1.DataSource = DV
     End Sub
     Private Sub Barcode()
-
         Try
             'Call Open API
             Dim scannerTypes() As Short = New Short((1) - 1) {}
@@ -257,7 +256,6 @@ Public Class Product_Form
 
             trim_rawdata()
             cCoreScannerClass.Close(cCoreScannerClass.BarcodeEvent, 0) ' haaay this line is terrible haha
-
         Catch exp As Exception
             Console.WriteLine(("Something wrong please check... " + exp.Message))
         End Try
@@ -278,8 +276,8 @@ Public Class Product_Form
         ComboBox3.Text = ""
 
     End Sub
-    Public Sub trim_rawdata() 'rawdata ng barcode label
-        Dim Bar As String 'raw data
+    Private Sub trim_rawdata() 'rawdata ng barcode label
+        Dim Bar As String 'raw data from the scanner
         Dim raw As String
         raw = TextBox10.Lines(9).ToString()
         Bar = raw.Trim
@@ -385,6 +383,28 @@ Public Class Product_Form
         DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
         DataGridView1.DataSource = DV
         TextBox1.Focus()
+
+        'to know if the row index exist
+        Dim row As DataGridViewRow
+        Dim selectedCellCount As Integer = DataGridView1.GetCellCount(DataGridViewElementStates.Selected)
+
+        row = Me.DataGridView1.Rows(0)
+        If selectedCellCount = 1 Then
+       
+            TextBox1.Text = row.Cells("Product").Value.ToString
+            RichTextBox1.Text = row.Cells("Description").Value.ToString
+            ComboBox1.Text = row.Cells("type").Value.ToString
+            ComboBox2.Text = row.Cells("brand").Value.ToString
+            ComboBox3.Text = row.Cells("Location").Value.ToString
+        Else
+            TextBox1.Clear()
+            RichTextBox1.Clear()
+            ComboBox1.Text = ""
+            ComboBox2.Text = ""
+            ComboBox3.Text = ""
+        End If
+
+
     End Sub
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
         trim_rawdata()
@@ -393,19 +413,11 @@ Public Class Product_Form
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         table_refresh()
     End Sub
-
-    Private Sub Panel3_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel3.Paint
-
-    End Sub
-
-    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
-
-
-
-    End Sub
     Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-        If e.RowIndex >= 0 Then  'select cell in datagridview
+
+        If e.RowIndex >= 0 Then  'retrieve cell data from datagridview to textbox
             Dim row As DataGridViewRow
+
             row = Me.DataGridView1.Rows(e.RowIndex)
 
             TextBox1.Text = row.Cells("Product").Value.ToString
@@ -415,5 +427,10 @@ Public Class Product_Form
             ComboBox3.Text = row.Cells("Location").Value.ToString
             TextBox2.Text = row.Cells("Barcode").Value.ToString
         End If
+    End Sub
+
+    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
+
+
     End Sub
 End Class
