@@ -153,6 +153,7 @@ Public Class Product_Form
 
         Barcode()
 
+
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Try
@@ -164,6 +165,13 @@ Public Class Product_Form
 
             'Event na mag rurun after click ng button
             MessageBox.Show("Product Successfully Added")
+       
+
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
             TextBox1.Clear()
             TextBox2.Clear()
             RichTextBox1.Clear()
@@ -171,14 +179,8 @@ Public Class Product_Form
             ComboBox2.Text = ""
             ComboBox3.Text = ""
             table_refresh()
-            MysqlConn.Close()
-
-        Catch ex As MySqlException
-            MessageBox.Show(ex.Message)
-        Finally
-            MysqlConn.Dispose()
+            Barcode()
         End Try
-
     End Sub
 
 
@@ -209,6 +211,10 @@ Public Class Product_Form
         End If
     End Sub
 
+    Private Sub TextBox9_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox9.Click
+        TextBox2.Clear()
+    End Sub
+
     Private Sub TextBox9_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox9.TextChanged
         DV.RowFilter = String.Format("Product Like '%" & TextBox9.Text & "%'")
         DataGridView1.DataSource = DV
@@ -232,6 +238,7 @@ Public Class Product_Form
         DataGridView1.DataSource = DV
     End Sub
     Private Sub Barcode()
+
         Try
             'Call Open API
             Dim scannerTypes() As Short = New Short((1) - 1) {}
@@ -242,16 +249,16 @@ Public Class Product_Form
             ' Size of the scannerTypes array
             Dim status As Integer
             ' Extended API return code
-            CCoreScannerClass.Open(0, scannerTypes, numberOfScannerTypes, status)
+            cCoreScannerClass.Open(0, scannerTypes, numberOfScannerTypes, status)
             ' Subscribe for barcode events in cCoreScannerClass
-            AddHandler CCoreScannerClass.BarcodeEvent, AddressOf Me.OnBarcodeEvent
+            AddHandler cCoreScannerClass.BarcodeEvent, AddressOf Me.OnBarcodeEvent
             ' Let's subscribe for events
             Dim opcode As Integer = 1001
             ' Method for Subscribe events
             Dim outXML As String
             ' XML Output
             Dim inXML As String = ("<inArgs>" + ("<cmdArgs>" + ("<arg-int>1</arg-int>" + ("<arg-int>1</arg-int>" + ("</cmdArgs>" + "</inArgs>")))))
-            CCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
+            cCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
             Console.WriteLine(outXML)
 
             trim_rawdata()
@@ -264,11 +271,13 @@ Public Class Product_Form
     Public Sub OnBarcodeEvent(ByVal eventType As Short, ByRef pscanData As String) ' eventfunction for barcode_scanner
         Dim barcode As String = pscanData
         Me.Invoke(DirectCast(Sub() TextBox10.Text = barcode, MethodInvoker))
-        
+
     End Sub
     Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
+        Barcode()
         TextBox2.Clear()
         table_refresh()
+
         TextBox1.Clear()
         RichTextBox1.Clear()
         ComboBox1.Text = ""
@@ -382,8 +391,7 @@ Public Class Product_Form
         TextBox2.Text = Bar
         DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
         DataGridView1.DataSource = DV
-        TextBox1.Focus()
-
+   
         'to know if the row index exist
         Dim row As DataGridViewRow
         Dim selectedCellCount As Integer = DataGridView1.GetCellCount(DataGridViewElementStates.Selected)
@@ -410,9 +418,6 @@ Public Class Product_Form
         trim_rawdata()
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        table_refresh()
-    End Sub
     Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
 
         If e.RowIndex >= 0 Then  'retrieve cell data from datagridview to textbox
@@ -432,5 +437,59 @@ Public Class Product_Form
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
 
 
+    End Sub
+
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "delete from rmarquez.product where prod_barcode = '" & TextBox2.Text & "';"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+
+            'Event na mag rurun after click ng button
+            MessageBox.Show("Product Successfully Deleted")
+            TextBox1.Clear()
+            TextBox2.Clear()
+            RichTextBox1.Clear()
+            ComboBox1.Text = ""
+            ComboBox2.Text = ""
+            ComboBox3.Text = ""
+            table_refresh()
+            MysqlConn.Close()
+
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+
+    End Sub
+
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "update rmarquez.product set prod_name='" & TextBox1.Text & "',prod_description='" & RichTextBox1.Text & "',prod_type='" & ComboBox1.Text & "',prod_brand='" & ComboBox2.Text & "',prod_loc='" & ComboBox3.Text & "' where prod_barcode =  '" & TextBox2.Text & "';"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+
+            'Event na mag rurun after click ng button
+            MessageBox.Show("Product Successfully Updated")
+            TextBox1.Clear()
+            TextBox2.Clear()
+            RichTextBox1.Clear()
+            ComboBox1.Text = ""
+            ComboBox2.Text = ""
+            ComboBox3.Text = ""
+            table_refresh()
+
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+        Barcode()
     End Sub
 End Class
