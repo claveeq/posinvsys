@@ -270,6 +270,12 @@ Public Class Product_Form
     End Sub
     Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
         TextBox2.Clear()
+        table_refresh()
+        TextBox1.Clear()
+        RichTextBox1.Clear()
+        ComboBox1.Text = ""
+        ComboBox2.Text = ""
+        ComboBox3.Text = ""
 
     End Sub
     Public Sub trim_rawdata() 'rawdata ng barcode label
@@ -376,6 +382,8 @@ Public Class Product_Form
         Bar = Bar.Replace("0x7E", "~")
         Bar = Bar.Replace(" ", "")
         TextBox2.Text = Bar
+        DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
+        DataGridView1.DataSource = DV
         TextBox1.Focus()
     End Sub
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
@@ -391,26 +399,10 @@ Public Class Product_Form
     End Sub
 
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
-        DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
-        DataGridView1.DataSource = DV
+
 
 
     End Sub
-
-
-
-    Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
-
-    End Sub
-
-    Private Sub Panel6_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel6.Paint
-
-    End Sub
-
-    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
-
-    End Sub
-
     Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         If e.RowIndex >= 0 Then  'select cell in datagridview
             Dim row As DataGridViewRow
@@ -423,9 +415,5 @@ Public Class Product_Form
             ComboBox3.Text = row.Cells("Location").Value.ToString
             TextBox2.Text = row.Cells("Barcode").Value.ToString
         End If
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-      
     End Sub
 End Class
