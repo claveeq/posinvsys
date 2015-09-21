@@ -29,6 +29,8 @@ Public Class Login_Form
     'for windows to move
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         Me.Text = Label1.Text
+        TextBox1.Text = "Username"
+        TextBox2.Text = "Password"
     End Sub
     Private Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
         MysqlConn = New MySqlConnection
@@ -84,5 +86,27 @@ Public Class Login_Form
 
     Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
 
+    End Sub
+
+    Private Sub TextBox1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox1.Click
+        TextBox1.Clear()
+    End Sub
+
+    Private Sub TextBox1_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox1.LostFocus
+        If TextBox1.Text = "" Then
+            TextBox1.Text = "Username"
+        End If
+    End Sub
+
+    Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
+        If TextBox2.Text = "" Then
+            TextBox2.Text = "Password"
+            TextBox2.PasswordChar = ""
+        End If
+    End Sub
+
+    Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
+        TextBox2.Clear()
+        TextBox2.PasswordChar = "*"
     End Sub
 End Class

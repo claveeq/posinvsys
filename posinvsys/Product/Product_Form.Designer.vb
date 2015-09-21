@@ -595,6 +595,7 @@ Partial Class Product_Form
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Product_Form"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Product_Form"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
