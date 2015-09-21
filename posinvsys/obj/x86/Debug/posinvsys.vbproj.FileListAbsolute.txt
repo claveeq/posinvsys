@@ -24,7 +24,6 @@ D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.pdb
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.xml
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Login_Form.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Resources.resources
-D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Categories.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Product_Form.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addbrand.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addloc.resources
@@ -35,3 +34,4 @@ D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\Interop.Cor
 D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbproj.ResolveComReference.cache
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\Interop.CoreScanner.dll
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbproj.ResolveComReference.cache
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.main_menu.resources

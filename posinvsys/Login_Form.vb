@@ -50,7 +50,7 @@ Public Class Login_Form
             End While
             If count = 1 Then
 
-                Product_Form.Show()
+                main_menu.Show()
                 Me.Hide()
             ElseIf count > 1 Then
                 MessageBox.Show("Username and Password are duplicate")
@@ -107,6 +107,10 @@ Public Class Login_Form
 
     Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
         TextBox2.Clear()
+        TextBox2.PasswordChar = "*"
+    End Sub
+
+    Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
         TextBox2.PasswordChar = "*"
     End Sub
 End Class

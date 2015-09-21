@@ -95,10 +95,10 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Product\Categories.Designer.vb">
-      <DependentUpon>Categories.vb</DependentUpon>
+    <Compile Include="main_menu.Designer.vb">
+      <DependentUpon>main_menu.vb</DependentUpon>
     </Compile>
-    <Compile Include="Product\Categories.vb">
+    <Compile Include="main_menu.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Product\Product_Form.Designer.vb">
@@ -142,8 +142,8 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Product\Categories.resx">
-      <DependentUpon>Categories.vb</DependentUpon>
+    <EmbeddedResource Include="main_menu.resx">
+      <DependentUpon>main_menu.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Product\Product_Form.resx">
       <DependentUpon>Product_Form.vb</DependentUpon>

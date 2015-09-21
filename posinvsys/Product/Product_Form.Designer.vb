@@ -71,6 +71,7 @@ Partial Class Product_Form
         Me.Panel6 = New System.Windows.Forms.Panel()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -537,6 +538,7 @@ Partial Class Product_Form
         'Panel6
         '
         Me.Panel6.BackColor = System.Drawing.Color.DimGray
+        Me.Panel6.Controls.Add(Me.Button6)
         Me.Panel6.Controls.Add(Me.Button5)
         Me.Panel6.Controls.Add(Me.Button2)
         Me.Panel6.Controls.Add(Me.TextBox2)
@@ -571,6 +573,19 @@ Partial Class Product_Form
         Me.Button2.TabIndex = 13
         Me.Button2.Text = "Delete Product"
         Me.Button2.UseVisualStyleBackColor = False
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.Color.MediumVioletRed
+        Me.Button6.FlatAppearance.BorderSize = 0
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.ForeColor = System.Drawing.Color.White
+        Me.Button6.Location = New System.Drawing.Point(713, 16)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(72, 20)
+        Me.Button6.TabIndex = 15
+        Me.Button6.Text = "Back"
+        Me.Button6.UseVisualStyleBackColor = False
         '
         'Product_Form
         '
@@ -662,4 +677,5 @@ Partial Class Product_Form
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents Button6 As System.Windows.Forms.Button
 End Class
