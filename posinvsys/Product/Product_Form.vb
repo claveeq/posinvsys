@@ -13,7 +13,7 @@ Public Class Product_Form
     Dim DV As New DataView(dbdataset) 'for search filter
 
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
-    Dim Bar As String 'raw data
+
 
 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
@@ -142,16 +142,15 @@ Public Class Product_Form
 
     End Sub
     Private Sub Product_Form_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Click
-        Barcode()
 
     End Sub
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         table_refresh() ' from the private sub table_refresh() to load from the beginning of the form
-     
 
         combobox_type()
         combobox_brand()
         combobox_loc()
+
         Barcode()
 
     End Sub
@@ -173,6 +172,7 @@ Public Class Product_Form
             ComboBox3.Text = ""
             table_refresh()
             MysqlConn.Close()
+
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
@@ -210,7 +210,6 @@ Public Class Product_Form
     End Sub
 
     Private Sub TextBox9_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox9.TextChanged
-
         DV.RowFilter = String.Format("Product Like '%" & TextBox9.Text & "%'")
         DataGridView1.DataSource = DV
         If (TextBox9.Text = "") Then
@@ -218,7 +217,6 @@ Public Class Product_Form
             ComboBox5.SelectedIndex = -1
             ComboBox6.SelectedIndex = -1
         End If
-
     End Sub
     Private Sub ComboBox4_SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox4.SelectedIndexChanged
         DV.RowFilter = String.Format("Type Like '%" & ComboBox4.Text & "%'")
@@ -234,6 +232,7 @@ Public Class Product_Form
         DataGridView1.DataSource = DV
     End Sub
     Private Sub Barcode()
+
         Try
             'Call Open API
             Dim scannerTypes() As Short = New Short((1) - 1) {}
@@ -244,32 +243,37 @@ Public Class Product_Form
             ' Size of the scannerTypes array
             Dim status As Integer
             ' Extended API return code
-            cCoreScannerClass.Open(0, scannerTypes, numberOfScannerTypes, status)
+            CCoreScannerClass.Open(0, scannerTypes, numberOfScannerTypes, status)
             ' Subscribe for barcode events in cCoreScannerClass
-            AddHandler cCoreScannerClass.BarcodeEvent, AddressOf Me.OnBarcodeEvent
+            AddHandler CCoreScannerClass.BarcodeEvent, AddressOf Me.OnBarcodeEvent
             ' Let's subscribe for events
             Dim opcode As Integer = 1001
             ' Method for Subscribe events
             Dim outXML As String
             ' XML Output
             Dim inXML As String = ("<inArgs>" + ("<cmdArgs>" + ("<arg-int>1</arg-int>" + ("<arg-int>1</arg-int>" + ("</cmdArgs>" + "</inArgs>")))))
-            cCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
+            CCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
             Console.WriteLine(outXML)
+
             trim_rawdata()
+            cCoreScannerClass.Close(cCoreScannerClass.BarcodeEvent, 0) ' haaay this line is terrible haha
+
         Catch exp As Exception
             Console.WriteLine(("Something wrong please check... " + exp.Message))
         End Try
+
     End Sub
     Public Sub OnBarcodeEvent(ByVal eventType As Short, ByRef pscanData As String) ' eventfunction for barcode_scanner
         Dim barcode As String = pscanData
         Me.Invoke(DirectCast(Sub() TextBox10.Text = barcode, MethodInvoker))
-
+        
     End Sub
-
     Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
         TextBox2.Clear()
+
     End Sub
     Public Sub trim_rawdata() 'rawdata ng barcode label
+        Dim Bar As String 'raw data
         Dim raw As String
         raw = TextBox10.Lines(9).ToString()
         Bar = raw.Trim
@@ -372,6 +376,7 @@ Public Class Product_Form
         Bar = Bar.Replace("0x7E", "~")
         Bar = Bar.Replace(" ", "")
         TextBox2.Text = Bar
+        TextBox1.Focus()
     End Sub
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
         trim_rawdata()
@@ -389,6 +394,7 @@ Public Class Product_Form
         DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
         DataGridView1.DataSource = DV
 
+
     End Sub
 
 
@@ -398,6 +404,10 @@ Public Class Product_Form
     End Sub
 
     Private Sub Panel6_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel6.Paint
+
+    End Sub
+
+    Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
 
     End Sub
 End Class

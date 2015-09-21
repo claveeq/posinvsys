@@ -441,7 +441,6 @@ Partial Class Product_Form
         Me.TextBox10.ForeColor = System.Drawing.SystemColors.HighlightText
         Me.TextBox10.Location = New System.Drawing.Point(98, 8)
         Me.TextBox10.Name = "TextBox10"
-        Me.TextBox10.ReadOnly = True
         Me.TextBox10.Size = New System.Drawing.Size(63, 13)
         Me.TextBox10.TabIndex = 13
         '
