@@ -410,4 +410,22 @@ Public Class Product_Form
     Private Sub Label4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label4.Click
 
     End Sub
+
+    Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        If e.RowIndex >= 0 Then  'select cell in datagridview
+            Dim row As DataGridViewRow
+            row = Me.DataGridView1.Rows(e.RowIndex)
+
+            TextBox1.Text = row.Cells("Product").Value.ToString
+            RichTextBox1.Text = row.Cells("Description").Value.ToString
+            ComboBox1.Text = row.Cells("type").Value.ToString
+            ComboBox2.Text = row.Cells("brand").Value.ToString
+            ComboBox3.Text = row.Cells("Location").Value.ToString
+            TextBox2.Text = row.Cells("Barcode").Value.ToString
+        End If
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+      
+    End Sub
 End Class
