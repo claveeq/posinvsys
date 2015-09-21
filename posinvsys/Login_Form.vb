@@ -49,7 +49,7 @@ Public Class Login_Form
                 count = count + 1
             End While
             If count = 1 Then
-
+                main_menu.Label3.Text = ToProperCase(TextBox1.Text)
                 main_menu.Show()
                 Me.Hide()
             ElseIf count > 1 Then
@@ -67,6 +67,14 @@ Public Class Login_Form
 
         End Try
     End Sub
+    Function ToProperCase(ByVal str As String) As String 'totitlecase function only,no need to worry
+        Dim myTI As System.Globalization.TextInfo
+
+        myTI = New System.Globalization.CultureInfo("en-US", False).TextInfo
+        str = str.ToLower
+        str = myTI.ToTitleCase(str)
+        Return str
+    End Function
     Private Sub Button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button2.Click
         Registration_Form.Show()
         Me.Hide()
