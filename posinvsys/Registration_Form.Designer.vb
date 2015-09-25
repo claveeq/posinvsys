@@ -321,6 +321,7 @@ Partial Class Registration_Form
         Me.Controls.Add(Me.Panel1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Registration_Form"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Registration_Form"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()

@@ -69,9 +69,9 @@ Partial Class Product_Form
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Button6 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button6 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -261,7 +261,7 @@ Partial Class Product_Form
         '
         'Panel3
         '
-        Me.Panel3.BackColor = System.Drawing.Color.DimGray
+        Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel3.Controls.Add(Me.Label12)
         Me.Panel3.Controls.Add(Me.TextBox5)
         Me.Panel3.Controls.Add(Me.Label11)
@@ -349,7 +349,7 @@ Partial Class Product_Form
         '
         'Panel4
         '
-        Me.Panel4.BackColor = System.Drawing.Color.DimGray
+        Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel4.Controls.Add(Me.TextBox8)
         Me.Panel4.Controls.Add(Me.Label16)
         Me.Panel4.Controls.Add(Me.TextBox7)
@@ -537,7 +537,7 @@ Partial Class Product_Form
         '
         'Panel6
         '
-        Me.Panel6.BackColor = System.Drawing.Color.DimGray
+        Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel6.Controls.Add(Me.Button6)
         Me.Panel6.Controls.Add(Me.Button5)
         Me.Panel6.Controls.Add(Me.Button2)
@@ -547,6 +547,20 @@ Partial Class Product_Form
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(818, 49)
         Me.Panel6.TabIndex = 25
+        '
+        'Button6
+        '
+        Me.Button6.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Button6.FlatAppearance.BorderSize = 0
+        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Button6.ForeColor = System.Drawing.Color.White
+        Me.Button6.Location = New System.Drawing.Point(721, 0)
+        Me.Button6.Name = "Button6"
+        Me.Button6.Size = New System.Drawing.Size(91, 51)
+        Me.Button6.TabIndex = 15
+        Me.Button6.Text = "Back"
+        Me.Button6.UseVisualStyleBackColor = False
         '
         'Button5
         '
@@ -573,20 +587,6 @@ Partial Class Product_Form
         Me.Button2.TabIndex = 13
         Me.Button2.Text = "Delete Product"
         Me.Button2.UseVisualStyleBackColor = False
-        '
-        'Button6
-        '
-        Me.Button6.BackColor = System.Drawing.SystemColors.MenuHighlight
-        Me.Button6.FlatAppearance.BorderSize = 0
-        Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(721, 0)
-        Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(91, 51)
-        Me.Button6.TabIndex = 15
-        Me.Button6.Text = "Back"
-        Me.Button6.UseVisualStyleBackColor = False
         '
         'Product_Form
         '

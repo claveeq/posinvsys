@@ -27,25 +27,41 @@
         Me.WindowState = FormWindowState.Minimized 'minimize button
     End Sub
 
-    Private Sub ListBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
-    End Sub
 
-    Private Sub ListView1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListView1.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub Checkout_Form_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
-        ListView1.View = System.Windows.Forms.View.Details
-        ' Adding ListView Columns
-        ListView1.Columns.Add("Product", 500, HorizontalAlignment.Left)
-        ListView1.Columns.Add("Price", 150, HorizontalAlignment.Left)
-        ListView1.Columns.Add("QTY", 40, HorizontalAlignment.Left)
-        ListView1.Columns.Add("Remove", 55, HorizontalAlignment.Left)
-    End Sub
-
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Public Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         main_menu.Show()
         Me.Hide()
     End Sub
+
+    Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button5.Click
+        populate()
+
+    End Sub
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button5.Click
+        DataGridView1.Rows.Clear()
+    End Sub
+    Private Sub populate()
+        DataGridView1.Rows.Clear()
+
+        DataGridView1.ColumnCount = 3
+        DataGridView1.Columns(0).Name = "Product"
+        DataGridView1.Columns(1).Name = "QTY"
+        DataGridView1.Columns(2).Name = "Price"
+
+
+
+        Dim imgcoll As DataGridViewImageColumn = New DataGridViewImageColumn()
+        imgcoll.HeaderText = "photo"
+        imgcoll.Name = "image"
+        DataGridView1.Columns.Add(imgcoll)
+
+        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Image\cart.png")
+        Dim row As Object() = New Object() {"dfsdf", "wer", "wer", img}
+        DataGridView1.Rows.Add(row)
+
+
+
+    End Sub
+  
 End Class

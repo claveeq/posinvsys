@@ -5,6 +5,7 @@ Public Class Login_Form
     Dim MysqlConn As MySqlConnection 'MySQL
     Dim COMMAND As MySqlCommand     'MySQL
 
+    Dim name As String
     'for windows to move 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -32,7 +33,8 @@ Public Class Login_Form
         TextBox1.Text = "Username"
         TextBox2.Text = "Password"
     End Sub
-    Private Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
+    Private Sub connect()
+        name = TextBox1.Text
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
@@ -49,7 +51,6 @@ Public Class Login_Form
                 count = count + 1
             End While
             If count = 1 Then
-                main_menu.Label3.Text = ToProperCase(TextBox1.Text)
                 main_menu.Show()
                 Me.Hide()
             ElseIf count > 1 Then
@@ -67,14 +68,12 @@ Public Class Login_Form
 
         End Try
     End Sub
-    Function ToProperCase(ByVal str As String) As String 'totitlecase function only,no need to worry
-        Dim myTI As System.Globalization.TextInfo
 
-        myTI = New System.Globalization.CultureInfo("en-US", False).TextInfo
-        str = str.ToLower
-        str = myTI.ToTitleCase(str)
-        Return str
-    End Function
+
+    Private Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
+        connect()
+    End Sub
+
     Private Sub Button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button2.Click
         Registration_Form.Show()
         Me.Hide()
@@ -100,6 +99,10 @@ Public Class Login_Form
         TextBox1.Clear()
     End Sub
 
+    Private Sub TextBox1_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox1.KeyDown
+
+    End Sub
+
     Private Sub TextBox1_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox1.LostFocus
         If TextBox1.Text = "" Then
             TextBox1.Text = "Username"
@@ -118,7 +121,15 @@ Public Class Login_Form
         TextBox2.PasswordChar = "*"
     End Sub
 
+    Private Sub TextBox2_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TextBox2.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            connect()
+        End If
+
+    End Sub
+
     Private Sub TextBox2_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox2.TextChanged
         TextBox2.PasswordChar = "*"
     End Sub
+
 End Class

@@ -165,21 +165,21 @@ Public Class Product_Form
 
             'Event na mag rurun after click ng button
             MessageBox.Show("Product Successfully Added")
-       
-
+            MysqlConn.Dispose()
+     
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
-            MysqlConn.Dispose()
+            Barcode()
+            table_refresh()
             TextBox1.Clear()
             TextBox2.Clear()
             RichTextBox1.Clear()
             ComboBox1.Text = ""
             ComboBox2.Text = ""
             ComboBox3.Text = ""
-            table_refresh()
-            Barcode()
+
         End Try
     End Sub
 
@@ -455,15 +455,15 @@ Public Class Product_Form
             ComboBox1.Text = ""
             ComboBox2.Text = ""
             ComboBox3.Text = ""
-            table_refresh()
-            MysqlConn.Close()
 
+
+            MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
+            table_refresh()
         End Try
-
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
@@ -476,21 +476,24 @@ Public Class Product_Form
 
             'Event na mag rurun after click ng button
             MessageBox.Show("Product Successfully Updated")
-            TextBox1.Clear()
-            TextBox2.Clear()
-            RichTextBox1.Clear()
-            ComboBox1.Text = ""
-            ComboBox2.Text = ""
-            ComboBox3.Text = ""
-            table_refresh()
+        
 
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
+            Barcode()
+            table_refresh()
+            TextBox1.Clear()
+            TextBox2.Clear()
+            RichTextBox1.Clear()
+            ComboBox1.Text = ""
+            ComboBox2.Text = ""
+            ComboBox3.Text = ""
+
         End Try
-        Barcode()
+
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -502,5 +505,9 @@ Public Class Product_Form
     Private Sub Button6_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         main_menu.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
     End Sub
 End Class
