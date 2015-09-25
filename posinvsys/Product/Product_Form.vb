@@ -153,33 +153,44 @@ Public Class Product_Form
 
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Try
+        Try 'product table
             MysqlConn.Open()
             Dim Query As String
             Query = "Insert into rmarquez.product (prod_name,prod_barcode,prod_description,prod_type,prod_brand,prod_loc) values ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & RichTextBox1.Text & "','" & ComboBox1.Text & "','" & ComboBox2.Text & "','" & ComboBox3.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
-            Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & TextBox2.Text & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
-
-            COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
-
-            'Event na mag rurun after click ng button
-            MessageBox.Show("Product Successfully Added")
-            MysqlConn.Dispose()
-
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
-            Barcode()
-            table_refresh()
+            MysqlConn.Dispose()
+
             TextBox1.Clear()
-            TextBox2.Clear()
+
             RichTextBox1.Clear()
             ComboBox1.Text = ""
             ComboBox2.Text = ""
             ComboBox3.Text = ""
+        End Try
+        Try 'pricing table
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & TextBox2.Text & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            MessageBox.Show("Product Successfully Added")
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+            Barcode()
+            table_refresh()
 
+            TextBox3.Clear()
+            TextBox4.Clear()
+            Label1.Text = ""
+            TextBox2.Clear()
         End Try
     End Sub
 
@@ -521,5 +532,9 @@ Public Class Product_Form
 
     Private Sub TextBox4_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox4.TextChanged
         retail()
+    End Sub
+
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        
     End Sub
 End Class
