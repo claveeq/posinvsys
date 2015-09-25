@@ -2,8 +2,18 @@
 Imports CoreScanner
 Public Class Checkout_Form
 
-
     Dim loc As Point ' for movable window
+
+
+    Dim Reader As MySqlDataReader
+    Dim MysqlConn As MySqlConnection 'MySQL
+    Dim COMMAND As MySqlCommand     'MySQL
+
+
+    Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
+    Dim bsource As New BindingSource 'bago tong tatlo for the table
+    Dim dbdataset As New DataTable  'bago tong tatlo for the table
+
 
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
 
@@ -38,7 +48,7 @@ Public Class Checkout_Form
         Me.Hide()
     End Sub
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button5.Click
-        DataGridView1.Rows.Clear()
+        popoulate()
     End Sub
     Private Sub Barcode()
         Try
@@ -187,11 +197,7 @@ Public Class Checkout_Form
     Private Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Barcode()
 
-        Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
-        imgcol.HeaderText = "Photo"
-        imgcol.Name = "image"
-        DataGridView1.Columns.Add(imgcol)
-        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
+   
 
         DataGridView1.ColumnCount = 8
         DataGridView1.Columns(0).Width = 90
@@ -209,10 +215,56 @@ Public Class Checkout_Form
 
 
 
+        Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
+        imgcol.HeaderText = "Photo"
+        imgcol.Name = "image"
+        DataGridView1.Columns.Add(imgcol)
+        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
 
 
-        Dim row As Object() = New Object() {img, "sdfsd"}
+        Dim row As Object() = New Object() {"sdfsd"}
         DataGridView1.Rows.Add(row)
+
+
+
+    End Sub
+    Private Sub popoulate()
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=1234;database=rmarquez"
+        Dim reader As MySqlDataReader
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query =
+            "select * from rmarquez.product where prod_barcode = '" & TextBox.Text & "';"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While reader.Read
+                Dim name = reader.GetString("prod_name")
+                Dim barc = reader.GetString("prod_barcode")
+                Dim locs = reader.GetString("prod_loc")
+                TextBox2.Text = name
+                Dim row As Object() = New Object() {"sdfsd", barc, name, locs}
+                DataGridView1.Rows.Add(row)
+            End While
+            'default
+            MysqlConn.Close() 'default
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+
+
+    End Sub
+
+    Private Sub Textbox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Textbox1.TextChanged
+        trim_rawdata()
+
+    End Sub
+
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 
@@ -220,11 +272,7 @@ Public Class Checkout_Form
 
     End Sub
 
-    Private Sub Textbox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Textbox1.TextChanged
-        trim_rawdata()
-    End Sub
-
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
+    Private Sub TextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox.TextChanged
+        popoulate()
     End Sub
 End Class

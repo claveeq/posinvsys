@@ -14,8 +14,6 @@ Public Class Product_Form
 
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
 
-
-
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
             Me.Location += e.Location - loc
@@ -37,7 +35,6 @@ Public Class Product_Form
         End If
     End Sub
     'for windows to move
-  
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Me.WindowState = FormWindowState.Minimized 'minimize button
     End Sub
@@ -491,7 +488,6 @@ Public Class Product_Form
             ComboBox1.Text = ""
             ComboBox2.Text = ""
             ComboBox3.Text = ""
-
         End Try
 
     End Sub
@@ -505,7 +501,6 @@ Public Class Product_Form
     Private Sub Button6_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         main_menu.Show()
         Me.Hide()
-
 
     End Sub
 

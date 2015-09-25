@@ -36,6 +36,7 @@ Partial Class Checkout_Form
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -207,11 +208,19 @@ Partial Class Checkout_Form
         Me.DataGridView1.Size = New System.Drawing.Size(810, 314)
         Me.DataGridView1.TabIndex = 6
         '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(80, 492)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(332, 20)
+        Me.TextBox2.TabIndex = 7
+        '
         'Checkout_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(812, 524)
+        Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Textbox1)
         Me.Controls.Add(Me.Label4)
@@ -246,4 +255,5 @@ Partial Class Checkout_Form
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents TextBox As System.Windows.Forms.TextBox
     Friend WithEvents Textbox1 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
 End Class
