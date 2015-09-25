@@ -268,21 +268,9 @@ Public Class Product_Form
         End Try
 
     End Sub
-    Public Sub OnBarcodeEvent(ByVal eventType As Short, ByRef pscanData As String) ' eventfunction for barcode_scanner
+    Private Sub OnBarcodeEvent(ByVal eventType As Short, ByRef pscanData As String) ' eventfunction for barcode_scanner
         Dim barcode As String = pscanData
         Me.Invoke(DirectCast(Sub() TextBox10.Text = barcode, MethodInvoker))
-
-    End Sub
-    Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
-        Barcode()
-        TextBox2.Clear()
-        table_refresh()
-
-        TextBox1.Clear()
-        RichTextBox1.Clear()
-        ComboBox1.Text = ""
-        ComboBox2.Text = ""
-        ComboBox3.Text = ""
 
     End Sub
     Private Sub trim_rawdata() 'rawdata ng barcode label
@@ -391,14 +379,13 @@ Public Class Product_Form
         TextBox2.Text = Bar
         DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
         DataGridView1.DataSource = DV
-   
+
         'to know if the row index exist
         Dim row As DataGridViewRow
         Dim selectedCellCount As Integer = DataGridView1.GetCellCount(DataGridViewElementStates.Selected)
 
         row = Me.DataGridView1.Rows(0)
         If selectedCellCount = 1 Then
-       
             TextBox1.Text = row.Cells("Product").Value.ToString
             RichTextBox1.Text = row.Cells("Description").Value.ToString
             ComboBox1.Text = row.Cells("type").Value.ToString
@@ -414,6 +401,19 @@ Public Class Product_Form
 
 
     End Sub
+    Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
+        Barcode()
+        TextBox2.Clear()
+        table_refresh()
+
+        TextBox1.Clear()
+        RichTextBox1.Clear()
+        ComboBox1.Text = ""
+        ComboBox2.Text = ""
+        ComboBox3.Text = ""
+
+    End Sub
+  
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
         trim_rawdata()
     End Sub
@@ -505,9 +505,15 @@ Public Class Product_Form
     Private Sub Button6_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         main_menu.Show()
         Me.Hide()
+
+
     End Sub
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub Panel6_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel6.Paint
 
     End Sub
 End Class
