@@ -48,7 +48,8 @@ Public Class Checkout_Form
         Me.Hide()
     End Sub
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button5.Click
-        popoulate()
+        DataGridView1.Rows.Clear()
+
     End Sub
     Private Sub Barcode()
         Try
@@ -215,6 +216,11 @@ Public Class Checkout_Form
 
 
 
+
+
+
+    End Sub
+    Private Sub dfsdf()
         Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
         imgcol.HeaderText = "Photo"
         imgcol.Name = "image"
@@ -224,8 +230,6 @@ Public Class Checkout_Form
 
         Dim row As Object() = New Object() {"sdfsd"}
         DataGridView1.Rows.Add(row)
-
-
 
     End Sub
     Private Sub popoulate()
@@ -244,7 +248,6 @@ Public Class Checkout_Form
                 Dim name = reader.GetString("prod_name")
                 Dim barc = reader.GetString("prod_barcode")
                 Dim locs = reader.GetString("prod_loc")
-                TextBox2.Text = name
                 Dim row As Object() = New Object() {"sdfsd", barc, name, locs}
                 DataGridView1.Rows.Add(row)
             End While

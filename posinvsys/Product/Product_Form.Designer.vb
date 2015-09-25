@@ -42,7 +42,7 @@ Partial Class Product_Form
         Me.ComboBox3 = New System.Windows.Forms.ComboBox()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label12 = New System.Windows.Forms.Label()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -263,7 +263,7 @@ Partial Class Product_Form
         '
         Me.Panel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel3.Controls.Add(Me.Label12)
-        Me.Panel3.Controls.Add(Me.TextBox5)
+        Me.Panel3.Controls.Add(Me.Label3)
         Me.Panel3.Controls.Add(Me.Label11)
         Me.Panel3.Controls.Add(Me.TextBox4)
         Me.Panel3.Controls.Add(Me.Label10)
@@ -286,12 +286,15 @@ Partial Class Product_Form
         Me.Label12.TabIndex = 7
         Me.Label12.Text = "Excluding tax"
         '
-        'TextBox5
+        'Label3
         '
-        Me.TextBox5.Location = New System.Drawing.Point(8, 112)
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(131, 20)
-        Me.TextBox5.TabIndex = 6
+        Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.White
+        Me.Label3.Location = New System.Drawing.Point(42, 116)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(56, 13)
+        Me.Label3.TabIndex = 5
+        Me.Label3.Text = "Final Price"
         '
         'Label11
         '
@@ -647,7 +650,6 @@ Partial Class Product_Form
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents ComboBox3 As System.Windows.Forms.ComboBox
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
-    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
     Friend WithEvents Label11 As System.Windows.Forms.Label
     Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
     Friend WithEvents Label10 As System.Windows.Forms.Label
@@ -679,4 +681,5 @@ Partial Class Product_Form
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button
+    Friend WithEvents Label3 As System.Windows.Forms.Label
 End Class

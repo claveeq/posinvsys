@@ -158,12 +158,15 @@ Public Class Product_Form
             Dim Query As String
             Query = "Insert into rmarquez.product (prod_name,prod_barcode,prod_description,prod_type,prod_brand,prod_loc) values ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & RichTextBox1.Text & "','" & ComboBox1.Text & "','" & ComboBox2.Text & "','" & ComboBox3.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
+            Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & TextBox2.Text & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
+
+            COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
 
             'Event na mag rurun after click ng button
             MessageBox.Show("Product Successfully Added")
             MysqlConn.Dispose()
-     
+
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
@@ -410,7 +413,7 @@ Public Class Product_Form
         ComboBox3.Text = ""
 
     End Sub
-  
+
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
         trim_rawdata()
     End Sub
@@ -473,7 +476,7 @@ Public Class Product_Form
 
             'Event na mag rurun after click ng button
             MessageBox.Show("Product Successfully Updated")
-        
+
 
             MysqlConn.Close()
         Catch ex As MySqlException
@@ -503,12 +506,20 @@ Public Class Product_Form
         Me.Hide()
 
     End Sub
-
-    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
+    Private Sub retail()
+        Dim markup As Double = (Val(TextBox3.Text) * (Val(TextBox4.Text) / 100))
+        Dim retailprice As Double = Val(TextBox3.Text) + markup
+        Label3.Text = retailprice
+        If TextBox3.Text = "" And TextBox4.Text = "" Then
+            Label3.Text = "Final Price"
+        End If
     End Sub
 
-    Private Sub Panel6_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel6.Paint
+    Private Sub TextBox3_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox3.TextChanged
+        retail()
+    End Sub
 
+    Private Sub TextBox4_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox4.TextChanged
+        retail()
     End Sub
 End Class
