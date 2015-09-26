@@ -120,7 +120,7 @@ Public Class Product_Form
         Try
             MysqlConn.Open()
             Query =
-            "select prod_barcode as Barcode,prod_name as Product, prod_description as Description, prod_type as Type, prod_brand as Brand, prod_loc as Location from rmarquez.product;"
+            "SELECT product.prod_barcode AS Barcode,product.prod_name AS Product, product.prod_description as Description, product.prod_type AS Type, product.prod_brand AS Brand, product.prod_loc as Location, pricing.price_price as Price FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode;"
             COMMAND = New MySqlCommand(Query, MysqlConn)
 
             Sda.SelectCommand = COMMAND
@@ -534,7 +534,7 @@ Public Class Product_Form
         retail()
     End Sub
 
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
     End Sub
 End Class

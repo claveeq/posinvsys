@@ -72,7 +72,6 @@ Partial Class Product_Form
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button7 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,13 +83,12 @@ Partial Class Product_Form
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.Button7)
         Me.Panel1.Controls.Add(Me.Button4)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Label1)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(821, 33)
+        Me.Panel1.Size = New System.Drawing.Size(975, 33)
         Me.Panel1.TabIndex = 4
         '
         'Button4
@@ -99,7 +97,7 @@ Partial Class Product_Form
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(722, 0)
+        Me.Button4.Location = New System.Drawing.Point(885, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(45, 33)
         Me.Button4.TabIndex = 12
@@ -112,7 +110,7 @@ Partial Class Product_Form
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(767, 0)
+        Me.Button3.Location = New System.Drawing.Point(930, 0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(45, 33)
         Me.Button3.TabIndex = 2
@@ -240,7 +238,7 @@ Partial Class Product_Form
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(156, 88)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(652, 276)
+        Me.DataGridView1.Size = New System.Drawing.Size(814, 276)
         Me.DataGridView1.TabIndex = 18
         '
         'Label7
@@ -450,7 +448,7 @@ Partial Class Product_Form
         Me.Panel5.Controls.Add(Me.Label17)
         Me.Panel5.Location = New System.Drawing.Point(297, 370)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(511, 149)
+        Me.Panel5.Size = New System.Drawing.Size(673, 149)
         Me.Panel5.TabIndex = 24
         '
         'TextBox10
@@ -550,7 +548,7 @@ Partial Class Product_Form
         Me.Panel6.Controls.Add(Me.Button1)
         Me.Panel6.Location = New System.Drawing.Point(0, 33)
         Me.Panel6.Name = "Panel6"
-        Me.Panel6.Size = New System.Drawing.Size(818, 49)
+        Me.Panel6.Size = New System.Drawing.Size(987, 49)
         Me.Panel6.TabIndex = 25
         '
         'Button6
@@ -560,7 +558,7 @@ Partial Class Product_Form
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(721, 0)
+        Me.Button6.Location = New System.Drawing.Point(884, -2)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(91, 51)
         Me.Button6.TabIndex = 15
@@ -593,20 +591,11 @@ Partial Class Product_Form
         Me.Button2.Text = "Delete Product"
         Me.Button2.UseVisualStyleBackColor = False
         '
-        'Button7
-        '
-        Me.Button7.Location = New System.Drawing.Point(233, 0)
-        Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(75, 23)
-        Me.Button7.TabIndex = 16
-        Me.Button7.Text = "Button7"
-        Me.Button7.UseVisualStyleBackColor = True
-        '
         'Product_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(812, 524)
+        Me.ClientSize = New System.Drawing.Size(975, 524)
         Me.Controls.Add(Me.Panel6)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.Panel4)
@@ -693,5 +682,4 @@ Partial Class Product_Form
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Button7 As System.Windows.Forms.Button
 End Class
