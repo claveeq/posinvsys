@@ -120,7 +120,7 @@ Public Class Product_Form
         Try
             MysqlConn.Open()
             Query =
-            "SELECT product.prod_barcode AS Barcode,product.prod_name AS Product, product.prod_description as Description, product.prod_type AS Type, product.prod_brand AS Brand, product.prod_loc as Location, pricing.price_price as Price FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode;"
+            "SELECT product.prod_barcode AS Barcode,product.prod_name AS Product, product.prod_description as Description, product.prod_type AS Type, product.prod_brand AS Brand, product.prod_loc as Location, pricing.price_price as Price FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode ORDER BY product.prod_name ASC;"
             COMMAND = New MySqlCommand(Query, MysqlConn)
 
             Sda.SelectCommand = COMMAND
@@ -423,6 +423,9 @@ Public Class Product_Form
         ComboBox2.Text = ""
         ComboBox3.Text = ""
 
+        TextBox3.Clear()
+        TextBox4.Clear()
+        Label3.Text = "Total Price"
     End Sub
 
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
@@ -442,6 +445,24 @@ Public Class Product_Form
             ComboBox2.Text = row.Cells("brand").Value.ToString
             ComboBox3.Text = row.Cells("Location").Value.ToString
             TextBox2.Text = row.Cells("Barcode").Value.ToString
+
+            Try
+                MysqlConn.Open()
+                Query =
+                "SELECT * FROM pricing WHERE price_barcode = '" & TextBox2.Text & "';"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                While Reader.Read
+                    TextBox3.Text = Reader.GetString("price_supply")
+                    TextBox4.Text = Reader.GetString("price_markup")
+                    Label3.Text = Reader.GetString("price_price")
+                End While
+                MysqlConn.Close() 'default
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
         End If
     End Sub
 
@@ -535,6 +556,10 @@ Public Class Product_Form
     End Sub
 
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
     End Sub
 End Class

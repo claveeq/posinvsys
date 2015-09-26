@@ -17,6 +17,7 @@ Public Class Checkout_Form
 
     Dim cCoreScannerClass As New CCoreScanner 'instantiating Barcode scanner class
 
+
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         Me.Close()
     End Sub
@@ -195,61 +196,78 @@ Public Class Checkout_Form
 
     End Sub
 
+   
+    Private Sub dfsdf()
+    
+
+
+        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\Images\cart.png")
+
+        Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
+        With imgcol
+            .Image = img
+        End With
+
+
+        DataGridView1.ColumnCount = 3
+        DataGridView1.Columns(0).Name = "barcode"
+        DataGridView1.Columns(1).Name = "Stock"
+        DataGridView1.Columns(2).Name = "mage"
+
+
+        Dim row As Object() = New Object() {"xcvxc", "wrer", "sdfsd"}
+        DataGridView1.Rows.Add(row)
+
+        Dim row2 As Object() = New Object() {"xcvxc", "wrer", "sdfsd"}
+        DataGridView1.Rows.Add(row2)
+        DataGridView1.Columns.Insert(0, imgcol)
+
+    End Sub
     Private Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Barcode()
 
-   
-
-        DataGridView1.ColumnCount = 8
+        DataGridView1.ColumnCount = 6
+        DataGridView1.Columns(0).Name = "Barcode"
         DataGridView1.Columns(0).Width = 90
-        DataGridView1.Columns(1).Name = "Barcode"
+        DataGridView1.Columns(1).Name = "Product"
         DataGridView1.Columns(1).Width = 130
-        DataGridView1.Columns(2).Name = "Product"
+        DataGridView1.Columns(2).Name = "Stock"
         DataGridView1.Columns(2).Width = 200
-        DataGridView1.Columns(3).Name = "Stock"
-        DataGridView1.Columns(4).Name = "Location"
-        DataGridView1.Columns(5).Name = "Price"
-        DataGridView1.Columns(6).Name = "QTY"
-        DataGridView1.Columns(6).Width = 40
-        DataGridView1.Columns(7).Name = "Delete"
-        DataGridView1.Columns(7).Width = 50
-
-
-
-
-
-
-    End Sub
-    Private Sub dfsdf()
-        Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
-        imgcol.HeaderText = "Photo"
-        imgcol.Name = "image"
-        DataGridView1.Columns.Add(imgcol)
-        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
-
-
-        Dim row As Object() = New Object() {"sdfsd"}
-        DataGridView1.Rows.Add(row)
-
+        DataGridView1.Columns(3).Name = "Price"
+        DataGridView1.Columns(4).Name = "QTY"
+        DataGridView1.Columns(5).Name = "Delete"
     End Sub
     Private Sub popoulate()
+
+        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\Images\cart.png")
+
+        Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
+        With imgcol
+            .Image = img
+        End With
+
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
         Dim reader As MySqlDataReader
+
+
         Try
             MysqlConn.Open()
             Dim Query As String
             Query =
-            "select * from rmarquez.product where prod_barcode = '" & TextBox.Text & "';"
+            "select * FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode where prod_barcode = '" & TextBox.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
-            Reader = COMMAND.ExecuteReader
+            reader = COMMAND.ExecuteReader
             While reader.Read
+
                 Dim name = reader.GetString("prod_name")
                 Dim barc = reader.GetString("prod_barcode")
                 Dim locs = reader.GetString("prod_loc")
-                Dim row As Object() = New Object() {"sdfsd", barc, name, locs}
+                Dim price = reader.GetString("price_price")
+                Dim row As Object() = New Object() {barc, name, "NA", price, "QTY", ""}
                 DataGridView1.Rows.Add(row)
+                DataGridView1.Columns.Insert(0, imgcol)
             End While
             'default
             MysqlConn.Close() 'default
@@ -257,8 +275,8 @@ Public Class Checkout_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-        End Try
 
+        End Try
 
     End Sub
 
@@ -266,16 +284,11 @@ Public Class Checkout_Form
         trim_rawdata()
 
     End Sub
-
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
-    End Sub
-
     Private Sub TextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox.TextChanged
         popoulate()
+    End Sub
+
+    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        dfsdf()
     End Sub
 End Class
