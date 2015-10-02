@@ -195,63 +195,24 @@ Public Class Checkout_Form
         TextBox.Text = Bar
 
     End Sub
-
-   
-    Private Sub dfsdf()
-    
-
-
-        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\Images\cart.png")
-
-        Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
-        With imgcol
-            .Image = img
-        End With
-
-
-        DataGridView1.ColumnCount = 3
-        DataGridView1.Columns(0).Name = "barcode"
-        DataGridView1.Columns(1).Name = "Stock"
-        DataGridView1.Columns(2).Name = "mage"
-
-
-        Dim row As Object() = New Object() {"xcvxc", "wrer", "sdfsd"}
-        DataGridView1.Rows.Add(row)
-
-        Dim row2 As Object() = New Object() {"xcvxc", "wrer", "sdfsd"}
-        DataGridView1.Rows.Add(row2)
-        DataGridView1.Columns.Insert(0, imgcol)
-
-    End Sub
     Private Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Barcode()
-
-        DataGridView1.ColumnCount = 6
-        DataGridView1.Columns(0).Name = "Barcode"
-        DataGridView1.Columns(0).Width = 90
-        DataGridView1.Columns(1).Name = "Product"
-        DataGridView1.Columns(1).Width = 130
-        DataGridView1.Columns(2).Name = "Stock"
-        DataGridView1.Columns(2).Width = 200
-        DataGridView1.Columns(3).Name = "Price"
-        DataGridView1.Columns(4).Name = "QTY"
-        DataGridView1.Columns(5).Name = "Delete"
+        Barcode()   
     End Sub
     Private Sub popoulate()
 
-        Dim img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\Images\cart.png")
 
-        Dim imgcol As DataGridViewImageColumn = New DataGridViewImageColumn()
-        With imgcol
-            .Image = img
-        End With
+        Dim cart_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
+        Dim btn_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\Trash.png")
+
+        'Dim butcol As DataGridViewButtonColumn
 
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
         Dim reader As MySqlDataReader
 
-
+        'DataGridView1.Columns.Insert(0, imgcol)
+        ' DataGridView1.Columns.Insert(2, butcol)
         Try
             MysqlConn.Open()
             Dim Query As String
@@ -262,12 +223,10 @@ Public Class Checkout_Form
             While reader.Read
 
                 Dim name = reader.GetString("prod_name")
-                Dim barc = reader.GetString("prod_barcode")
-                Dim locs = reader.GetString("prod_loc")
                 Dim price = reader.GetString("price_price")
-                Dim row As Object() = New Object() {barc, name, "NA", price, "QTY", ""}
+                Dim row As Object() = New Object() {cart_img, name, price, "quantity", btn_img}
                 DataGridView1.Rows.Add(row)
-                DataGridView1.Columns.Insert(0, imgcol)
+
             End While
             'default
             MysqlConn.Close() 'default
@@ -289,6 +248,10 @@ Public Class Checkout_Form
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        dfsdf()
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
     End Sub
 End Class

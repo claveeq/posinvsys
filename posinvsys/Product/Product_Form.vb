@@ -184,13 +184,13 @@ Public Class Product_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-            Barcode()
             table_refresh()
 
             TextBox3.Clear()
             TextBox4.Clear()
             Label1.Text = ""
             TextBox2.Clear()
+            Barcode()
         End Try
     End Sub
 
