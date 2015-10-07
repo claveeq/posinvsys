@@ -1,6 +1,8 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports CoreScanner
+
 Public Class Checkout_Form
+    Public Property total As String ' passing string to another form variable
 
     Dim loc As Point ' for movable window
 
@@ -51,6 +53,8 @@ Public Class Checkout_Form
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button5.Click
         DataGridView1.Rows.Clear()
 
+        Label4.Text = ""
+
     End Sub
     Private Sub Barcode()
         Try
@@ -63,22 +67,20 @@ Public Class Checkout_Form
             ' Size of the scannerTypes array
             Dim status As Integer
             ' Extended API return code
-            CCoreScannerClass.Open(0, scannerTypes, numberOfScannerTypes, status)
+            cCoreScannerClass.Open(0, scannerTypes, numberOfScannerTypes, status)
             ' Subscribe for barcode events in cCoreScannerClass
-            AddHandler CCoreScannerClass.BarcodeEvent, AddressOf Me.OnBarcodeEvent
+            AddHandler cCoreScannerClass.BarcodeEvent, AddressOf Me.OnBarcodeEvent
             ' Let's subscribe for events
             Dim opcode As Integer = 1001
             ' Method for Subscribe events
             Dim outXML As String
             ' XML Output
             Dim inXML As String = ("<inArgs>" + ("<cmdArgs>" + ("<arg-int>1</arg-int>" + ("<arg-int>1</arg-int>" + ("</cmdArgs>" + "</inArgs>")))))
-            CCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
+            cCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
             Console.WriteLine(outXML)
             cCoreScannerClass.Close(cCoreScannerClass.BarcodeEvent, 0) ' this line is terrible haha
-
         Catch exp As Exception
             Console.WriteLine(("Something wrong please check... " + exp.Message))
-
         End Try
 
     End Sub
@@ -196,9 +198,10 @@ Public Class Checkout_Form
 
     End Sub
     Private Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Barcode()   
+        Barcode()
+
     End Sub
-    Private Sub popoulate()
+    Public Sub popoulate()
 
 
         Dim cart_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
@@ -221,11 +224,23 @@ Public Class Checkout_Form
             COMMAND = New MySqlCommand(Query, MysqlConn)
             reader = COMMAND.ExecuteReader
             While reader.Read
+                Dim qty As Integer = 1
 
                 Dim name = reader.GetString("prod_name")
                 Dim price = reader.GetString("price_price")
-                Dim row As Object() = New Object() {cart_img, name, price, "quantity", btn_img}
+
+                total = qty * price
+
+                Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img}
                 DataGridView1.Rows.Add(row)
+
+                Dim num1 As Double
+                Dim num2 As Double
+                Dim add As Double
+                num1 = (1 * price)
+                num2 = Val(Label4.Text)
+                add = num1 + num2
+                Label4.Text = add
 
             End While
             'default
@@ -251,7 +266,37 @@ Public Class Checkout_Form
 
     End Sub
 
+    Public Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
+        If e.RowIndex >= 0 And e.ColumnIndex = 5 Then  'delete the entire row of a product
+            DataGridView1.Rows.Remove(DataGridView1.Rows(e.RowIndex))
+        End If
+        total_price_computation()
+    End Sub
+
+    Private Sub DataGridView1_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
+        If e.RowIndex >= 0 And e.ColumnIndex = 3 Then  'edit quantity of the product
+            Dim num_qty As Double = DataGridView1.Rows(e.RowIndex).Cells(3).Value
+            Dim price_qty As Double = DataGridView1.Rows(e.RowIndex).Cells(2).Value
+            Dim total_qty As Double = num_qty * price_qty
+            Label5.Text = total_qty
+            DataGridView1.Rows(e.RowIndex).Cells(4).Value = total_qty
+        End If
+
+    End Sub
+
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
+    End Sub
+    Private Sub total_price_computation()
+        Dim totalValue As Double
+        For Each dgvRow As DataGridViewRow In DataGridView1.Rows
+            If Not dgvRow.IsNewRow Then
+                totalValue += CDbl(dgvRow.Cells(4).Value)
+            End If
+        Next
+        Label4.Text = totalValue
+    End Sub
+    Private Sub DataGridView1_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
+        total_price_computation()
     End Sub
 End Class

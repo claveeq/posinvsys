@@ -55,3 +55,4 @@ C:\Users\mini EQ\Desktop\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Registratio
 C:\Users\mini EQ\Desktop\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbproj.GenerateResource.Cache
 D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Checkout_Form.resources
 D:\Clash\Doucuments\Clave\SAD\Proj\posinvsys\posinvsys\obj\x86\Debug\posinvsys.main_menu.resources
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Quantity_subForm.resources

@@ -95,7 +95,7 @@ Partial Class main_menu
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(149, 82)
         Me.Button1.TabIndex = 1
-        Me.Button1.Text = "Product"
+        Me.Button1.Text = "Inventory"
         Me.Button1.UseVisualStyleBackColor = False
         '
         'Button2
@@ -109,7 +109,7 @@ Partial Class main_menu
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(149, 82)
         Me.Button2.TabIndex = 2
-        Me.Button2.Text = "Checkout"
+        Me.Button2.Text = "POS"
         Me.Button2.UseVisualStyleBackColor = False
         '
         'Button5

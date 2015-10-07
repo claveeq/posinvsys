@@ -132,6 +132,12 @@
     <Compile Include="Product\Small Forms\addtype.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Quantity_subForm.Designer.vb">
+      <DependentUpon>Quantity_subForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Quantity_subForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Registration_Form.Designer.vb">
       <DependentUpon>Registration_Form.vb</DependentUpon>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Product\Small Forms\addtype.resx">
       <DependentUpon>addtype.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quantity_subForm.resx">
+      <DependentUpon>Quantity_subForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registration_Form.resx">
       <DependentUpon>Registration_Form.vb</DependentUpon>
