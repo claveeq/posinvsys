@@ -67,8 +67,8 @@ Public Class Registration_Form
                 COMMAND = New MySqlCommand(Query, MysqlConn)
                 Reader = COMMAND.ExecuteReader
 
-                Login_Form.Label2.ForeColor = Color.LimeGreen
-                Login_Form.Label2.Text = "Succefully Created"
+                Account_Settings.Label2.ForeColor = Color.LimeGreen
+                Account_Settings.Label2.Text = "Succefully Created"
 
                 MysqlConn.Close()
             Catch ex As MySqlException
@@ -95,7 +95,11 @@ Public Class Registration_Form
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        Login_Form.Show()
+        Account_Settings.Show()
         Me.Hide()
+    End Sub
+
+    Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
+
     End Sub
 End Class

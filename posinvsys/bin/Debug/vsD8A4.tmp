@@ -23,22 +23,6 @@ posinvsys
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
-</member><member name="P:posinvsys.My.Resources.Resources.employee">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:posinvsys.My.Resources.Resources.employee1">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:posinvsys.My.Resources.Resources.notif">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:posinvsys.My.Resources.Resources.notif1">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
 </member><member name="T:posinvsys.My.Resources.Resources">
 	<summary>
   A strongly-typed resource class, for looking up localized strings, etc.

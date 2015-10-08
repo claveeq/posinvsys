@@ -54,6 +54,7 @@ Partial Class Registration_Form
         '
         'Panel1
         '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
         Me.Panel1.Controls.Add(Me.Button4)
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Controls.Add(Me.Label1)
@@ -68,7 +69,7 @@ Partial Class Registration_Form
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(310, 0)
+        Me.Button4.Location = New System.Drawing.Point(247, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(45, 33)
         Me.Button4.TabIndex = 12
@@ -81,7 +82,7 @@ Partial Class Registration_Form
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(355, 0)
+        Me.Button3.Location = New System.Drawing.Point(292, 3)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(45, 33)
         Me.Button3.TabIndex = 2
@@ -92,6 +93,7 @@ Partial Class Registration_Form
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Label1.Location = New System.Drawing.Point(3, 8)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(203, 15)
@@ -129,6 +131,7 @@ Partial Class Registration_Form
         'Label2
         '
         Me.Label2.AutoSize = True
+        Me.Label2.ForeColor = System.Drawing.Color.White
         Me.Label2.Location = New System.Drawing.Point(24, 61)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(38, 13)
@@ -138,6 +141,7 @@ Partial Class Registration_Form
         'Label3
         '
         Me.Label3.AutoSize = True
+        Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(24, 87)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(52, 13)
@@ -147,6 +151,7 @@ Partial Class Registration_Form
         'Label4
         '
         Me.Label4.AutoSize = True
+        Me.Label4.ForeColor = System.Drawing.Color.White
         Me.Label4.Location = New System.Drawing.Point(24, 113)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(56, 13)
@@ -156,6 +161,7 @@ Partial Class Registration_Form
         'Label5
         '
         Me.Label5.AutoSize = True
+        Me.Label5.ForeColor = System.Drawing.Color.White
         Me.Label5.Location = New System.Drawing.Point(24, 139)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(93, 13)
@@ -165,6 +171,7 @@ Partial Class Registration_Form
         'Label6
         '
         Me.Label6.AutoSize = True
+        Me.Label6.ForeColor = System.Drawing.Color.White
         Me.Label6.Location = New System.Drawing.Point(24, 182)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(48, 13)
@@ -174,6 +181,7 @@ Partial Class Registration_Form
         'Label7
         '
         Me.Label7.AutoSize = True
+        Me.Label7.ForeColor = System.Drawing.Color.White
         Me.Label7.Location = New System.Drawing.Point(24, 208)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(45, 13)
@@ -191,6 +199,7 @@ Partial Class Registration_Form
         'Label8
         '
         Me.Label8.AutoSize = True
+        Me.Label8.ForeColor = System.Drawing.Color.White
         Me.Label8.Location = New System.Drawing.Point(212, 211)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(29, 13)
@@ -200,6 +209,7 @@ Partial Class Registration_Form
         'Label9
         '
         Me.Label9.AutoSize = True
+        Me.Label9.ForeColor = System.Drawing.Color.White
         Me.Label9.Location = New System.Drawing.Point(24, 232)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(48, 13)
@@ -209,6 +219,7 @@ Partial Class Registration_Form
         'Label10
         '
         Me.Label10.AutoSize = True
+        Me.Label10.ForeColor = System.Drawing.Color.White
         Me.Label10.Location = New System.Drawing.Point(24, 258)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(80, 13)
@@ -218,6 +229,7 @@ Partial Class Registration_Form
         'Label11
         '
         Me.Label11.AutoSize = True
+        Me.Label11.ForeColor = System.Drawing.Color.White
         Me.Label11.Location = New System.Drawing.Point(16, 40)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(102, 13)
@@ -227,6 +239,7 @@ Partial Class Registration_Form
         'Label12
         '
         Me.Label12.AutoSize = True
+        Me.Label12.ForeColor = System.Drawing.Color.White
         Me.Label12.Location = New System.Drawing.Point(16, 162)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(103, 13)
@@ -235,21 +248,27 @@ Partial Class Registration_Form
         '
         'Button1
         '
+        Me.Button1.BackColor = System.Drawing.SystemColors.Highlight
+        Me.Button1.FlatAppearance.BorderSize = 0
+        Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Location = New System.Drawing.Point(118, 289)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(200, 23)
         Me.Button1.TabIndex = 25
         Me.Button1.Text = "Create"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Button1.UseVisualStyleBackColor = False
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(6, 289)
+        Me.Button2.BackColor = System.Drawing.Color.Firebrick
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(19, 289)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(85, 23)
         Me.Button2.TabIndex = 26
         Me.Button2.Text = "Cancel"
-        Me.Button2.UseVisualStyleBackColor = True
+        Me.Button2.UseVisualStyleBackColor = False
         '
         'DateTimePicker1
         '
@@ -284,6 +303,7 @@ Partial Class Registration_Form
         'Label14
         '
         Me.Label14.AutoSize = True
+        Me.Label14.ForeColor = System.Drawing.Color.White
         Me.Label14.Location = New System.Drawing.Point(206, 258)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(27, 13)
@@ -294,7 +314,8 @@ Partial Class Registration_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(400, 324)
+        Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.ClientSize = New System.Drawing.Size(337, 324)
         Me.Controls.Add(Me.Label14)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.TextBox6)
@@ -319,6 +340,7 @@ Partial Class Registration_Form
         Me.Controls.Add(Me.TextBox2)
         Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Panel1)
+        Me.ForeColor = System.Drawing.Color.White
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Registration_Form"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

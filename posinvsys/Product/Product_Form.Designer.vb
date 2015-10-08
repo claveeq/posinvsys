@@ -50,7 +50,7 @@ Partial Class Product_Form
         Me.Label9 = New System.Windows.Forms.Label()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.TextBox8 = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
         Me.TextBox7 = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
@@ -69,7 +69,9 @@ Partial Class Product_Form
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
+        Me.Button7 = New System.Windows.Forms.Button()
         Me.Button6 = New System.Windows.Forms.Button()
+        Me.Label22 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Panel1.SuspendLayout()
@@ -353,7 +355,7 @@ Partial Class Product_Form
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Panel4.Controls.Add(Me.TextBox8)
+        Me.Panel4.Controls.Add(Me.Label23)
         Me.Panel4.Controls.Add(Me.Label16)
         Me.Panel4.Controls.Add(Me.TextBox7)
         Me.Panel4.Controls.Add(Me.Label15)
@@ -365,12 +367,15 @@ Partial Class Product_Form
         Me.Panel4.Size = New System.Drawing.Size(148, 149)
         Me.Panel4.TabIndex = 8
         '
-        'TextBox8
+        'Label23
         '
-        Me.TextBox8.Location = New System.Drawing.Point(9, 113)
-        Me.TextBox8.Name = "TextBox8"
-        Me.TextBox8.Size = New System.Drawing.Size(131, 20)
-        Me.TextBox8.TabIndex = 6
+        Me.Label23.AutoSize = True
+        Me.Label23.ForeColor = System.Drawing.Color.White
+        Me.Label23.Location = New System.Drawing.Point(41, 116)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(58, 13)
+        Me.Label23.TabIndex = 5
+        Me.Label23.Text = "Total Price"
         '
         'Label16
         '
@@ -541,7 +546,9 @@ Partial Class Product_Form
         'Panel6
         '
         Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel6.Controls.Add(Me.Button7)
         Me.Panel6.Controls.Add(Me.Button6)
+        Me.Panel6.Controls.Add(Me.Label22)
         Me.Panel6.Controls.Add(Me.Button5)
         Me.Panel6.Controls.Add(Me.Button2)
         Me.Panel6.Controls.Add(Me.TextBox2)
@@ -550,6 +557,19 @@ Partial Class Product_Form
         Me.Panel6.Name = "Panel6"
         Me.Panel6.Size = New System.Drawing.Size(987, 49)
         Me.Panel6.TabIndex = 25
+        '
+        'Button7
+        '
+        Me.Button7.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Button7.FlatAppearance.BorderSize = 0
+        Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button7.ForeColor = System.Drawing.Color.White
+        Me.Button7.Location = New System.Drawing.Point(713, 16)
+        Me.Button7.Name = "Button7"
+        Me.Button7.Size = New System.Drawing.Size(146, 20)
+        Me.Button7.TabIndex = 16
+        Me.Button7.Text = "Restart"
+        Me.Button7.UseVisualStyleBackColor = False
         '
         'Button6
         '
@@ -564,6 +584,16 @@ Partial Class Product_Form
         Me.Button6.TabIndex = 15
         Me.Button6.Text = "Back"
         Me.Button6.UseVisualStyleBackColor = False
+        '
+        'Label22
+        '
+        Me.Label22.AutoSize = True
+        Me.Label22.ForeColor = System.Drawing.Color.White
+        Me.Label22.Location = New System.Drawing.Point(107, 453)
+        Me.Label22.Name = "Label22"
+        Me.Label22.Size = New System.Drawing.Size(56, 13)
+        Me.Label22.TabIndex = 5
+        Me.Label22.Text = "Final Price"
         '
         'Button5
         '
@@ -658,7 +688,6 @@ Partial Class Product_Form
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents Label12 As System.Windows.Forms.Label
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
-    Friend WithEvents TextBox8 As System.Windows.Forms.TextBox
     Friend WithEvents Label16 As System.Windows.Forms.Label
     Friend WithEvents TextBox7 As System.Windows.Forms.TextBox
     Friend WithEvents Label15 As System.Windows.Forms.Label
@@ -682,4 +711,7 @@ Partial Class Product_Form
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents Button6 As System.Windows.Forms.Button
     Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Button7 As System.Windows.Forms.Button
+    Friend WithEvents Label22 As System.Windows.Forms.Label
+    Friend WithEvents Label23 As System.Windows.Forms.Label
 End Class

@@ -73,9 +73,8 @@ Public Class Login_Form
         connect()
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button2.Click
-        Registration_Form.Show()
-        Me.Hide()
+    Private Sub Button2_Click(ByVal sender As Object, ByVal e As EventArgs)
+
     End Sub
 
     Private Sub Label1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label1.Click

@@ -15,7 +15,27 @@ posinvsys
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
+</member><member name="P:posinvsys.My.Resources.Resources._3513">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:posinvsys.My.Resources.Resources.cart">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.employee">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.employee1">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.notif">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.notif1">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

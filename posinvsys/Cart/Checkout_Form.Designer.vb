@@ -27,7 +27,6 @@ Partial Class Checkout_Form
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label5 = New System.Windows.Forms.Label()
         Me.Button5 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TextBox = New System.Windows.Forms.TextBox()
@@ -37,13 +36,13 @@ Partial Class Checkout_Form
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Column1 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewImageColumn()
+        Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,7 +64,7 @@ Partial Class Checkout_Form
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(999, 1)
+        Me.Button4.Location = New System.Drawing.Point(995, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(45, 33)
         Me.Button4.TabIndex = 14
@@ -88,7 +87,7 @@ Partial Class Checkout_Form
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(1044, 1)
+        Me.Button3.Location = New System.Drawing.Point(1040, 0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(45, 33)
         Me.Button3.TabIndex = 13
@@ -98,7 +97,6 @@ Partial Class Checkout_Form
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.DimGray
-        Me.Panel2.Controls.Add(Me.Label5)
         Me.Panel2.Controls.Add(Me.Button5)
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.TextBox)
@@ -110,27 +108,18 @@ Partial Class Checkout_Form
         Me.Panel2.Size = New System.Drawing.Size(1089, 51)
         Me.Panel2.TabIndex = 3
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(374, 12)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(66, 24)
-        Me.Label5.TabIndex = 6
-        Me.Label5.Text = "Label5"
-        '
         'Button5
         '
-        Me.Button5.BackColor = System.Drawing.SystemColors.MenuHighlight
+        Me.Button5.BackColor = System.Drawing.Color.Firebrick
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(901, 0)
+        Me.Button5.Location = New System.Drawing.Point(789, 0)
         Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(91, 51)
+        Me.Button5.Size = New System.Drawing.Size(152, 51)
         Me.Button5.TabIndex = 3
-        Me.Button5.Text = "Clear"
+        Me.Button5.Text = "VOID"
         Me.Button5.UseVisualStyleBackColor = False
         '
         'Button2
@@ -140,7 +129,7 @@ Partial Class Checkout_Form
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(998, 0)
+        Me.Button2.Location = New System.Drawing.Point(994, 0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(91, 51)
         Me.Button2.TabIndex = 1
@@ -227,14 +216,6 @@ Partial Class Checkout_Form
         Me.DataGridView1.Size = New System.Drawing.Size(709, 314)
         Me.DataGridView1.TabIndex = 6
         '
-        'Panel3
-        '
-        Me.Panel3.BackColor = System.Drawing.Color.DimGray
-        Me.Panel3.Location = New System.Drawing.Point(716, 86)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(373, 314)
-        Me.Panel3.TabIndex = 7
-        '
         'Column1
         '
         Me.Column1.HeaderText = ""
@@ -273,11 +254,19 @@ Partial Class Checkout_Form
         Me.Column5.ReadOnly = True
         Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         '
+        'Panel3
+        '
+        Me.Panel3.BackColor = System.Drawing.Color.DimGray
+        Me.Panel3.Location = New System.Drawing.Point(716, 86)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(373, 314)
+        Me.Panel3.TabIndex = 7
+        '
         'Checkout_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1101, 524)
+        Me.ClientSize = New System.Drawing.Size(1085, 524)
         Me.Controls.Add(Me.Panel3)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Textbox1)
@@ -289,7 +278,6 @@ Partial Class Checkout_Form
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Checkout_Form"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Checkout_Form"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.Panel2.ResumeLayout(False)
@@ -313,7 +301,6 @@ Partial Class Checkout_Form
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents TextBox As System.Windows.Forms.TextBox
     Friend WithEvents Textbox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn

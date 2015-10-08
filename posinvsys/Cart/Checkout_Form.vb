@@ -50,11 +50,10 @@ Public Class Checkout_Form
         main_menu.Show()
         Me.Hide()
     End Sub
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click, Button5.Click
-        DataGridView1.Rows.Clear()
-
-        Label4.Text = ""
-
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Dim newcheck As New Checkout_Form
+        newcheck.Show()
+        Me.Hide()
     End Sub
     Private Sub Barcode()
         Try
@@ -78,7 +77,7 @@ Public Class Checkout_Form
             Dim inXML As String = ("<inArgs>" + ("<cmdArgs>" + ("<arg-int>1</arg-int>" + ("<arg-int>1</arg-int>" + ("</cmdArgs>" + "</inArgs>")))))
             cCoreScannerClass.ExecCommand(opcode, inXML, outXML, status)
             Console.WriteLine(outXML)
-            cCoreScannerClass.Close(cCoreScannerClass.BarcodeEvent, 0) ' this line is terrible haha
+            cCoreScannerClass.Close(cCoreScannerClass.BarcodeEvent, 0) ' haaay this line is terrible haha
         Catch exp As Exception
             Console.WriteLine(("Something wrong please check... " + exp.Message))
         End Try
@@ -251,7 +250,6 @@ Public Class Checkout_Form
             MysqlConn.Dispose()
 
         End Try
-
     End Sub
 
     Private Sub Textbox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Textbox1.TextChanged
@@ -261,16 +259,12 @@ Public Class Checkout_Form
     Private Sub TextBox_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox.TextChanged
         popoulate()
     End Sub
-
-    Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
-
-    End Sub
-
     Public Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
         If e.RowIndex >= 0 And e.ColumnIndex = 5 Then  'delete the entire row of a product
             DataGridView1.Rows.Remove(DataGridView1.Rows(e.RowIndex))
+                    total_price_computation()
         End If
-        total_price_computation()
+
     End Sub
 
     Private Sub DataGridView1_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
@@ -278,14 +272,8 @@ Public Class Checkout_Form
             Dim num_qty As Double = DataGridView1.Rows(e.RowIndex).Cells(3).Value
             Dim price_qty As Double = DataGridView1.Rows(e.RowIndex).Cells(2).Value
             Dim total_qty As Double = num_qty * price_qty
-            Label5.Text = total_qty
             DataGridView1.Rows(e.RowIndex).Cells(4).Value = total_qty
         End If
-
-    End Sub
-
-    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-
     End Sub
     Private Sub total_price_computation()
         Dim totalValue As Double
@@ -298,5 +286,13 @@ Public Class Checkout_Form
     End Sub
     Private Sub DataGridView1_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
         total_price_computation()
+    End Sub
+    Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Payment_Form.Show()
+        Payment_Form.Label4.Text = Label4.Text
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
     End Sub
 End Class

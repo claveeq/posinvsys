@@ -164,7 +164,6 @@ Public Class Product_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-
             TextBox1.Clear()
 
             RichTextBox1.Clear()
@@ -178,7 +177,6 @@ Public Class Product_Form
             Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & TextBox2.Text & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
-            MessageBox.Show("Product Successfully Added")
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
@@ -189,7 +187,27 @@ Public Class Product_Form
             TextBox3.Clear()
             TextBox4.Clear()
             Label1.Text = ""
+
+        End Try
+        Try 'pricing table
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "Insert into rmarquez.inventory (`inv_barcode`, `inv_stock`, `inv_ropoint`, `inv_roamount`) VALUES ('" & TextBox2.Text & "', '" & TextBox6.Text & "', '" & TextBox7.Text & "', '" & Label23.Text & "');"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            MessageBox.Show("Product Successfully Added")
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+
+            TextBox6.Clear()
+            TextBox7.Clear()
+            Label23.Text = "Total Price"
             TextBox2.Clear()
+
+            table_refresh()
             Barcode()
         End Try
     End Sub
@@ -249,7 +267,6 @@ Public Class Product_Form
         DataGridView1.DataSource = DV
     End Sub
     Private Sub Barcode()
-
         Try
             'Call Open API
             Dim scannerTypes() As Short = New Short((1) - 1) {}
@@ -402,6 +419,26 @@ Public Class Product_Form
             ComboBox1.Text = row.Cells("type").Value.ToString
             ComboBox2.Text = row.Cells("brand").Value.ToString
             ComboBox3.Text = row.Cells("Location").Value.ToString
+            Try 'pricing table
+                MysqlConn.Open()
+                Dim Query As String
+                Query = "Select * From Pricing where Price_barcode = '" & TextBox2.Text & "';"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                While Reader.Read
+                    Dim psupply = Reader.GetString("price_supply")
+                    Dim pmarkup = Reader.GetString("price_markup")
+                    Dim pprice = Reader.GetString("price_price")
+                    TextBox3.Text = psupply
+                    TextBox4.Text = pmarkup
+                    Label3.Text = pprice
+                End While
+                MysqlConn.Close()
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
         Else
             TextBox1.Clear()
             RichTextBox1.Clear()
@@ -409,8 +446,6 @@ Public Class Product_Form
             ComboBox2.Text = ""
             ComboBox3.Text = ""
         End If
-
-
     End Sub
     Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
         Barcode()
@@ -433,7 +468,7 @@ Public Class Product_Form
     End Sub
 
     Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick
-
+    
         If e.RowIndex >= 0 Then  'retrieve cell data from datagridview to textbox
             Dim row As DataGridViewRow
 
@@ -445,7 +480,6 @@ Public Class Product_Form
             ComboBox2.Text = row.Cells("brand").Value.ToString
             ComboBox3.Text = row.Cells("Location").Value.ToString
             TextBox2.Text = row.Cells("Barcode").Value.ToString
-
             Try
                 MysqlConn.Open()
                 Query =
@@ -456,6 +490,23 @@ Public Class Product_Form
                     TextBox3.Text = Reader.GetString("price_supply")
                     TextBox4.Text = Reader.GetString("price_markup")
                     Label3.Text = Reader.GetString("price_price")
+                End While
+                MysqlConn.Close() 'default
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
+            Try
+                MysqlConn.Open()
+                Query =
+                "SELECT * FROM inventory WHERE inv_barcode = '" & TextBox2.Text & "';"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                While Reader.Read
+                    TextBox6.Text = Reader.GetString("inv_stock")
+                    TextBox7.Text = Reader.GetString("inv_ropoint")
+                    'Label23.Text = Reader.GetString("inv_roamount")
                 End While
                 MysqlConn.Close() 'default
             Catch ex As MySqlException
@@ -554,16 +605,27 @@ Public Class Product_Form
     Private Sub TextBox4_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox4.TextChanged
         retail()
     End Sub
+    Private Sub Button7_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        Dim refresh_all As New Product_Form
+        refresh_all.Show()
+        Me.Hide()
+    End Sub
 
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+    Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
 
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    Private Sub TextBox7_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox7.TextChanged
 
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
-
+    Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
+        If TextBox1.Text = "" Then
+            TextBox3.Clear()
+            TextBox4.Clear()
+            Label3.Text = "Finale Price"
+            TextBox6.Clear()
+            TextBox7.Clear()
+        End If
     End Sub
 End Class
