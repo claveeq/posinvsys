@@ -164,12 +164,7 @@ Public Class Product_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-            TextBox1.Clear()
 
-            RichTextBox1.Clear()
-            ComboBox1.Text = ""
-            ComboBox2.Text = ""
-            ComboBox3.Text = ""
         End Try
         Try 'pricing table
             MysqlConn.Open()
@@ -182,12 +177,6 @@ Public Class Product_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-            table_refresh()
-
-            TextBox3.Clear()
-            TextBox4.Clear()
-            Label1.Text = ""
-
         End Try
         Try 'pricing table
             MysqlConn.Open()
@@ -201,7 +190,14 @@ Public Class Product_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-
+            TextBox1.Clear()
+            RichTextBox1.Clear()
+            ComboBox1.Text = ""
+            ComboBox2.Text = ""
+            ComboBox3.Text = ""
+            TextBox3.Clear()
+            TextBox4.Clear()
+            Label3.Text = ""
             TextBox6.Clear()
             TextBox7.Clear()
             Label23.Text = "Total Price"
@@ -419,26 +415,6 @@ Public Class Product_Form
             ComboBox1.Text = row.Cells("type").Value.ToString
             ComboBox2.Text = row.Cells("brand").Value.ToString
             ComboBox3.Text = row.Cells("Location").Value.ToString
-            Try 'pricing table
-                MysqlConn.Open()
-                Dim Query As String
-                Query = "Select * From Pricing where Price_barcode = '" & TextBox2.Text & "';"
-                COMMAND = New MySqlCommand(Query, MysqlConn)
-                Reader = COMMAND.ExecuteReader
-                While Reader.Read
-                    Dim psupply = Reader.GetString("price_supply")
-                    Dim pmarkup = Reader.GetString("price_markup")
-                    Dim pprice = Reader.GetString("price_price")
-                    TextBox3.Text = psupply
-                    TextBox4.Text = pmarkup
-                    Label3.Text = pprice
-                End While
-                MysqlConn.Close()
-            Catch ex As MySqlException
-                MessageBox.Show(ex.Message)
-            Finally
-                MysqlConn.Dispose()
-            End Try
         Else
             TextBox1.Clear()
             RichTextBox1.Clear()
@@ -627,5 +603,17 @@ Public Class Product_Form
             TextBox6.Clear()
             TextBox7.Clear()
         End If
+    End Sub
+
+    Private Sub Panel5_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel5.Paint
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
+
     End Sub
 End Class

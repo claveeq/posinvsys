@@ -3,6 +3,7 @@ Imports CoreScanner
 
 Public Class Checkout_Form
     Public Property total As String ' passing string to another form variable
+    Public Property supply As String
 
     Dim loc As Point ' for movable window
 
@@ -227,10 +228,12 @@ Public Class Checkout_Form
 
                 Dim name = reader.GetString("prod_name")
                 Dim price = reader.GetString("price_price")
+                Dim psupply = reader.GetString("price_supply")
 
                 total = qty * price
+                supply = qty * psupply
 
-                Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img}
+                Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply}
                 DataGridView1.Rows.Add(row)
 
                 Dim num1 As Double
@@ -240,7 +243,6 @@ Public Class Checkout_Form
                 num2 = Val(Label4.Text)
                 add = num1 + num2
                 Label4.Text = add
-
             End While
             'default
             MysqlConn.Close() 'default
@@ -273,16 +275,24 @@ Public Class Checkout_Form
             Dim price_qty As Double = DataGridView1.Rows(e.RowIndex).Cells(2).Value
             Dim total_qty As Double = num_qty * price_qty
             DataGridView1.Rows(e.RowIndex).Cells(4).Value = total_qty
+
+            Dim num_sup As Double = DataGridView1.Rows(e.RowIndex).Cells(3).Value
+            Dim price_sup As Double = DataGridView1.Rows(e.RowIndex).Cells(6).Value
+            Dim total_sup As Double = num_sup * price_sup
+            DataGridView1.Rows(e.RowIndex).Cells(7).Value = total_sup
         End If
     End Sub
     Private Sub total_price_computation()
         Dim totalValue As Double
+        Dim totalValue_cod As Double
         For Each dgvRow As DataGridViewRow In DataGridView1.Rows
             If Not dgvRow.IsNewRow Then
                 totalValue += CDbl(dgvRow.Cells(4).Value)
+                totalValue_cod += CDbl(dgvRow.Cells(7).Value)
             End If
         Next
         Label4.Text = totalValue
+        supply = totalValue_cod
     End Sub
     Private Sub DataGridView1_CellValueChanged(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellValueChanged
         total_price_computation()

@@ -38,7 +38,7 @@ Public Class Payment_Form
         Try
             MysqlConn.Open()
             Dim Query As String
-            Query = "Insert into rmarquez.receipt (rec_date,rec_total,rec_cash,rec_change) values (DATE_FORMAT(NOW(),'%Y-%m-%d-'),'" & Label4.Text & "','" & TextBox1.Text & "','" & Label6.Text & "');"
+            Query = "Insert into rmarquez.receipt (rec_date,rec_total,rec_cash,rec_change,rec_cog) values (DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),'" & Label4.Text & "','" & TextBox1.Text & "','" & Label6.Text & "','" & Checkout_Form.supply & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             MysqlConn.Close()

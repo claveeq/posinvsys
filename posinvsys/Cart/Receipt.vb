@@ -36,9 +36,9 @@ Public Class receipt
                     "Item1.................................." & vbNewLine &
                     "Item2.................................." & vbNewLine &
                     "________________________________________" & vbNewLine & vbNewLine &
-                    "            Total.............................................Php " & rtotal & vbNewLine &
-                    "            Cash.............................................Php " & cash & vbNewLine &
-                    "            Change.........................................Php " & change & vbNewLine &
+                    "            Total.........................................Php " & rtotal & vbNewLine &
+                    "            Cash.........................................Php " & cash & vbNewLine &
+                    "            Change....................................Php " & change & vbNewLine &
                     "________________________________________" & vbNewLine
                 RichTextBox1.Text = receipt
 

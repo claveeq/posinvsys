@@ -42,7 +42,9 @@ Partial Class Checkout_Form
         Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column5 = New System.Windows.Forms.DataGridViewImageColumn()
-        Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.Column7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -55,7 +57,7 @@ Partial Class Checkout_Form
         Me.Panel1.Controls.Add(Me.Button3)
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(1089, 33)
+        Me.Panel1.Size = New System.Drawing.Size(959, 33)
         Me.Panel1.TabIndex = 1
         '
         'Button4
@@ -64,7 +66,7 @@ Partial Class Checkout_Form
         Me.Button4.FlatAppearance.BorderSize = 0
         Me.Button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button4.ForeColor = System.Drawing.Color.White
-        Me.Button4.Location = New System.Drawing.Point(995, 0)
+        Me.Button4.Location = New System.Drawing.Point(869, 0)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(45, 33)
         Me.Button4.TabIndex = 14
@@ -87,7 +89,7 @@ Partial Class Checkout_Form
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(1040, 0)
+        Me.Button3.Location = New System.Drawing.Point(914, 0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(45, 33)
         Me.Button3.TabIndex = 13
@@ -105,7 +107,7 @@ Partial Class Checkout_Form
         Me.Panel2.ForeColor = System.Drawing.SystemColors.MenuHighlight
         Me.Panel2.Location = New System.Drawing.Point(0, 33)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(1089, 51)
+        Me.Panel2.Size = New System.Drawing.Size(959, 51)
         Me.Panel2.TabIndex = 3
         '
         'Button5
@@ -115,7 +117,7 @@ Partial Class Checkout_Form
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button5.ForeColor = System.Drawing.Color.White
-        Me.Button5.Location = New System.Drawing.Point(789, 0)
+        Me.Button5.Location = New System.Drawing.Point(716, 0)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(152, 51)
         Me.Button5.TabIndex = 3
@@ -129,7 +131,7 @@ Partial Class Checkout_Form
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button2.ForeColor = System.Drawing.Color.White
-        Me.Button2.Location = New System.Drawing.Point(994, 0)
+        Me.Button2.Location = New System.Drawing.Point(868, 0)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(91, 51)
         Me.Button2.TabIndex = 1
@@ -171,9 +173,9 @@ Partial Class Checkout_Form
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button1.ForeColor = System.Drawing.Color.White
-        Me.Button1.Location = New System.Drawing.Point(918, 406)
+        Me.Button1.Location = New System.Drawing.Point(716, 404)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(171, 115)
+        Me.Button1.Size = New System.Drawing.Size(243, 115)
         Me.Button1.TabIndex = 1
         Me.Button1.Text = "checkout"
         Me.Button1.UseVisualStyleBackColor = False
@@ -209,11 +211,11 @@ Partial Class Checkout_Form
         Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column6, Me.Column5})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column4, Me.Column3, Me.Column6, Me.Column5, Me.Column7, Me.Column8})
         Me.DataGridView1.Location = New System.Drawing.Point(1, 86)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(709, 314)
+        Me.DataGridView1.Size = New System.Drawing.Size(851, 314)
         Me.DataGridView1.TabIndex = 6
         '
         'Column1
@@ -254,22 +256,38 @@ Partial Class Checkout_Form
         Me.Column5.ReadOnly = True
         Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
         '
-        'Panel3
+        'Column7
         '
-        Me.Panel3.BackColor = System.Drawing.Color.DimGray
-        Me.Panel3.Location = New System.Drawing.Point(716, 86)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(373, 314)
-        Me.Panel3.TabIndex = 7
+        Me.Column7.HeaderText = "supply"
+        Me.Column7.Name = "Column7"
+        Me.Column7.ReadOnly = True
+        Me.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.[False]
+        '
+        'Column8
+        '
+        Me.Column8.HeaderText = "sTotal"
+        Me.Column8.Name = "Column8"
+        Me.Column8.ReadOnly = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.DimGray
+        Me.Label5.Location = New System.Drawing.Point(369, 461)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(0, 37)
+        Me.Label5.TabIndex = 5
         '
         'Checkout_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1085, 524)
-        Me.Controls.Add(Me.Panel3)
+        Me.ClientSize = New System.Drawing.Size(959, 524)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Textbox1)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Panel2)
@@ -301,11 +319,13 @@ Partial Class Checkout_Form
     Friend WithEvents Button5 As System.Windows.Forms.Button
     Friend WithEvents TextBox As System.Windows.Forms.TextBox
     Friend WithEvents Textbox1 As System.Windows.Forms.TextBox
-    Friend WithEvents Panel3 As System.Windows.Forms.Panel
     Friend WithEvents Column1 As System.Windows.Forms.DataGridViewImageColumn
     Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column4 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column3 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Column5 As System.Windows.Forms.DataGridViewImageColumn
+    Friend WithEvents Column7 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Column8 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class
