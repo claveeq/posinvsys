@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `rmarquez` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `rmarquez`;
 -- MySQL dump 10.13  Distrib 5.6.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: rmarquez
@@ -39,16 +37,6 @@ CREATE TABLE `account` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `account`
---
-
-LOCK TABLES `account` WRITE;
-/*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (1,'Clave','Quimbo',NULL,'1234','1996-09-08',0,'1662 A&V Subd. Sulucan, Bocaue, bulacan',0),(2,'Lem','De Guzman',NULL,'1234','1995-05-17',0,'1037 v.Mauricio st. Turo,Bocaue,Bulacan',0),(3,'Justin','Mendoza',NULL,'1234','1996-02-17',0,'161 Bunlo Bocaue Bulacan',0),(4,'Neeve','Quimbo',NULL,'hello','2015-09-23',0,'655756',0),(5,'Gemma','Gibaga',NULL,'1234','2014-08-21',0,'Bocaue, Bulacan',1);
-/*!40000 ALTER TABLE `account` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `brand`
 --
 
@@ -63,16 +51,6 @@ CREATE TABLE `brand` (
   UNIQUE KEY `brand_name_UNIQUE` (`brand_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `brand`
---
-
-LOCK TABLES `brand` WRITE;
-/*!40000 ALTER TABLE `brand` DISABLE KEYS */;
-INSERT INTO `brand` VALUES (7,'Bonus'),(1,'cla er'),(2,'dsf'),(3,'g'),(4,'ghjg'),(6,'johnson'),(5,'Microsoft');
-/*!40000 ALTER TABLE `brand` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `inventory`
@@ -91,16 +69,6 @@ CREATE TABLE `inventory` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `inventory`
---
-
-LOCK TABLES `inventory` WRITE;
-/*!40000 ALTER TABLE `inventory` DISABLE KEYS */;
-INSERT INTO `inventory` VALUES ('48040693','50','6','Total Price'),('NUF-00001','20','5','Total Price');
-/*!40000 ALTER TABLE `inventory` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `location`
 --
 
@@ -117,15 +85,6 @@ CREATE TABLE `location` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `location`
---
-
-LOCK TABLES `location` WRITE;
-/*!40000 ALTER TABLE `location` DISABLE KEYS */;
-/*!40000 ALTER TABLE `location` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `pricing`
 --
 
@@ -140,16 +99,6 @@ CREATE TABLE `pricing` (
   PRIMARY KEY (`price_barcode`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `pricing`
---
-
-LOCK TABLES `pricing` WRITE;
-/*!40000 ALTER TABLE `pricing` DISABLE KEYS */;
-INSERT INTO `pricing` VALUES ('48040693','23','15','26.45'),('NUF-00001','800','14','912');
-/*!40000 ALTER TABLE `pricing` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `product`
@@ -169,18 +118,8 @@ CREATE TABLE `product` (
   PRIMARY KEY (`prod_id`,`prod_barcode`),
   UNIQUE KEY `prod_id_UNIQUE` (`prod_id`),
   UNIQUE KEY `prod_barcode_UNIQUE` (`prod_barcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `product`
---
-
-LOCK TABLES `product` WRITE;
-/*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'48040693','Poweder','','324','34','234'),(2,'NUF-00001','Xbox','3453','45435','345','345');
-/*!40000 ALTER TABLE `product` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `receipt`
@@ -193,23 +132,13 @@ CREATE TABLE `receipt` (
   `rec_id` int(11) NOT NULL AUTO_INCREMENT,
   `rec_date` date DEFAULT '0000-00-00',
   `rec_items` varchar(500) DEFAULT NULL,
-  `rec_total` double DEFAULT NULL,
-  `rec_cash` double DEFAULT NULL,
-  `rec_change` double DEFAULT NULL,
-  `rec_cog` double DEFAULT NULL,
+  `rec_total` double DEFAULT '0',
+  `rec_cash` double DEFAULT '0',
+  `rec_change` double DEFAULT '0',
+  `rec_cog` double DEFAULT '0',
   PRIMARY KEY (`rec_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `receipt`
---
-
-LOCK TABLES `receipt` WRITE;
-/*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
-INSERT INTO `receipt` VALUES (1,'2015-10-08',NULL,494,543563,543069,NULL),(2,'2015-10-08',NULL,494,500,6,NULL),(3,'2015-10-08',NULL,494,5000,4506,NULL),(4,'2015-10-08',NULL,4945,500,6,NULL),(5,'2015-10-08',NULL,494,500,6,NULL),(6,'2015-10-08',NULL,494,500,6,NULL),(7,'2015-10-08',NULL,494,4575,4081,NULL),(8,'2015-10-08',NULL,494,1000,506,NULL),(9,'2015-10-08',NULL,494,500,6,NULL),(10,'2015-10-08',NULL,494,500,6,NULL),(11,'2015-10-08',NULL,494,500,6,NULL),(12,'2015-10-08',NULL,896,1000,104,NULL),(13,'2015-10-08',NULL,494,500,6,NULL),(14,'2015-10-08',NULL,494,500,6,NULL),(15,'2015-10-08',NULL,494,500,6,NULL),(16,'2015-10-08',NULL,494,5000,4506,NULL),(17,'2015-10-08',NULL,494,5050,4556,NULL),(18,'2015-10-08',NULL,494,500,6,NULL),(19,'2015-10-08',NULL,494,500,6,NULL),(20,'2015-10-08',NULL,494,5000,4506,NULL),(21,'2015-10-08',NULL,494,500,6,NULL),(22,'2015-10-08',NULL,494,500,6,NULL),(23,'2015-10-08',NULL,494,500,6,NULL),(24,'2015-10-08',NULL,494,500,6,NULL),(25,'2015-10-08',NULL,494,500,6,NULL),(26,'2015-10-08',NULL,494,500,6,NULL),(27,'2015-10-08',NULL,494,500,6,NULL),(28,'2015-10-08',NULL,896,500,-396,NULL),(29,'2015-10-08',NULL,494,500,6,NULL),(30,'2015-10-08',NULL,494,500,6,NULL),(31,'2015-10-08',NULL,494,500,6,NULL),(32,'2015-10-08',NULL,494,500,6,NULL),(33,'2015-10-08',NULL,21,50,29,NULL),(34,'2015-10-08',NULL,494,500,6,NULL),(35,'2015-10-08',NULL,494,4500,4006,NULL),(36,'2015-10-08',NULL,1976,500,-1476,NULL),(37,'2015-10-08',NULL,494,500,6,NULL),(38,'2015-10-08',NULL,26,26,0,NULL),(39,'2015-10-08',NULL,164,200,36,NULL),(40,'2015-10-08',NULL,1042530,1042530,0,NULL),(41,'2015-10-08',NULL,132,132,0,NULL),(42,'2015-10-08',NULL,991,991,0,NULL),(43,'2015-10-08',NULL,6384,991,-5393,NULL),(44,'2015-10-08',NULL,4560,4560,0,NULL),(45,'2015-10-08',NULL,912,912,0,NULL),(46,'2015-10-08',NULL,53,53,0,NULL),(47,'2015-10-08',NULL,912,912,0,NULL),(48,'2015-10-08',NULL,912,912,0,NULL),(49,'2015-10-08',NULL,912,912,0,NULL),(50,'2015-10-08',NULL,912,912,0,NULL),(51,'2015-10-09',NULL,912,912,0,NULL),(52,'2015-10-09',NULL,53,912,859,NULL),(53,'2015-10-09',NULL,2736,912,-1824,NULL),(54,'2015-10-09',NULL,912,912,0,NULL),(55,'2015-10-09',NULL,2736,2736,0,800),(56,'2015-10-09',NULL,2762.45,2736,-26.4499999999998,23),(57,'2015-10-09',NULL,2736,2736,0,800),(58,'2015-10-09',NULL,2736,2736,0,2400),(59,'2015-10-09',NULL,912,2736,1824,800),(60,'2015-10-10',NULL,26.45,26.45,0,23);
-/*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `sales`
@@ -223,15 +152,6 @@ CREATE TABLE `sales` (
   PRIMARY KEY (`sales_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sales`
---
-
-LOCK TABLES `sales` WRITE;
-/*!40000 ALTER TABLE `sales` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sales` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `type`
@@ -250,16 +170,6 @@ CREATE TABLE `type` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `type`
---
-
-LOCK TABLES `type` WRITE;
-/*!40000 ALTER TABLE `type` DISABLE KEYS */;
-INSERT INTO `type` VALUES (1,'Candy'),(6,'Candy chociko'),(8,'erw'),(11,'Game Console'),(3,'General'),(5,'Generalg'),(9,'powder'),(10,'School Supplies'),(7,'sdfsd');
-/*!40000 ALTER TABLE `type` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Dumping events for database 'rmarquez'
 --
 
@@ -276,4 +186,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-10 16:30:04
+-- Dump completed on 2015-10-14 12:01:00

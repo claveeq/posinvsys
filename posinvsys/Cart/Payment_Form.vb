@@ -17,6 +17,8 @@ Public Class Payment_Form
     Private Sub Payment_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Label4.Text = Checkout_Form.Label4.Text
         TextBox1.Text = Checkout_Form.Label4.Text
+
+
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
@@ -35,6 +37,30 @@ Public Class Payment_Form
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
         Dim Reader As MySqlDataReader
+        Dim rowcount As Integer = Checkout_Form.DataGridView1.Rows.Count()
+
+        For row_num As Integer = 0 To (rowcount)
+            If (row_num = (rowcount)) Then
+                Exit For
+            Else
+                Try
+                    MysqlConn.Open()
+                    Dim Query As String
+                    Dim brcode As String = Checkout_Form.DataGridView1.Rows(row_num).Cells(10).Value
+                    Dim qty As Integer = Checkout_Form.DataGridView1.Rows(row_num).Cells(3).Value
+                    Query = "UPDATE `rmarquez`.`inventory` SET `inv_stock`= inv_stock - '" & qty & "' WHERE `inv_barcode`='" & brcode & "';"
+                    COMMAND = New MySqlCommand(Query, MysqlConn)
+                    Reader = COMMAND.ExecuteReader
+                    MysqlConn.Close()
+                Catch ex As MySqlException
+                    MessageBox.Show(ex.Message)
+                Finally
+                    MysqlConn.Dispose()
+                End Try
+
+            End If
+        Next
+       
         Try
             MysqlConn.Open()
             Dim Query As String
@@ -46,8 +72,10 @@ Public Class Payment_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
+
             receipt.Show()
             Me.Hide()
+
         End Try
     End Sub
 End Class

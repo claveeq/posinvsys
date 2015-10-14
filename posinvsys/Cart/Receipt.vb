@@ -24,17 +24,24 @@ Public Class receipt
                 Dim cash = Reader.GetString("rec_cash")
                 Dim change = Reader.GetString("rec_change")
 
+                '  Dim items As String = Checkout_Form.DataGridView1.
+
+                Dim cellValues As New List(Of String)
+                For Each row As DataGridViewRow In Checkout_Form.DataGridView1.Rows
+                    cellValues.Add(row.Cells(3).Value.ToString() + "  " + row.Cells(1).Value.ToString() + vbNewLine + "    ......................................................Php " + row.Cells(4).Value.ToString())
+                Next
+                Checkout_Form.RichTextBox1.Lines = cellValues.ToArray()
+                Dim items As String = Checkout_Form.RichTextBox1.Text
+
                 Dim receipt As String =
                     "                               RMSTORE        " & vbNewLine &
                     "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" & vbNewLine & vbNewLine &
                     "Receipt " & vbNewLine &
                     "Invoice# " & id & vbNewLine &
                     "Date purchased: " & rdate & vbNewLine &
-                    "Served by: " & vbNewLine &
+                    "Served by: " & Login_Form.nn & " " & Login_Form.qq & vbNewLine &
                     "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" & vbNewLine & vbNewLine &
-                    "Name of Items" & vbNewLine &
-                    "Item1.................................." & vbNewLine &
-                    "Item2.................................." & vbNewLine &
+                    "                               ITEMS" & vbNewLine & items & vbNewLine &
                     "________________________________________" & vbNewLine & vbNewLine &
                     "            Total.........................................Php " & rtotal & vbNewLine &
                     "            Cash.........................................Php " & cash & vbNewLine &
@@ -54,14 +61,16 @@ Public Class receipt
         End Try
     End Sub
 
-    Private Sub RichTextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RichTextBox1.TextChanged
 
-    End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Checkout_Form.Hide()
         Dim newcheck As New Checkout_Form
         newcheck.Show()
-        Me.Hide()
+        Me.Close()
+    End Sub
+
+    Private Sub RichTextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RichTextBox1.TextChanged
+
     End Sub
 End Class

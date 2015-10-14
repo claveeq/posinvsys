@@ -5,6 +5,11 @@ Public Class Login_Form
     Dim MysqlConn As MySqlConnection 'MySQL
     Dim COMMAND As MySqlCommand     'MySQL
 
+ 
+    Public Property nn As String
+    Public Property qq As String
+
+
     'for windows to move 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -31,6 +36,23 @@ Public Class Login_Form
         Me.Text = Label1.Text
         TextBox1.Text = "Username"
         TextBox2.Text = "Password"
+
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=1234;database=rmarquez"
+        Dim Reader As MySqlDataReader
+        Try
+            Dim Query As String
+            MysqlConn.Open()
+            Query = "INSERT INTO `rmarquez`.`receipt` (`rec_date`, `rec_items`, `rec_total`, `rec_cash`, `rec_change`, `rec_cog`) VALUES (DATE_FORMAT(NOW(),'%Y-%m-%d'), '0', '0', '0', '0', '0');"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
     End Sub
     Private Sub connect()
         name = TextBox1.Text
@@ -50,8 +72,13 @@ Public Class Login_Form
                 count = count + 1
             End While
             If count = 1 Then
-                main_menu.Show()
+                nn = Reader.GetString("acc_name")
+                qq = Reader.GetString("acc_surname")
+                Dim newmain As New main_menu
+                newmain.fullname = nn
+                newmain.Show()
                 Me.Hide()
+
             ElseIf count > 1 Then
                 MessageBox.Show("Username and Password are duplicate")
             Else

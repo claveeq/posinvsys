@@ -49,6 +49,7 @@ Public Class Checkout_Form
     End Sub
     Public Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         main_menu.Show()
+        Label3.Text = Login_Form.nn
         Me.Hide()
     End Sub
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
@@ -220,20 +221,23 @@ Public Class Checkout_Form
             MysqlConn.Open()
             Dim Query As String
             Query =
-            "select * FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode where prod_barcode = '" & TextBox.Text & "';"
+            "select * FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode INNER JOIN inventory ON inventory.inv_barcode =pricing.price_barcode  where prod_barcode = '" & TextBox.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             reader = COMMAND.ExecuteReader
             While reader.Read
                 Dim qty As Integer = 1
 
+                Dim brcode = reader.GetString("prod_barcode")
                 Dim name = reader.GetString("prod_name")
                 Dim price = reader.GetString("price_price")
                 Dim psupply = reader.GetString("price_supply")
+                Dim stock = reader.GetString("inv_stock")
 
                 total = qty * price
                 supply = qty * psupply
+                Dim currentstock As Integer = stock - qty
 
-                Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply}
+                Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply, stock, currentstock, brcode}
                 DataGridView1.Rows.Add(row)
 
                 Dim num1 As Double
@@ -270,7 +274,7 @@ Public Class Checkout_Form
     End Sub
 
     Private Sub DataGridView1_CellEndEdit(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellEndEdit
-        If e.RowIndex >= 0 And e.ColumnIndex = 3 Then  'edit quantity of the product
+        If e.RowIndex >= 0 And e.ColumnIndex = 3 Then  'edit totals of quantity,supply and stock of the product in data grid view
             Dim num_qty As Double = DataGridView1.Rows(e.RowIndex).Cells(3).Value
             Dim price_qty As Double = DataGridView1.Rows(e.RowIndex).Cells(2).Value
             Dim total_qty As Double = num_qty * price_qty
@@ -280,6 +284,12 @@ Public Class Checkout_Form
             Dim price_sup As Double = DataGridView1.Rows(e.RowIndex).Cells(6).Value
             Dim total_sup As Double = num_sup * price_sup
             DataGridView1.Rows(e.RowIndex).Cells(7).Value = total_sup
+
+
+            Dim num_stock As Double = DataGridView1.Rows(e.RowIndex).Cells(3).Value
+            Dim price_stock As Double = DataGridView1.Rows(e.RowIndex).Cells(8).Value
+            Dim total_stock As Double = price_stock - num_stock
+            DataGridView1.Rows(e.RowIndex).Cells(9).Value = total_stock
         End If
     End Sub
     Private Sub total_price_computation()
@@ -298,11 +308,17 @@ Public Class Checkout_Form
         total_price_computation()
     End Sub
     Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
+
+
         Payment_Form.Show()
         Payment_Form.Label4.Text = Label4.Text
     End Sub
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel2.Paint
 
     End Sub
 End Class
