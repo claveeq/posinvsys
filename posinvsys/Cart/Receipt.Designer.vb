@@ -22,13 +22,10 @@ Partial Class receipt
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(receipt))
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.PrintPreviewDialog1 = New System.Windows.Forms.PrintPreviewDialog()
-        Me.PrintDialog1 = New System.Windows.Forms.PrintDialog()
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -82,20 +79,6 @@ Partial Class receipt
         Me.Button3.TabIndex = 13
         Me.Button3.Text = "X"
         Me.Button3.UseVisualStyleBackColor = False
-        '
-        'PrintPreviewDialog1
-        '
-        Me.PrintPreviewDialog1.AutoScrollMargin = New System.Drawing.Size(0, 0)
-        Me.PrintPreviewDialog1.AutoScrollMinSize = New System.Drawing.Size(0, 0)
-        Me.PrintPreviewDialog1.ClientSize = New System.Drawing.Size(400, 300)
-        Me.PrintPreviewDialog1.Enabled = True
-        Me.PrintPreviewDialog1.Icon = CType(resources.GetObject("PrintPreviewDialog1.Icon"), System.Drawing.Icon)
-        Me.PrintPreviewDialog1.Name = "PrintPreviewDialog1"
-        Me.PrintPreviewDialog1.Visible = False
-        '
-        'PrintDialog1
-        '
-        Me.PrintDialog1.UseEXDialog = True
         '
         'RichTextBox1
         '
@@ -155,8 +138,6 @@ Partial Class receipt
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
     Friend WithEvents Button4 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents PrintPreviewDialog1 As System.Windows.Forms.PrintPreviewDialog
-    Friend WithEvents PrintDialog1 As System.Windows.Forms.PrintDialog
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button

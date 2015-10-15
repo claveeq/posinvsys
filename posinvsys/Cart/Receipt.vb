@@ -68,8 +68,13 @@ Public Class receipt
         Dim newcheck As New Checkout_Form
         newcheck.Show()
         Me.Close()
-    End Sub
 
+        ' resetForm(Me)
+    End Sub
+    Private Sub resetForm(ByVal frmSub As Form)
+        frmSub.Close()
+        frmSub.Show()
+    End Sub
     Private Sub RichTextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RichTextBox1.TextChanged
 
     End Sub

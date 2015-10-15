@@ -15,11 +15,43 @@ posinvsys
   Overrides the current thread's CurrentUICulture property for all
   resource lookups using this strongly typed resource class.
 </summary>
-</member><member name="P:posinvsys.My.Resources.Resources._3513">
+</member><member name="P:posinvsys.My.Resources.Resources._12127606_Vector_illustration_of_single_isolated_web_account_icon_Stock_Vector">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources._12127606_Vector_illustration_of_single_isolated_web_account_icon_Stock_Vector1">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.accounts">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Add_accounts">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Back">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Back1">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:posinvsys.My.Resources.Resources.cart">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Cashier">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.check_3_512">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.del_accounts">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -31,11 +63,47 @@ posinvsys
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Inventory">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.LOGO">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Logo_wOName">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
 </member><member name="P:posinvsys.My.Resources.Resources.notif">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member><member name="P:posinvsys.My.Resources.Resources.notif1">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.pills">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.pills1">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Reports">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Reports1">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.Reports2">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:posinvsys.My.Resources.Resources.stats">
 	<summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

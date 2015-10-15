@@ -7,20 +7,28 @@ Public Class main_menu
     Dim COMMAND As MySqlCommand     'MySQL
     Dim Query As String
 
-    Public Property fullname As String
 
     Private Sub main_menu_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
-        Try
+
+        Try 'sales today 'label 6
             MysqlConn.Open()
-            Query = "SELECT * FROM account where acc_name = '" & fullname & "';"
+            Query = "SELECT * FROM account where acc_name = '" & Login_Form.TextBox1.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             While Reader.Read
-                Dim fn = Reader.GetString("acc_name")
-                Label3.Text = fn
+                Dim permission As Integer = Reader.GetInt32("acc_admin")
+                Dim name As String = Reader.GetString("acc_name")
+                If permission = 0 Then
+                    Button5.Visible = False
+                    Button7.Visible = False
+                Else
+                    Button5.Visible = True
+                    Button7.Visible = True
+                End If
+                Label3.Text = name
             End While
             MysqlConn.Close()
         Catch ex As MySqlException
@@ -29,17 +37,25 @@ Public Class main_menu
             MysqlConn.Dispose()
         End Try
 
-
-        ComboBox1.Items.Add("Today")
-        ComboBox1.Items.Add("Previous Day")
-        ComboBox1.Items.Add("Week")
-        ComboBox1.Items.Add("Month")
-        ComboBox1.Items.Add("Year")
-        ComboBox1.SelectedIndex = 0
+        Try 'sales today 'label 6
+            MysqlConn.Open()
+            Query = "SELECT SUM(rec_total) as sales FROM receipt where rec_date = DATE_FORMAT(NOW(),'%Y-%m-%d');"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim sales = Reader.GetString("sales")
+                Label6.Text = sales
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
 
         Try ' populating the graph
             MysqlConn.Open()
-            Query = "SELECT rec_date as Day, sum(rec_cash) as Total From rmarquez.receipt Group by rec_date;"
+            Query = "SELECT rec_date as Day, sum(rec_cash) as Total FROM receipt where rec_date between  DATE_FORMAT((NOW() - INTERVAL 7 DAY),'%Y-%m-%d') and DATE_FORMAT(NOW(),'%Y-%m-%d') Group by rec_date;"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             While Reader.Read
@@ -52,6 +68,20 @@ Public Class main_menu
             MysqlConn.Dispose()
         End Try
 
+        Try ' populating the graph
+            MysqlConn.Open()
+            Query = "SELECT * FROM inventory INNER JOIN product on inv_barcode = prod_barcode WHERE inv_stock <= inv_ropoint;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Chart2.Series("Critical Stocks").Points.AddXY(Reader.GetString("prod_name"), Reader.GetDouble("inv_stock"))
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
 
     End Sub
     Function ToProperCase(ByVal str As String) As String 'totitlecase function only,no need to worry
@@ -92,75 +122,77 @@ Public Class main_menu
     End Sub
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-
         Checkout_Form.Show()
         Me.Close()
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        Dim newlogin As New Login_Form
-        newlogin.Show()
+        ' Dim newlogin As New Login_Form
+        'newlogin.Show()
+        Login_Form.Show()
+
         Me.Hide()
     End Sub
-    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+    Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Account_Settings.Show()
         Me.Hide()
     End Sub
 
-    Private Sub ComboBox1_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles ComboBox1.TextChanged
-        If ComboBox1.Text = "Today" Then
-            Query = "SELECT SUM(rec_total) as sales FROM receipt where rec_date = DATE_FORMAT(NOW(),'%Y-%m-%d');"
-        ElseIf ComboBox1.Text = "Previous Day" Then
-            Query = "SELECT SUM(rec_total) as sales FROM receipt where rec_date = DATE_FORMAT((NOW() - INTERVAL 1 DAY),'%Y-%m-%d');"
-        ElseIf ComboBox1.Text = "Week" Then
-            Query = "SELECT SUM(rec_total) as sales FROM receipt where rec_date between  DATE_FORMAT((NOW() - INTERVAL 7 DAY),'%Y-%m-%d') and DATE_FORMAT(NOW(),'%Y-%m-%d');"
-        ElseIf ComboBox1.Text = "Month" Then
-            Query = "SELECT SUM(rec_total) as sales FROM receipt where rec_date between  DATE_FORMAT((NOW() - INTERVAL 30 DAY),'%Y-%m-%d') and DATE_FORMAT(NOW(),'%Y-%m-%d');"
-        ElseIf ComboBox1.Text = "Year" Then
-            Query = "SELECT SUM(rec_total) as sales FROM receipt where rec_date between  DATE_FORMAT((NOW() - INTERVAL 365 DAY),'%Y-%m-%d') and DATE_FORMAT(NOW(),'%Y-%m-%d');"
-        End If
-        Try
-            MysqlConn.Open()
-            COMMAND = New MySqlCommand(Query, MysqlConn)
-            Reader = COMMAND.ExecuteReader
-            While Reader.Read
-                Dim sales = Reader.GetString("sales")
-                Label6.Text = sales
-            End While
-            MysqlConn.Close()
-        Catch ex As MySqlException
-            MessageBox.Show(ex.Message)
-        Finally
-            MysqlConn.Dispose()
-        End Try
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Reports_Form.Show()
+        Me.Hide()
+    End Sub
+
+    Private Sub Button7_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        Account_Settings.Show()
+        Me.Hide()
 
     End Sub
 
-    Private Sub Label2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label2.Click
-
+    Private Sub Button5_MouseHover(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button5.MouseHover
+        Label8.Text = "Reports"
     End Sub
 
-    Private Sub Panel3_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel3.Paint
-
+    Private Sub Button5_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button5.MouseLeave
+        Label8.Text = ""
     End Sub
 
-    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel2.Paint
-
+    Private Sub Button2_MouseHover(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button2.MouseHover
+        Label9.Text = "POS"
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
+    Private Sub Button2_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button2.MouseLeave
+        Label9.Text = ""
+    End Sub
 
+    Private Sub Button1_MouseHover(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.MouseHover
+        Label13.Text = "Inventory"
+    End Sub
+
+    Private Sub Button1_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.MouseLeave
+        Label13.Text = ""
+    End Sub
+
+    Private Sub Button7_MouseHover(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button7.MouseHover
+        Label14.Text = "Accounts"
+    End Sub
+
+    Private Sub Button7_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button7.MouseLeave
+        Label14.Text = ""
+    End Sub
+    Private Sub PictureBox1_MouseHover(ByVal sender As Object, ByVal e As System.EventArgs) Handles PictureBox1.MouseHover
+        Label12.Text = "R.MARQUEZ POSINVSYS"
+    End Sub
+
+    Private Sub PictureBox1_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles PictureBox1.MouseLeave
+        Label12.Text = ""
     End Sub
 
     Private Sub Chart1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Chart1.Click
 
-    End Sub
-
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        Reports_Form.Show()
     End Sub
 End Class

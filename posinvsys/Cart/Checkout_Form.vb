@@ -198,7 +198,7 @@ Public Class Checkout_Form
         TextBox.Text = Bar
 
     End Sub
-    Private Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+    Public Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Barcode()
 
     End Sub
@@ -308,8 +308,6 @@ Public Class Checkout_Form
         total_price_computation()
     End Sub
     Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
-
-
         Payment_Form.Show()
         Payment_Form.Label4.Text = Label4.Text
     End Sub

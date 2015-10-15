@@ -10,6 +10,10 @@ Public Class Registration_Form
         ComboBox1.Items.Add("Male")
         ComboBox1.Items.Add("Female")
 
+        ComboBox2.Items.Add("Admin")
+        ComboBox2.Items.Add("Employee")
+
+        ComboBox2.SelectedIndex = 1
     End Sub
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -63,7 +67,13 @@ Public Class Registration_Form
             Try
                 MysqlConn.Open()
                 Dim Query As String
-                Query = "Insert into rmarquez.account (acc_name,acc_surname,acc_pass,acc_bday,acc_gender,acc_address) values ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & TextBox4.Text & "','" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "','" & gender & "','" & TextBox6.Text & "');"
+                Dim perm As Integer
+                If ComboBox2.SelectedIndex = 1 Then
+                    perm = 0
+                Else
+                    perm = 1
+                End If
+                Query = "Insert into rmarquez.account (acc_name,acc_surname,acc_pass,acc_bday,acc_gender,acc_address,acc_admin) values ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & TextBox4.Text & "','" & Format(DateTimePicker1.Value, "yyyy-MM-dd") & "','" & gender & "','" & TextBox6.Text & "','" & perm & "');"
                 COMMAND = New MySqlCommand(Query, MysqlConn)
                 Reader = COMMAND.ExecuteReader
 
@@ -75,10 +85,10 @@ Public Class Registration_Form
                 MessageBox.Show(ex.Message)
             Finally
                 MysqlConn.Dispose()
-
+                Account_Settings.Show()
+                Call Account_Settings.combo()
+                Me.Hide()
             End Try
-            Login_Form.Show()
-            Me.Hide()
         End If
     End Sub
 

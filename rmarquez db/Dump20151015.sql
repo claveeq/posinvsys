@@ -26,14 +26,14 @@ CREATE TABLE `account` (
   `acc_id` int(11) NOT NULL AUTO_INCREMENT,
   `acc_name` varchar(45) NOT NULL,
   `acc_surname` varchar(45) NOT NULL,
-  `acc_age` int(11) DEFAULT NULL,
+  `acc_age` int(11) DEFAULT '0',
   `acc_pass` varchar(45) NOT NULL,
   `acc_bday` date DEFAULT '0000-00-00',
   `acc_admin` tinyint(1) unsigned zerofill DEFAULT '0',
   `acc_address` varchar(100) DEFAULT NULL,
   `acc_gender` tinyint(1) unsigned zerofill DEFAULT '0',
   PRIMARY KEY (`acc_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,7 +49,7 @@ CREATE TABLE `brand` (
   PRIMARY KEY (`brand_id`),
   UNIQUE KEY `brand_id_UNIQUE` (`brand_id`),
   UNIQUE KEY `brand_name_UNIQUE` (`brand_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +81,7 @@ CREATE TABLE `location` (
   PRIMARY KEY (`loc_id`),
   UNIQUE KEY `Loc_prod_UNIQUE` (`loc_name`),
   UNIQUE KEY `loc_id_UNIQUE` (`loc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -118,7 +118,7 @@ CREATE TABLE `product` (
   PRIMARY KEY (`prod_id`,`prod_barcode`),
   UNIQUE KEY `prod_id_UNIQUE` (`prod_id`),
   UNIQUE KEY `prod_barcode_UNIQUE` (`prod_barcode`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +137,7 @@ CREATE TABLE `receipt` (
   `rec_change` double DEFAULT '0',
   `rec_cog` double DEFAULT '0',
   PRIMARY KEY (`rec_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=284 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,7 +166,7 @@ CREATE TABLE `type` (
   PRIMARY KEY (`type_id`),
   UNIQUE KEY `type_name_UNIQUE` (`type_name`),
   UNIQUE KEY `type_id_UNIQUE` (`type_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,4 +186,4 @@ CREATE TABLE `type` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-14 12:01:00
+-- Dump completed on 2015-10-15 13:59:56

@@ -36,8 +36,6 @@ Partial Class Checkout_Form
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Column1 = New System.Windows.Forms.DataGridViewImageColumn()
         Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -49,6 +47,8 @@ Partial Class Checkout_Form
         Me.Column9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Column11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -102,7 +102,7 @@ Partial Class Checkout_Form
         '
         'Panel2
         '
-        Me.Panel2.BackColor = System.Drawing.Color.DimGray
+        Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Panel2.Controls.Add(Me.Button5)
         Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.TextBox)
@@ -222,25 +222,6 @@ Partial Class Checkout_Form
         Me.DataGridView1.Size = New System.Drawing.Size(959, 314)
         Me.DataGridView1.TabIndex = 6
         '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.BackColor = System.Drawing.Color.Transparent
-        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.ForeColor = System.Drawing.Color.DimGray
-        Me.Label5.Location = New System.Drawing.Point(369, 461)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(0, 37)
-        Me.Label5.TabIndex = 5
-        '
-        'RichTextBox1
-        '
-        Me.RichTextBox1.Location = New System.Drawing.Point(233, 260)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(33, 96)
-        Me.RichTextBox1.TabIndex = 7
-        Me.RichTextBox1.Text = ""
-        '
         'Column1
         '
         Me.Column1.HeaderText = ""
@@ -306,6 +287,25 @@ Partial Class Checkout_Form
         '
         Me.Column11.HeaderText = "barcode"
         Me.Column11.Name = "Column11"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.BackColor = System.Drawing.Color.Transparent
+        Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 24.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label5.ForeColor = System.Drawing.Color.DimGray
+        Me.Label5.Location = New System.Drawing.Point(369, 461)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(0, 37)
+        Me.Label5.TabIndex = 5
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.Location = New System.Drawing.Point(233, 260)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(33, 96)
+        Me.RichTextBox1.TabIndex = 7
+        Me.RichTextBox1.Text = ""
         '
         'Checkout_Form
         '

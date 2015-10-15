@@ -59,3 +59,7 @@ D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Paymen
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.receipt.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Reports_Form.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Account_Settings.resources
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.exe.manifest
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.application
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.exe.manifest
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.application

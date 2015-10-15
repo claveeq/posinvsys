@@ -48,7 +48,7 @@ Partial Class Registration_Form
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.TextBox6 = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.ComboBox2 = New System.Windows.Forms.ComboBox()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -82,7 +82,7 @@ Partial Class Registration_Form
         Me.Button3.FlatAppearance.BorderSize = 0
         Me.Button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button3.ForeColor = System.Drawing.Color.White
-        Me.Button3.Location = New System.Drawing.Point(292, 3)
+        Me.Button3.Location = New System.Drawing.Point(292, 0)
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(45, 33)
         Me.Button3.TabIndex = 2
@@ -300,15 +300,13 @@ Partial Class Registration_Form
         Me.Label13.Size = New System.Drawing.Size(0, 13)
         Me.Label13.TabIndex = 31
         '
-        'Label14
+        'ComboBox2
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.ForeColor = System.Drawing.Color.White
-        Me.Label14.Location = New System.Drawing.Point(206, 258)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(27, 13)
-        Me.Label14.TabIndex = 32
-        Me.Label14.Text = "user"
+        Me.ComboBox2.FormattingEnabled = True
+        Me.ComboBox2.Location = New System.Drawing.Point(118, 258)
+        Me.ComboBox2.Name = "ComboBox2"
+        Me.ComboBox2.Size = New System.Drawing.Size(88, 21)
+        Me.ComboBox2.TabIndex = 33
         '
         'Registration_Form
         '
@@ -316,7 +314,7 @@ Partial Class Registration_Form
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.ClientSize = New System.Drawing.Size(337, 324)
-        Me.Controls.Add(Me.Label14)
+        Me.Controls.Add(Me.ComboBox2)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.TextBox6)
         Me.Controls.Add(Me.TextBox5)
@@ -377,5 +375,5 @@ Partial Class Registration_Form
     Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox6 As System.Windows.Forms.TextBox
     Friend WithEvents Label13 As System.Windows.Forms.Label
-    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents ComboBox2 As System.Windows.Forms.ComboBox
 End Class

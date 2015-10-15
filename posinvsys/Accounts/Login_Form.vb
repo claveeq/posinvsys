@@ -53,6 +53,18 @@ Public Class Login_Form
         Finally
             MysqlConn.Dispose()
         End Try
+        Try
+            Dim Query As String
+            MysqlConn.Open()
+            Query = "INSERT INTO `rmarquez`.`receipt` (`rec_date`, `rec_items`, `rec_total`, `rec_cash`, `rec_change`, `rec_cog`) VALUES (DATE_FORMAT((NOW() - INTERVAL 1 DAY),'%Y-%m-%d'), '0', '0', '0', '0', '0');"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
     End Sub
     Private Sub connect()
         name = TextBox1.Text
@@ -72,11 +84,10 @@ Public Class Login_Form
                 count = count + 1
             End While
             If count = 1 Then
-                nn = Reader.GetString("acc_name")
-                qq = Reader.GetString("acc_surname")
+           
                 Dim newmain As New main_menu
-                newmain.fullname = nn
                 newmain.Show()
+
                 Me.Hide()
 
             ElseIf count > 1 Then
@@ -157,4 +168,7 @@ Public Class Login_Form
         TextBox2.PasswordChar = "*"
     End Sub
 
+    Private Sub PictureBox1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PictureBox1.Click
+
+    End Sub
 End Class
