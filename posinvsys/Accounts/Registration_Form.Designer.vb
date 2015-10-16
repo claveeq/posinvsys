@@ -118,6 +118,7 @@ Partial Class Registration_Form
         '
         Me.TextBox3.Location = New System.Drawing.Point(118, 113)
         Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox3.Size = New System.Drawing.Size(200, 20)
         Me.TextBox3.TabIndex = 7
         '
@@ -125,6 +126,7 @@ Partial Class Registration_Form
         '
         Me.TextBox4.Location = New System.Drawing.Point(118, 139)
         Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.TextBox4.Size = New System.Drawing.Size(200, 20)
         Me.TextBox4.TabIndex = 8
         '

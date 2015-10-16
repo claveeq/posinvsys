@@ -26,7 +26,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>2</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -112,6 +112,7 @@
     <Compile Include="Accounts\Account_Settings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="Cart\Checkout_Form.Designer.vb">
       <DependentUpon>Checkout_Form.vb</DependentUpon>
     </Compile>
@@ -263,6 +264,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo_wOName.ico" />
+    <None Include="Resources\Add.png" />
+    <None Include="Resources\cart1.png" />
+    <None Include="Resources\cart.png" />
+    <None Include="Resources\circle.png" />
+    <None Include="Resources\Back2.png" />
+    <None Include="Resources\restart.png" />
+    <None Include="Resources\edit_prod.png" />
+    <None Include="Resources\del_prod.png" />
+    <None Include="Resources\Add_prod.png" />
+    <None Include="Resources\33163005-flat-icon-add-product-Stock-Vector.jpg" />
     <None Include="posinvsys_TemporaryKey.pfx" />
     <None Include="Resources\pills1.png" />
     <None Include="Resources\Reports2.png" />
@@ -312,6 +323,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

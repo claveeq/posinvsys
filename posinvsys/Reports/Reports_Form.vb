@@ -51,6 +51,22 @@ Public Class Reports_Form
         Finally
             MysqlConn.Dispose()
         End Try
+
+        Try ' populate list box
+            MysqlConn.Open()
+            Query = "select * from rmarquez.unlisted;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim list = Reader.GetString("un_item")
+                ListBox1.Items.Add(list)
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
     End Sub
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Me.WindowState = FormWindowState.Minimized 'minimize button
@@ -103,7 +119,7 @@ Public Class Reports_Form
         Label8.Text = answer
     End Sub
 
-    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel2.Paint
+    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
 
     End Sub
 
@@ -111,17 +127,77 @@ Public Class Reports_Form
 
     End Sub
 
-  
+
     Private Sub Chart1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Chart1.Click
 
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        main_menu.Show()
+        Dim main_m As New main_menu
+        main_m.Show()
         Me.Hide()
     End Sub
 
     Private Sub Panel3_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel3.Paint
 
+    End Sub
+
+    Private Sub ListBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListBox1.SelectedIndexChanged
+
+    End Sub
+    Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "SELECT * FROM receipt WHERE rec_id = '" & TextBox1.Text & "';"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim id = Reader.GetString("rec_id")
+                Dim rdate = Reader.GetString("rec_date")
+                '       Dim items = Reader.GetString("rec_items")
+                Dim rtotal = Reader.GetString("rec_total")
+                Dim cash = Reader.GetString("rec_cash")
+                Dim change = Reader.GetString("rec_change")
+
+                '  Dim items As String = Checkout_Form.DataGridView1.
+
+                Dim cellValues As New List(Of String)
+                For Each row As DataGridViewRow In Checkout_Form.DataGridView1.Rows
+                    cellValues.Add(row.Cells(3).Value.ToString() + "  " + row.Cells(1).Value.ToString() + vbNewLine + "    ......................................................Php " + row.Cells(4).Value.ToString())
+                Next
+                Checkout_Form.RichTextBox1.Lines = cellValues.ToArray()
+                Dim items As String = Checkout_Form.RichTextBox1.Text
+
+                Dim receipt As String =
+                    "                               RMSTORE        " & vbNewLine &
+                    "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" & vbNewLine & vbNewLine &
+                    "Receipt " & vbNewLine &
+                    "Invoice# " & id & vbNewLine &
+                    "Date purchased: " & rdate & vbNewLine &
+                    "Served by: " & " " & vbNewLine &
+                    "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" & vbNewLine & vbNewLine &
+                    "                               ITEMS" & vbNewLine & items & vbNewLine &
+                    "________________________________________" & vbNewLine & vbNewLine &
+                    "            Total.........................................Php " & rtotal & vbNewLine &
+                    "            Cash.........................................Php " & cash & vbNewLine &
+                    "            Change....................................Php " & change & vbNewLine &
+                    "________________________________________" & vbNewLine
+                RichTextBox1.Text = receipt
+
+            End While
+
+
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+
+        End Try
     End Sub
 End Class

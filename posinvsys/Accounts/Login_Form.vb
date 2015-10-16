@@ -4,12 +4,6 @@ Public Class Login_Form
 
     Dim MysqlConn As MySqlConnection 'MySQL
     Dim COMMAND As MySqlCommand     'MySQL
-
- 
-    Public Property nn As String
-    Public Property qq As String
-
-
     'for windows to move 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -84,10 +78,9 @@ Public Class Login_Form
                 count = count + 1
             End While
             If count = 1 Then
-           
+
                 Dim newmain As New main_menu
                 newmain.Show()
-
                 Me.Hide()
 
             ElseIf count > 1 Then
@@ -106,17 +99,8 @@ Public Class Login_Form
         End Try
     End Sub
 
-
     Private Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click
         connect()
-    End Sub
-
-    Private Sub Button2_Click(ByVal sender As Object, ByVal e As EventArgs)
-
-    End Sub
-
-    Private Sub Label1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label1.Click
-
     End Sub
 
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
@@ -125,10 +109,6 @@ Public Class Login_Form
 
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         Me.Close()
-    End Sub
-
-    Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
-
     End Sub
 
     Private Sub TextBox1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox1.Click
@@ -168,7 +148,7 @@ Public Class Login_Form
         TextBox2.PasswordChar = "*"
     End Sub
 
-    Private Sub PictureBox1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles PictureBox1.Click
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
 
     End Sub
 End Class

@@ -13,7 +13,7 @@ Public Class main_menu
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
 
-        Try 'sales today 'label 6
+        Try 'Admin Rights -----------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             MysqlConn.Open()
             Query = "SELECT * FROM account where acc_name = '" & Login_Form.TextBox1.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
@@ -21,6 +21,8 @@ Public Class main_menu
             While Reader.Read
                 Dim permission As Integer = Reader.GetInt32("acc_admin")
                 Dim name As String = Reader.GetString("acc_name")
+                Dim surname As String = Reader.GetString("acc_surname")
+
                 If permission = 0 Then
                     Button5.Visible = False
                     Button7.Visible = False
@@ -29,6 +31,7 @@ Public Class main_menu
                     Button7.Visible = True
                 End If
                 Label3.Text = name
+
             End While
             MysqlConn.Close()
         Catch ex As MySqlException
@@ -113,7 +116,8 @@ Public Class main_menu
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Product_Form.Show()
+        Dim refresh_all As New Product_Form
+        refresh_all.Show()
         Me.Hide()
 
     End Sub
@@ -126,15 +130,16 @@ Public Class main_menu
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+        ' Dim newcheck As New Checkout_Form
+        '  newcheck.Show()
         Checkout_Form.Show()
-        Me.Close()
+        Me.Hide()
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
         ' Dim newlogin As New Login_Form
         'newlogin.Show()
         Login_Form.Show()
-
         Me.Hide()
     End Sub
     Private Sub Button7_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -154,7 +159,7 @@ Public Class main_menu
     End Sub
 
     Private Sub Button5_MouseHover(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button5.MouseHover
-        Label8.Text = "Reports"
+        Label8.Text = "Reports" & vbNewLine & " Documents"
     End Sub
 
     Private Sub Button5_MouseLeave(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button5.MouseLeave
@@ -193,6 +198,10 @@ Public Class main_menu
     End Sub
 
     Private Sub Chart1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Chart1.Click
+
+    End Sub
+
+    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
 
     End Sub
 End Class

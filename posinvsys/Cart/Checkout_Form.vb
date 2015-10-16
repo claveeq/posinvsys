@@ -6,7 +6,7 @@ Public Class Checkout_Form
     Public Property supply As String
 
     Dim loc As Point ' for movable window
-
+    Dim num1, num2, totalcalc As Double
 
     Dim Reader As MySqlDataReader
     Dim MysqlConn As MySqlConnection 'MySQL
@@ -48,14 +48,23 @@ Public Class Checkout_Form
         Me.WindowState = FormWindowState.Minimized 'minimize button
     End Sub
     Public Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        main_menu.Show()
-        Label3.Text = Login_Form.nn
+        Dim main_m As New main_menu
+        main_m.Show()
         Me.Hide()
     End Sub
+    Public Sub restart()
+        'Me.Refresh()
+        '  Dim Checkout_Form As New Checkout_Form
+        ' Checkout_Form.Show()
+
+    End Sub
+
+
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        Dim newcheck As New Checkout_Form
-        newcheck.Show()
-        Me.Hide()
+        Dim Checkout_Form As New Checkout_Form
+        Checkout_Form.Show()
+        Me.Close()
+
     End Sub
     Private Sub Barcode()
         Try
@@ -200,6 +209,8 @@ Public Class Checkout_Form
     End Sub
     Public Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Barcode()
+        TextBox2.Text = "Product Name"
+
 
     End Sub
     Public Sub popoulate()
@@ -310,13 +321,145 @@ Public Class Checkout_Form
     Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
         Payment_Form.Show()
         Payment_Form.Label4.Text = Label4.Text
+        Payment_Form.TextBox1.Text = Label4.Text
+    End Sub
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        TextBox3.Text = TextBox3.Text + "6"
+    End Sub
+    Private Sub TextBox2_Click(sender As Object, e As EventArgs) Handles TextBox2.Click
+        TextBox2.Clear()
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        TextBox3.Text = TextBox3.Text + "1"
+    End Sub
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        TextBox3.Text = TextBox3.Text + "2"
+    End Sub
+
+    Public Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+        num2 = Val(TextBox3.Text)
+        If Label6.Text = "+" Then
+            totalcalc = num1 + num2
+        ElseIf (Label6.Text = "-")
+            totalcalc = num1 - num2
+        ElseIf (Label6.Text = "x")
+            totalcalc = num1 * num2
+        ElseIf (Label6.Text = "/")
+            totalcalc = num1 / num2
+        End If
+        TextBox3.Clear()
+        TextBox3.Text = totalcalc
+        Label6.Text = "="
+    End Sub
+
+    Private Sub Button8_Click(sender As Object, e As EventArgs) Handles Button8.Click
+        TextBox3.Text = TextBox3.Text + "3"
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        TextBox3.Text = TextBox3.Text + "4"
+    End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        TextBox3.Text = TextBox3.Text + "5"
+    End Sub
+
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        TextBox3.Text = TextBox3.Text + "7"
+    End Sub
+
+    Private Sub Button13_Click(sender As Object, e As EventArgs) Handles Button13.Click
+        TextBox3.Text = TextBox3.Text + "8"
+    End Sub
+
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        TextBox3.Text = TextBox3.Text + "9"
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        num1 = Val(TextBox3.Text)
+        TextBox3.Clear()
+        Label6.Text = "-"
+    End Sub
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        num1 = Val(TextBox3.Text)
+        TextBox3.Clear()
+        Label6.Text = "x"
+    End Sub
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        num1 = Val(TextBox3.Text)
+        TextBox3.Clear()
+        Label6.Text = "/"
+    End Sub
+
+    Private Sub Button22_Click(sender As Object, e As EventArgs) Handles Button22.Click
+        num1 = 0
+        num2 = 0
+        totalcalc = 0
+        TextBox3.Clear()
+        Label6.Text = ""
+    End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
 
     End Sub
 
-    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel2.Paint
+    Private Sub Button20_Click(sender As Object, e As EventArgs) Handles Button20.Click
+        TextBox3.Text = TextBox3.Text + "0"
+    End Sub
+
+    Private Sub Button23_Click(sender As Object, e As EventArgs) Handles Button23.Click
+        Dim cart_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
+        Dim btn_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\Trash.png")
+        Dim name = TextBox2.Text
+        Dim price = TextBox3.Text
+        Dim qty As Integer = 1
+        Dim brcode As String = "newitem"
+
+
+        Dim psupply = 1
+        Dim stock = 1
+
+        total = qty * price
+        supply = qty * psupply
+        Dim currentstock As Integer = stock - qty
+
+        Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply, stock, currentstock, brcode}
+        DataGridView1.Rows.Add(row)
+
+        Dim num1 As Double
+        Dim num2 As Double
+        Dim add As Double
+        num1 = (1 * price)
+        num2 = Val(Label4.Text)
+        add = num1 + num2
+        Label4.Text = add
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Public Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+        num1 = Val(TextBox3.Text)
+        TextBox3.Clear()
+        Label6.Text = "+"
+    End Sub
+
+    Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+
+    End Sub
+
+    Private Sub TextBox2_LostFocus(sender As Object, e As EventArgs) Handles TextBox2.LostFocus
+        If TextBox2.Text = "" Then
+            TextBox2.Text = "Product Name"
+        End If
+    End Sub
+
+    Private Sub Checkout_Form_MarginChanged(sender As Object, e As EventArgs) Handles Me.MarginChanged
 
     End Sub
 End Class

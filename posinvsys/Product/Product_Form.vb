@@ -141,7 +141,39 @@ Public Class Product_Form
     Private Sub Product_Form_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Click
 
     End Sub
+    Private Sub retail_visible()
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=1234;database=rmarquez"
+        Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
+        Dim bsource As New BindingSource 'bago tong tatlo for the table
+        Try 'Admin Rights -----------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+            MysqlConn.Open()
+            Query = "SELECT * FROM account where acc_name = '" & Login_Form.TextBox1.Text & "';"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim permission As Integer = Reader.GetInt32("acc_admin")
+                If permission = 0 Then
+                    Panel5.Location = New Point(0, 456)
+                Else
+                    Panel5.Location = New Point(203, 456)
+                End If
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+
+        End Try
+
+    End Sub
+
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+
+
+        retail_visible()
         table_refresh() ' from the private sub table_refresh() to load from the beginning of the form
 
         combobox_type()
@@ -152,6 +184,7 @@ Public Class Product_Form
 
 
     End Sub
+
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Try 'product table
             MysqlConn.Open()
@@ -181,7 +214,7 @@ Public Class Product_Form
         Try 'pricing table
             MysqlConn.Open()
             Dim Query As String
-            Query = "Insert into rmarquez.inventory (`inv_barcode`, `inv_stock`, `inv_ropoint`, `inv_roamount`) VALUES ('" & TextBox2.Text & "', '" & TextBox6.Text & "', '" & TextBox7.Text & "', '" & Label23.Text & "');"
+            Query = "Insert into rmarquez.inventory (`inv_barcode`, `inv_stock`, `inv_ropoint`, `inv_roamount`) VALUES ('" & TextBox2.Text & "', '" & TextBox6.Text & "', '" & TextBox7.Text & "', '0');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             MessageBox.Show("Product Successfully Added")
@@ -200,7 +233,6 @@ Public Class Product_Form
             Label3.Text = ""
             TextBox6.Clear()
             TextBox7.Clear()
-            Label23.Text = "Total Price"
             TextBox2.Clear()
 
             table_refresh()
@@ -498,7 +530,7 @@ Public Class Product_Form
 
     End Sub
 
-    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
+    Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             MysqlConn.Open()
             Dim Query As String
@@ -525,7 +557,7 @@ Public Class Product_Form
         End Try
     End Sub
 
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Try
             MysqlConn.Open()
             Dim Query As String
@@ -561,9 +593,9 @@ Public Class Product_Form
     End Sub
 
     Private Sub Button6_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
-        main_menu.Show()
+        Dim main_m As New main_menu
+        main_m.Show()
         Me.Hide()
-
     End Sub
     Private Sub retail()
         Dim markup As Double = (Val(TextBox3.Text) * (Val(TextBox4.Text) / 100))
@@ -618,6 +650,10 @@ Public Class Product_Form
     End Sub
 
     Private Sub Panel6_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel6.Paint
+
+    End Sub
+
+    Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
 
     End Sub
 End Class

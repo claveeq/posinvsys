@@ -34,7 +34,8 @@ Public Class Account_Settings
     End Sub
 
     Private Sub Button6_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button6.Click
-        main_menu.Show()
+        Dim main_m As New main_menu
+        main_m.Show()
         Me.Hide()
 
     End Sub
@@ -84,7 +85,7 @@ Public Class Account_Settings
         combo()
     End Sub
 
-    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel2.Paint
+    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
 
     End Sub
 
