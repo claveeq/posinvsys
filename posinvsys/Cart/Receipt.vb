@@ -24,7 +24,7 @@ Public Class receipt
                 Dim cash = Reader.GetString("rec_cash")
                 Dim change = Reader.GetString("rec_change")
                 Dim item = Reader.GetString("rec_items")
-                '  Dim items As String = Checkout_Form.DataGridView1.
+                Dim name As String = Reader.GetString("rec_cashier")
 
 
                 Dim receipt As String =
@@ -33,7 +33,7 @@ Public Class receipt
                     "Receipt " & vbNewLine &
                     "Invoice# " & id & vbNewLine &
                     "Date purchased: " & rdate & vbNewLine &
-                    "Served by: " & " " & vbNewLine &
+                    "Served by: " & " " & name & vbNewLine &
                     "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" & vbNewLine & vbNewLine &
                     "                               ITEMS" & vbNewLine & item & vbNewLine &
                     "________________________________________" & vbNewLine & vbNewLine &
@@ -44,7 +44,6 @@ Public Class receipt
                 RichTextBox1.Text = receipt
 
             End While
-
 
             MysqlConn.Close()
         Catch ex As MySqlException
@@ -61,6 +60,10 @@ Public Class receipt
     End Sub
 
     Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
 
     End Sub
 End Class

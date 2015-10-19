@@ -41,14 +41,21 @@ Partial Class Reports_Form
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Chart1 = New System.Windows.Forms.DataVisualization.Charting.Chart()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Button5 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
         Me.ListBox1 = New System.Windows.Forms.ListBox()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.Panel4 = New System.Windows.Forms.Panel()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.DateTimePicker2 = New System.Windows.Forms.DateTimePicker()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Panel5 = New System.Windows.Forms.Panel()
         Me.Panel1.SuspendLayout()
         Me.Panel3.SuspendLayout()
         CType(Me.Chart1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +113,7 @@ Partial Class Reports_Form
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.Firebrick
+        Me.Panel3.Controls.Add(Me.Panel5)
         Me.Panel3.Controls.Add(Me.Label4)
         Me.Panel3.Controls.Add(Me.Button6)
         Me.Panel3.Controls.Add(Me.Label5)
@@ -141,7 +149,7 @@ Partial Class Reports_Form
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(898, 9)
+        Me.Button6.Location = New System.Drawing.Point(898, 0)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(100, 97)
         Me.Button6.TabIndex = 14
@@ -233,26 +241,65 @@ Partial Class Reports_Form
         Me.Chart1.ChartAreas.Add(ChartArea1)
         Legend1.Name = "Legend1"
         Me.Chart1.Legends.Add(Legend1)
-        Me.Chart1.Location = New System.Drawing.Point(-27, 226)
+        Me.Chart1.Location = New System.Drawing.Point(-17, 311)
         Me.Chart1.Name = "Chart1"
         Series1.ChartArea = "ChartArea1"
         Series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
         Series1.Legend = "Legend1"
         Series1.Name = "Weekly Sales"
         Me.Chart1.Series.Add(Series1)
-        Me.Chart1.Size = New System.Drawing.Size(521, 218)
+        Me.Chart1.Size = New System.Drawing.Size(692, 272)
         Me.Chart1.TabIndex = 0
         Me.Chart1.Text = "Chart1"
         '
         'Panel2
         '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel2.Controls.Add(Me.Button5)
+        Me.Panel2.Controls.Add(Me.Button2)
         Me.Panel2.Controls.Add(Me.ListBox1)
         Me.Panel2.Controls.Add(Me.Label7)
         Me.Panel2.Location = New System.Drawing.Point(813, 226)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(198, 371)
         Me.Panel2.TabIndex = 15
+        '
+        'Button5
+        '
+        Me.Button5.BackgroundImage = Global.posinvsys.My.Resources.Resources.del_prod
+        Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button5.FlatAppearance.BorderSize = 0
+        Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button5.Location = New System.Drawing.Point(109, 326)
+        Me.Button5.Name = "Button5"
+        Me.Button5.Size = New System.Drawing.Size(50, 42)
+        Me.Button5.TabIndex = 18
+        Me.Button5.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.BackgroundImage = Global.posinvsys.My.Resources.Resources.Add_prod
+        Me.Button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button2.FlatAppearance.BorderSize = 0
+        Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button2.Location = New System.Drawing.Point(31, 326)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(50, 42)
+        Me.Button2.TabIndex = 17
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'ListBox1
+        '
+        Me.ListBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.ListBox1.Font = New System.Drawing.Font("Droid Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ListBox1.ForeColor = System.Drawing.Color.White
+        Me.ListBox1.FormattingEnabled = True
+        Me.ListBox1.ItemHeight = 15
+        Me.ListBox1.Location = New System.Drawing.Point(16, 28)
+        Me.ListBox1.Name = "ListBox1"
+        Me.ListBox1.Size = New System.Drawing.Size(128, 270)
+        Me.ListBox1.TabIndex = 16
         '
         'Label7
         '
@@ -266,19 +313,6 @@ Partial Class Reports_Form
         Me.Label7.TabIndex = 14
         Me.Label7.Text = "Unlisted  Items"
         '
-        'ListBox1
-        '
-        Me.ListBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.ListBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.ListBox1.Font = New System.Drawing.Font("Droid Sans", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ListBox1.ForeColor = System.Drawing.Color.White
-        Me.ListBox1.FormattingEnabled = True
-        Me.ListBox1.ItemHeight = 15
-        Me.ListBox1.Location = New System.Drawing.Point(29, 28)
-        Me.ListBox1.Name = "ListBox1"
-        Me.ListBox1.Size = New System.Drawing.Size(115, 240)
-        Me.ListBox1.TabIndex = 16
-        '
         'Panel4
         '
         Me.Panel4.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -287,10 +321,47 @@ Partial Class Reports_Form
         Me.Panel4.Controls.Add(Me.Label11)
         Me.Panel4.Controls.Add(Me.TextBox1)
         Me.Panel4.Controls.Add(Me.Label10)
-        Me.Panel4.Location = New System.Drawing.Point(488, 226)
+        Me.Panel4.Location = New System.Drawing.Point(540, 226)
         Me.Panel4.Name = "Panel4"
-        Me.Panel4.Size = New System.Drawing.Size(323, 371)
+        Me.Panel4.Size = New System.Drawing.Size(271, 371)
         Me.Panel4.TabIndex = 17
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(136, 56)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(129, 23)
+        Me.Button1.TabIndex = 18
+        Me.Button1.Text = "Search"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'RichTextBox1
+        '
+        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.RichTextBox1.Location = New System.Drawing.Point(7, 85)
+        Me.RichTextBox1.Name = "RichTextBox1"
+        Me.RichTextBox1.Size = New System.Drawing.Size(258, 276)
+        Me.RichTextBox1.TabIndex = 17
+        Me.RichTextBox1.Text = ""
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Droid Sans", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.White
+        Me.Label11.Location = New System.Drawing.Point(4, 39)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(73, 15)
+        Me.Label11.TabIndex = 16
+        Me.Label11.Text = "Invoice No."
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(7, 57)
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.Size = New System.Drawing.Size(128, 22)
+        Me.TextBox1.TabIndex = 15
         '
         'Label10
         '
@@ -298,48 +369,51 @@ Partial Class Reports_Form
         Me.Label10.BackColor = System.Drawing.Color.Transparent
         Me.Label10.Font = New System.Drawing.Font("Droid Sans", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(12, 6)
+        Me.Label10.Location = New System.Drawing.Point(3, 6)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(127, 19)
         Me.Label10.TabIndex = 14
         Me.Label10.Text = "Official Receipt"
         '
-        'TextBox1
+        'DateTimePicker1
         '
-        Me.TextBox1.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(15, 57)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(165, 22)
-        Me.TextBox1.TabIndex = 15
+        Me.DateTimePicker1.Location = New System.Drawing.Point(65, 245)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 20)
+        Me.DateTimePicker1.TabIndex = 15
         '
-        'Label11
+        'DateTimePicker2
         '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("Droid Sans", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label11.ForeColor = System.Drawing.Color.White
-        Me.Label11.Location = New System.Drawing.Point(13, 39)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(73, 15)
-        Me.Label11.TabIndex = 16
-        Me.Label11.Text = "Invoice No."
+        Me.DateTimePicker2.Location = New System.Drawing.Point(65, 272)
+        Me.DateTimePicker2.Name = "DateTimePicker2"
+        Me.DateTimePicker2.Size = New System.Drawing.Size(200, 20)
+        Me.DateTimePicker2.TabIndex = 18
         '
-        'RichTextBox1
+        'Label12
         '
-        Me.RichTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.RichTextBox1.Location = New System.Drawing.Point(16, 81)
-        Me.RichTextBox1.Name = "RichTextBox1"
-        Me.RichTextBox1.Size = New System.Drawing.Size(294, 276)
-        Me.RichTextBox1.TabIndex = 17
-        Me.RichTextBox1.Text = ""
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(29, 251)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(30, 13)
+        Me.Label12.TabIndex = 19
+        Me.Label12.Text = "From"
         '
-        'Button1
+        'Label13
         '
-        Me.Button1.Location = New System.Drawing.Point(181, 56)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(129, 23)
-        Me.Button1.TabIndex = 18
-        Me.Button1.Text = "Search"
-        Me.Button1.UseVisualStyleBackColor = True
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(39, 279)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(20, 13)
+        Me.Label13.TabIndex = 20
+        Me.Label13.Text = "To"
+        '
+        'Panel5
+        '
+        Me.Panel5.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Panel5.Location = New System.Drawing.Point(539, 6)
+        Me.Panel5.Name = "Panel5"
+        Me.Panel5.Size = New System.Drawing.Size(271, 177)
+        Me.Panel5.TabIndex = 19
         '
         'Reports_Form
         '
@@ -347,13 +421,18 @@ Partial Class Reports_Form
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.Control
         Me.ClientSize = New System.Drawing.Size(1002, 595)
+        Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Panel4)
         Me.Controls.Add(Me.Chart1)
+        Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.Panel1)
         Me.Controls.Add(Me.Panel2)
+        Me.Controls.Add(Me.DateTimePicker2)
         Me.Controls.Add(Me.Panel3)
+        Me.Controls.Add(Me.DateTimePicker1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Reports_Form"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Reports_Form"
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
@@ -365,6 +444,7 @@ Partial Class Reports_Form
         Me.Panel4.ResumeLayout(False)
         Me.Panel4.PerformLayout()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents Panel1 As System.Windows.Forms.Panel
@@ -391,4 +471,11 @@ Partial Class Reports_Form
     Friend WithEvents Label10 As Label
     Friend WithEvents RichTextBox1 As RichTextBox
     Friend WithEvents Button1 As Button
+    Friend WithEvents Button5 As Button
+    Friend WithEvents Button2 As Button
+    Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents DateTimePicker2 As DateTimePicker
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents Panel5 As Panel
 End Class

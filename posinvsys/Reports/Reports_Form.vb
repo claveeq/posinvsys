@@ -27,6 +27,9 @@ Public Class Reports_Form
         End If
     End Sub
     Private Sub Reports_Form_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim date_from As String = Format(DateTimePicker1.Value, "yyyy-MM-dd")
+        Dim date_to As String = Format(DateTimePicker2.Value, "yyyy-MM-dd")
+
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
@@ -51,6 +54,12 @@ Public Class Reports_Form
         Finally
             MysqlConn.Dispose()
         End Try
+
+        pop() 'populate
+
+    End Sub
+    Private Sub pop()
+        ListBox1.Items.Clear()
 
         Try ' populate list box
             MysqlConn.Open()
@@ -104,32 +113,13 @@ Public Class Reports_Form
             MysqlConn.Dispose()
         End Try
     End Sub
-    Private Sub gross_calc()
-        
-    End Sub
 
-    Private Sub Label3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label3.Click
-
-    End Sub
 
     Private Sub Label3_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Label3.TextChanged
         Dim num1 As Double = Val(Label6.Text)
         Dim num2 As Double = Val(Label3.Text)
         Dim answer As Double = num1 - num2
         Label8.Text = answer
-    End Sub
-
-    Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
-
-    End Sub
-
-    Private Sub Panel1_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
-
-    End Sub
-
-
-    Private Sub Chart1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Chart1.Click
-
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button6.Click
@@ -163,7 +153,7 @@ Public Class Reports_Form
                 Dim rtotal = Reader.GetString("rec_total")
                 Dim cash = Reader.GetString("rec_cash")
                 Dim change = Reader.GetString("rec_change")
-
+                Dim name = Reader.GetString("rec_cashier")
                 '  Dim items As String = Checkout_Form.DataGridView1.
 
                 Dim cellValues As New List(Of String)
@@ -179,7 +169,7 @@ Public Class Reports_Form
                     "Receipt " & vbNewLine &
                     "Invoice# " & id & vbNewLine &
                     "Date purchased: " & rdate & vbNewLine &
-                    "Served by: " & " " & vbNewLine &
+                    "Served by: " & " " & name & vbNewLine &
                     "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" & vbNewLine & vbNewLine &
                     "                               ITEMS" & vbNewLine & items & vbNewLine &
                     "________________________________________" & vbNewLine & vbNewLine &
@@ -191,7 +181,6 @@ Public Class Reports_Form
 
             End While
 
-
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
@@ -199,5 +188,79 @@ Public Class Reports_Form
             MysqlConn.Dispose()
 
         End Try
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "delete  FROM unlisted WHERE un_item = '" & ListBox1.SelectedItem.ToString & "';"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+        pop()
+    End Sub
+
+    Private Sub Chart1_Click(sender As Object, e As EventArgs) Handles Chart1.Click
+
+    End Sub
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Me.Hide()
+        Product_Form.Show()
+        Product_Form.TextBox1.Text = ListBox1.SelectedItem.ToString
+    End Sub
+
+    Private Sub ListBox1_MeasureItem(sender As Object, e As MeasureItemEventArgs) Handles ListBox1.MeasureItem
+
+    End Sub
+    Private Sub graph()
+        Dim date_from As String = Format(DateTimePicker1.Value, "yyyy-MM-dd")
+        Dim date_to As String = Format(DateTimePicker2.Value, "yyyy-MM-dd")
+        Try
+            MysqlConn.Open()
+            Query = "SELECT SUM(rec_total) as sales,SUM(rec_cog) as cost FROM receipt where rec_date between  '" & date_from & "' and '" & date_to & "'  Group by rec_date;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim sales = Reader.GetString("sales")
+                Dim cost = Reader.GetString("cost")
+                Label6.Text = sales
+                Label3.Text = cost
+                Label8.Text = sales - cost
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+        Chart1.Series(0).Points.Clear()
+        Try ' populating the graph
+            MysqlConn.Open()
+            Query = "SELECT rec_date as Day, sum(rec_cash) as Total FROM receipt where rec_date between  '" & date_from & "' and '" & date_to & "'  Group by rec_date limit 7;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Chart1.Series("Weekly Sales").Points.AddXY(Reader.GetString("Day"), Reader.GetDouble("Total"))
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+    End Sub
+    Private Sub DateTimePicker1_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker1.ValueChanged
+        graph()
+    End Sub
+
+    Private Sub DateTimePicker2_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker2.ValueChanged
+        graph()
     End Sub
 End Class

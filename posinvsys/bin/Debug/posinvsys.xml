@@ -52,6 +52,11 @@ posinvsys
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:posinvsys.My.Resources.Resources.back_black">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:posinvsys.My.Resources.Resources.Back1">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
@@ -97,7 +102,17 @@ posinvsys
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:posinvsys.My.Resources.Resources.edit">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:posinvsys.My.Resources.Resources.edit_prod">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:posinvsys.My.Resources.Resources.edit_prod_inactive">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
@@ -168,6 +183,11 @@ posinvsys
 </summary>
 </member>
 <member name="P:posinvsys.My.Resources.Resources.stats">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
+<member name="P:posinvsys.My.Resources.Resources.Trash">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>

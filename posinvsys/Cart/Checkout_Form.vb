@@ -63,7 +63,7 @@ Public Class Checkout_Form
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
         Dim Checkout_Form As New Checkout_Form
         Checkout_Form.Show()
-        Me.Close()
+        Me.Hide()
 
     End Sub
     Private Sub Barcode()
@@ -216,8 +216,8 @@ Public Class Checkout_Form
     Public Sub popoulate()
 
 
-        Dim cart_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
-        Dim btn_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\Trash.png")
+        Dim cart_img As Image = My.Resources.cart
+        Dim btn_img As Image = My.Resources.Trash
 
         'Dim butcol As DataGridViewButtonColumn
 
@@ -232,7 +232,7 @@ Public Class Checkout_Form
             MysqlConn.Open()
             Dim Query As String
             Query =
-            "select * FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode INNER JOIN inventory ON inventory.inv_barcode =pricing.price_barcode  where prod_barcode = '" & TextBox.Text & "';"
+            "select * FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode INNER JOIN inventory ON inventory.inv_barcode = pricing.price_barcode  where prod_barcode = '" & TextBox.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             reader = COMMAND.ExecuteReader
             While reader.Read
@@ -411,31 +411,36 @@ Public Class Checkout_Form
     End Sub
 
     Private Sub Button23_Click(sender As Object, e As EventArgs) Handles Button23.Click
-        Dim cart_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\cart.png")
-        Dim btn_img As Image = Image.FromFile("D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\Images\Trash.png")
-        Dim name = TextBox2.Text
-        Dim price = TextBox3.Text
-        Dim qty As Integer = 1
-        Dim brcode As String = "newitem"
+        If TextBox3.Text = "" Then
+            MessageBox.Show("Please enter a price in a Custom item.")
+        Else
+            Dim cart_img As Image = My.Resources.cart
+            Dim btn_img As Image = My.Resources.Trash
+            Dim name = TextBox2.Text
+            Dim price = TextBox3.Text
+            Dim qty As Integer = 1
+            Dim brcode As String = "newitem"
+            Dim psupply = 1
+            Dim stock = 1
+            total = qty * price
+            supply = qty * psupply
+            Dim currentstock As Integer = stock - qty
 
+            Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply, stock, currentstock, brcode}
+            DataGridView1.Rows.Add(row)
 
-        Dim psupply = 1
-        Dim stock = 1
+            Dim num1 As Double
+            Dim num2 As Double
+            Dim add As Double
+            num1 = (1 * price)
+            num2 = Val(Label4.Text)
+            add = num1 + num2
+            Label4.Text = add
 
-        total = qty * price
-        supply = qty * psupply
-        Dim currentstock As Integer = stock - qty
-
-        Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply, stock, currentstock, brcode}
-        DataGridView1.Rows.Add(row)
-
-        Dim num1 As Double
-        Dim num2 As Double
-        Dim add As Double
-        num1 = (1 * price)
-        num2 = Val(Label4.Text)
-        add = num1 + num2
-        Label4.Text = add
+            TextBox2.Text = "Product Name"
+            TextBox3.Clear()
+            Label6.Text = ""
+        End If
 
     End Sub
 

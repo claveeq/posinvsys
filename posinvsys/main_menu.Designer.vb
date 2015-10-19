@@ -22,12 +22,12 @@ Partial Class main_menu
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim ChartArea7 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend7 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series7 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
-        Dim ChartArea8 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
-        Dim Legend8 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
-        Dim Series8 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea1 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend1 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series1 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
+        Dim ChartArea2 As System.Windows.Forms.DataVisualization.Charting.ChartArea = New System.Windows.Forms.DataVisualization.Charting.ChartArea()
+        Dim Legend2 As System.Windows.Forms.DataVisualization.Charting.Legend = New System.Windows.Forms.DataVisualization.Charting.Legend()
+        Dim Series2 As System.Windows.Forms.DataVisualization.Charting.Series = New System.Windows.Forms.DataVisualization.Charting.Series()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Button4 = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -174,17 +174,17 @@ Partial Class main_menu
         'Chart2
         '
         Me.Chart2.BackColor = System.Drawing.SystemColors.ControlLightLight
-        ChartArea7.Name = "ChartArea1"
-        Me.Chart2.ChartAreas.Add(ChartArea7)
-        Legend7.Name = "Legend1"
-        Me.Chart2.Legends.Add(Legend7)
+        ChartArea1.Name = "ChartArea1"
+        Me.Chart2.ChartAreas.Add(ChartArea1)
+        Legend1.Name = "Legend1"
+        Me.Chart2.Legends.Add(Legend1)
         Me.Chart2.Location = New System.Drawing.Point(473, 301)
         Me.Chart2.Name = "Chart2"
         Me.Chart2.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None
-        Series7.ChartArea = "ChartArea1"
-        Series7.Legend = "Legend1"
-        Series7.Name = "Critical Stocks"
-        Me.Chart2.Series.Add(Series7)
+        Series1.ChartArea = "ChartArea1"
+        Series1.Legend = "Legend1"
+        Series1.Name = "Critical Stocks"
+        Me.Chart2.Series.Add(Series1)
         Me.Chart2.Size = New System.Drawing.Size(513, 222)
         Me.Chart2.TabIndex = 22
         Me.Chart2.Text = "Chart2"
@@ -192,18 +192,18 @@ Partial Class main_menu
         'Chart1
         '
         Me.Chart1.BackColor = System.Drawing.SystemColors.ControlLightLight
-        ChartArea8.Name = "ChartArea1"
-        Me.Chart1.ChartAreas.Add(ChartArea8)
-        Legend8.Name = "Legend1"
-        Me.Chart1.Legends.Add(Legend8)
+        ChartArea2.Name = "ChartArea1"
+        Me.Chart1.ChartAreas.Add(ChartArea2)
+        Legend2.Name = "Legend1"
+        Me.Chart1.Legends.Add(Legend2)
         Me.Chart1.Location = New System.Drawing.Point(-10, 301)
         Me.Chart1.Name = "Chart1"
         Me.Chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None
-        Series8.ChartArea = "ChartArea1"
-        Series8.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
-        Series8.Legend = "Legend1"
-        Series8.Name = "Weekly Sales"
-        Me.Chart1.Series.Add(Series8)
+        Series2.ChartArea = "ChartArea1"
+        Series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Area
+        Series2.Legend = "Legend1"
+        Series2.Name = "Weekly Sales"
+        Me.Chart1.Series.Add(Series2)
         Me.Chart1.Size = New System.Drawing.Size(496, 237)
         Me.Chart1.TabIndex = 21
         Me.Chart1.Text = "Chart1"

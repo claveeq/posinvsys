@@ -9,6 +9,9 @@ Public Class main_menu
 
 
     Private Sub main_menu_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+        Chart2.Series(0).Color = Color.Red
+
+
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
@@ -202,6 +205,14 @@ Public Class main_menu
     End Sub
 
     Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+
+    End Sub
+
+    Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+        MessageBox.Show("R. MARQUEZ POSINVSYS (POS Inventory Managemnet System )" & vbNewLine & "is designed to work with Pharmaceutical Stores." & vbNewLine & "Developed by 3rd Year College students of Dr. Yanga's Colleges INC. ")
+    End Sub
+
+    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
 
     End Sub
 End Class

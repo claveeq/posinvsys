@@ -13,9 +13,6 @@ D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.receip
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Resources.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.main_menu.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Product_Form.resources
-D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addbrand.resources
-D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addloc.resources
-D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.addtype.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Registration_Form.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Reports_Form.resources
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbproj.GenerateResource.Cache
@@ -28,3 +25,7 @@ D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbproj
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\MySql.Data.dll
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.dll
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.pdfa.dll
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.xml
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.variants.resources

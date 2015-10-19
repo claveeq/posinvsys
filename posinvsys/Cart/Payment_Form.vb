@@ -71,7 +71,6 @@ Public Class Payment_Form
                         Reader = COMMAND.ExecuteReader
                         MysqlConn.Close()
                     Catch ex As MySqlException
-                        MessageBox.Show(ex.Message)
                     Finally
                         MysqlConn.Dispose()
                     End Try
@@ -89,7 +88,7 @@ Public Class Payment_Form
 
         Dim cellValues As New List(Of String)
         For Each row As DataGridViewRow In Checkout_Form.DataGridView1.Rows
-            cellValues.Add(row.Cells(3).Value.ToString() + "  " + row.Cells(1).Value.ToString() + vbNewLine + "    ......................................................Php " + row.Cells(4).Value.ToString())
+            cellValues.Add(row.Cells(3).Value.ToString() + "  " + row.Cells(1).Value.ToString() + vbNewLine + "    ............Php " + row.Cells(4).Value.ToString())
         Next
         Checkout_Form.RichTextBox1.Lines = cellValues.ToArray()
         Dim items As String = Checkout_Form.RichTextBox1.Text
@@ -99,7 +98,7 @@ Public Class Payment_Form
         Try
             MysqlConn.Open()
             Dim Query As String
-            Query = "Insert into rmarquez.receipt (rec_date,rec_total,rec_cash,rec_change,rec_cog,rec_items,rec_cashier) values (DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),'" & Label4.Text & "','" & TextBox1.Text & "','" & Label6.Text & "','" & Checkout_Form.supply & "','" & items & "','" & main_menu.Label3.Text & "');"
+            Query = "Insert into rmarquez.receipt (rec_date,rec_total,rec_cash,rec_change,rec_cog,rec_items,rec_cashier) values (DATE_FORMAT(NOW(),'%Y-%m-%d %H:%i:%s'),'" & Label4.Text & "','" & TextBox1.Text & "','" & Label6.Text & "','" & Checkout_Form.supply & "','" & items & "','" & Login_Form.TextBox1.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
 

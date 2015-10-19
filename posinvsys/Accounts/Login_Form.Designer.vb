@@ -150,9 +150,9 @@ Partial Class Login_Form
         '
         Me.PictureBox1.BackgroundImage = Global.posinvsys.My.Resources.Resources.LOGO
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
-        Me.PictureBox1.Location = New System.Drawing.Point(-4, 60)
+        Me.PictureBox1.Location = New System.Drawing.Point(0, 58)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(320, 246)
+        Me.PictureBox1.Size = New System.Drawing.Size(316, 246)
         Me.PictureBox1.TabIndex = 13
         Me.PictureBox1.TabStop = False
         '
