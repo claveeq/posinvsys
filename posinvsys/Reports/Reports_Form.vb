@@ -6,6 +6,8 @@ Public Class Reports_Form
     Dim MysqlConn As MySqlConnection 'MySQL
     Dim COMMAND As MySqlCommand     'MySQL
     Dim Query As String
+
+    Dim dbdataset As New DataTable  'For Datagridview 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
             Me.Location += e.Location - loc
@@ -33,12 +35,16 @@ Public Class Reports_Form
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
+        invoice()
 
         ComboBox1.Items.Add("Today")
         ComboBox1.Items.Add("Previous Day")
         ComboBox1.Items.Add("Week")
         ComboBox1.Items.Add("Month")
         ComboBox1.Items.Add("Year")
+
+
+        sold_items()
 
         Try ' populating the graph
             MysqlConn.Open()
@@ -57,6 +63,35 @@ Public Class Reports_Form
 
         pop() 'populate
 
+    End Sub
+    Private Sub sold_items()
+        MysqlConn = New MySqlConnection
+        MysqlConn.ConnectionString =
+            "server=localhost;userid=root;password=1234;database=rmarquez"
+        Dim Sda As New MySqlDataAdapter
+        Dim bsource As New BindingSource
+        dbdataset.Clear()
+        Dim date_item As String = Format(DateTimePicker3.Value, "yyyy-MM-dd")
+
+        Try
+            MysqlConn.Open()
+            Query =
+            "SELECT it_name as Product, SUM(it_quantity) as QTY, sum(it_price) as 'Total Price' FROM rmarquez.items where it_date = '" & date_item & "' group by it_name;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+
+            Sda.SelectCommand = COMMAND
+            Sda.Fill(dbdataset)
+            bsource.DataSource = dbdataset
+            DataGridView1.DataSource = bsource
+            Sda.Update(dbdataset)
+
+            'default
+            MysqlConn.Close() 'default
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
     End Sub
     Private Sub pop()
         ListBox1.Items.Clear()
@@ -176,7 +211,10 @@ Public Class Reports_Form
                     "            Total.........................................Php " & rtotal & vbNewLine &
                     "            Cash.........................................Php " & cash & vbNewLine &
                     "            Change....................................Php " & change & vbNewLine &
-                    "________________________________________" & vbNewLine
+                    "________________________________________" & vbNewLine &
+                    "THIS SERVE AS AN OFFICIAL RECEIPT" & vbNewLine &
+                    "Thank you COME AGAIN" & vbNewLine
+
                 RichTextBox1.Text = receipt
 
             End While
@@ -262,5 +300,60 @@ Public Class Reports_Form
 
     Private Sub DateTimePicker2_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker2.ValueChanged
         graph()
+    End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+
+    End Sub
+    Private Sub invoice()
+        Try
+            MysqlConn.Open()
+            Query = "SELECT * FROM invoice"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Label19.Text = Reader.GetInt32("invc_limit")
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+        Try
+            MysqlConn.Open()
+            Query = "SELECT COUNT(*)as 'all' FROM receipt;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim count As Integer = Reader.GetInt32("all")
+                Label18.Text = count - 2
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+        Label20.Text = Val(Label19.Text) - Val(Label18.Text)
+    End Sub
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        Try
+            MysqlConn.Open()
+            Query = " Update `rmarquez`.`invoice` Set `invc_limit`='" & TextBox2.Text & "' WHERE `invc_limit`='" & Label19.Text & "';"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+            TextBox2.Clear()
+            invoice()
+        End Try
+    End Sub
+
+    Private Sub DateTimePicker3_ValueChanged(sender As Object, e As EventArgs) Handles DateTimePicker3.ValueChanged
+        sold_items()
     End Sub
 End Class

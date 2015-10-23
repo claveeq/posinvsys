@@ -208,6 +208,7 @@ Public Class Checkout_Form
 
     End Sub
     Public Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         Barcode()
         TextBox2.Text = "Product Name"
 
@@ -455,6 +456,10 @@ Public Class Checkout_Form
     End Sub
 
     Private Sub Panel2_Paint(sender As Object, e As PaintEventArgs) Handles Panel2.Paint
+
+    End Sub
+
+    Private Sub Panel1_Paint(sender As Object, e As PaintEventArgs) Handles Panel1.Paint
 
     End Sub
 

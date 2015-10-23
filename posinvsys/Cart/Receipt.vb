@@ -23,8 +23,9 @@ Public Class receipt
                 Dim rtotal = Reader.GetString("rec_total")
                 Dim cash = Reader.GetString("rec_cash")
                 Dim change = Reader.GetString("rec_change")
-                Dim item = Reader.GetString("rec_items")
+                Dim items = Reader.GetString("rec_items")
                 Dim name As String = Reader.GetString("rec_cashier")
+
 
 
                 Dim receipt As String =
@@ -35,13 +36,17 @@ Public Class receipt
                     "Date purchased: " & rdate & vbNewLine &
                     "Served by: " & " " & name & vbNewLine &
                     "_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _" & vbNewLine & vbNewLine &
-                    "                               ITEMS" & vbNewLine & item & vbNewLine &
+                    "                               ITEMS" & vbNewLine & items & vbNewLine &
                     "________________________________________" & vbNewLine & vbNewLine &
                     "            Total.........................................Php " & rtotal & vbNewLine &
                     "            Cash.........................................Php " & cash & vbNewLine &
                     "            Change....................................Php " & change & vbNewLine &
-                    "________________________________________" & vbNewLine
+                    "________________________________________" & vbNewLine &
+                    "THIS SERVE AS AN OFFICIAL RECEIPT" & vbNewLine &
+                    "Thank you COME AGAIN" & vbNewLine
+
                 RichTextBox1.Text = receipt
+
 
             End While
 
@@ -55,7 +60,7 @@ Public Class receipt
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Dim Checkout_Form As New Checkout_Form
+        Checkout_Form.Show()
         Me.Hide()
     End Sub
 

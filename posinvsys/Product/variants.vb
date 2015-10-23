@@ -141,7 +141,13 @@ Public Class variants
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
         Product_Form.Show()
-
+        If Product_Form.ComboBox1.Text = "Add Type" Then
+            ComboBox1.Text = ""
+        ElseIf Product_Form.ComboBox2.Text = "Add Brand" Then
+            ComboBox2.Text = ""
+        ElseIf Product_Form.ComboBox3.Text = "Add Loc" Then
+            ComboBox3.Text = ""
+        End If
         Me.Hide()
     End Sub
 End Class

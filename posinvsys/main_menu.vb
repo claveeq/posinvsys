@@ -11,10 +11,11 @@ Public Class main_menu
     Private Sub main_menu_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Chart2.Series(0).Color = Color.Red
 
-
         MysqlConn = New MySqlConnection
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
+
+        invoice()
 
         Try 'Admin Rights -----------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
             MysqlConn.Open()
@@ -89,7 +90,22 @@ Public Class main_menu
             MysqlConn.Dispose()
         End Try
 
+
+        Try ' populating the graph
+            MysqlConn.Open()
+            Query = "SELECT * FROM invoice;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+
+
     End Sub
+
     Function ToProperCase(ByVal str As String) As String 'totitlecase function only,no need to worry
         Dim myTI As System.Globalization.TextInfo
         myTI = New System.Globalization.CultureInfo("en-US", False).TextInfo
@@ -119,8 +135,7 @@ Public Class main_menu
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Dim refresh_all As New Product_Form
-        refresh_all.Show()
+        Product_Form.Show()
         Me.Hide()
 
     End Sub
@@ -133,8 +148,6 @@ Public Class main_menu
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        ' Dim newcheck As New Checkout_Form
-        '  newcheck.Show()
         Checkout_Form.Show()
         Me.Hide()
     End Sub
@@ -151,12 +164,14 @@ Public Class main_menu
     End Sub
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+        Dim Reports_Form As New Reports_Form
         Reports_Form.Show()
         Me.Hide()
     End Sub
 
     Private Sub Button7_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        Account_Settings.Show()
+        Dim account_settings As New Account_Settings
+        account_settings.Show()
         Me.Hide()
 
     End Sub
@@ -211,8 +226,41 @@ Public Class main_menu
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
         MessageBox.Show("R. MARQUEZ POSINVSYS (POS Inventory Managemnet System )" & vbNewLine & "is designed to work with Pharmaceutical Stores." & vbNewLine & "Developed by 3rd Year College students of Dr. Yanga's Colleges INC. ")
     End Sub
+    Private Sub invoice()
 
-    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
-
+        Try
+            MysqlConn.Open()
+            Query = "SELECT * FROM invoice"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Label15.Text = Reader.GetInt32("invc_limit")
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+        Try
+            MysqlConn.Open()
+            Query = "SELECT COUNT(*)as 'all' FROM receipt;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim count As Integer = Reader.GetInt32("all")
+                Label16.Text = count - 2
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+        Label17.Text = Val(Label15.Text) - Val(Label16.Text)
+        If Label17.Text = 0 Then
+            Button2.BackgroundImage = My.Resources.Cashier_inactive
+            Button2.Enabled = False
+        End If
     End Sub
 End Class

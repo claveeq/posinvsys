@@ -156,21 +156,17 @@ Public Class Product_Form
             Query =
             "SELECT product.prod_barcode AS Barcode,product.prod_name AS Product, product.prod_description as Description, product.prod_type AS Type, product.prod_brand AS Brand, product.prod_loc as Location, pricing.price_price as Price FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode ORDER BY product.prod_name ASC;"
             COMMAND = New MySqlCommand(Query, MysqlConn)
-
             Sda.SelectCommand = COMMAND
             Sda.Fill(dbdataset)
             bsource.DataSource = dbdataset
             DataGridView1.DataSource = bsource
             Sda.Update(dbdataset)
-
-            'default
-            MysqlConn.Close() 'default
+            MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
         End Try
-
     End Sub
     Private Sub retail_visible()
         MysqlConn = New MySqlConnection
@@ -200,10 +196,16 @@ Public Class Product_Form
         End Try
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim bar As String = ""
+        If CheckBox1.Checked = False Then
+            bar = TextBox2.Text
+        ElseIf CheckBox1.Checked = True
+            bar = TextBox5.Text
+        End If
         Try 'product table
             MysqlConn.Open()
             Dim Query As String
-            Query = "Insert into rmarquez.product (prod_name,prod_barcode,prod_description,prod_type,prod_brand,prod_loc) values ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & RichTextBox1.Text & "','" & ComboBox1.Text & "','" & ComboBox2.Text & "','" & ComboBox3.Text & "');"
+            Query = "Insert into rmarquez.product (prod_name,prod_barcode,prod_description,prod_type,prod_brand,prod_loc) values ('" & TextBox1.Text & "','" & bar & "','" & RichTextBox1.Text & "','" & ComboBox1.Text & "','" & ComboBox2.Text & "','" & ComboBox3.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             MysqlConn.Close()
@@ -215,7 +217,7 @@ Public Class Product_Form
         Try 'pricing table
             MysqlConn.Open()
             Dim Query As String
-            Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & TextBox2.Text & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
+            Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & bar & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             MysqlConn.Close()
@@ -226,7 +228,7 @@ Public Class Product_Form
         Try 'inventory table
             MysqlConn.Open()
             Dim Query As String
-            Query = "Insert into rmarquez.inventory (`inv_barcode`, `inv_stock`, `inv_ropoint`, `inv_roamount`) VALUES ('" & TextBox2.Text & "', '" & TextBox6.Text & "', '" & TextBox7.Text & "', '0');"
+            Query = "Insert into rmarquez.inventory (`inv_barcode`, `inv_stock`, `inv_ropoint`, `inv_roamount`) VALUES ('" & bar & "', '" & TextBox6.Text & "', '" & TextBox7.Text & "', '0');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             MessageBox.Show("Product Successfully Added")
@@ -236,19 +238,21 @@ Public Class Product_Form
             MysqlConn.Dispose()
             TextBox1.Clear()
             RichTextBox1.Clear()
-            ComboBox1.Text = ""
-            ComboBox2.Text = ""
-            ComboBox3.Text = ""
+            ComboBox1.SelectedIndex = -1
+            ComboBox2.SelectedIndex = -1
+            ComboBox3.SelectedIndex = -1
             TextBox3.Clear()
             TextBox4.Clear()
             Label3.Text = ""
             TextBox6.Clear()
             TextBox7.Clear()
             TextBox2.Clear()
-
+            TextBox5.Clear()
+            CheckBox1.Checked = False
             table_refresh()
             Barcode()
         End Try
+
     End Sub
 
 
@@ -446,8 +450,15 @@ Public Class Product_Form
         Bar = Bar.Replace("0x7E", "~")
         Bar = Bar.Replace(" ", "")
         TextBox2.Text = Bar
+
         DV.RowFilter = String.Format("Barcode Like '%" & TextBox2.Text & "%'")
         DataGridView1.DataSource = DV
+
+        get_value()
+
+    End Sub
+    Private Sub get_value()
+
 
         'to know if the row index exist
         Dim row As DataGridViewRow
@@ -463,9 +474,9 @@ Public Class Product_Form
         Else
             TextBox1.Clear()
             RichTextBox1.Clear()
-            ComboBox1.Text = ""
-            ComboBox2.Text = ""
-            ComboBox3.Text = ""
+            ComboBox1.SelectedIndex = -1
+            ComboBox2.SelectedIndex = -1
+            ComboBox3.SelectedIndex = -1
         End If
         Try
             MysqlConn.Open()
@@ -502,19 +513,26 @@ Public Class Product_Form
         End Try
     End Sub
     Private Sub TextBox2_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles TextBox2.Click
-        Barcode()
+
         TextBox2.Clear()
-        table_refresh()
+
 
         TextBox1.Clear()
         RichTextBox1.Clear()
-        ComboBox1.Text = ""
-        ComboBox2.Text = ""
-        ComboBox3.Text = ""
+
+        ComboBox1.SelectedIndex = -1
+        ComboBox2.SelectedIndex = -1
+        ComboBox3.SelectedIndex = -1
+
+        TextBox6.Clear()
+        TextBox7.Clear()
 
         TextBox3.Clear()
         TextBox4.Clear()
         Label3.Text = "Total Price"
+
+        table_refresh()
+        Barcode()
     End Sub
 
     Private Sub TextBox10_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox10.TextChanged
@@ -533,41 +551,48 @@ Public Class Product_Form
             ComboBox2.Text = row.Cells("brand").Value.ToString
             ComboBox3.Text = row.Cells("Location").Value.ToString
             TextBox2.Text = row.Cells("Barcode").Value.ToString
+            If TextBox1.Text = "" Then
+                ComboBox1.SelectedIndex = -1
+                ComboBox2.SelectedIndex = -1
+                ComboBox3.SelectedIndex = -1
+            End If
+
             Try
-                MysqlConn.Open()
-                Query =
+                    MysqlConn.Open()
+                    Query =
                 "SELECT * FROM pricing WHERE price_barcode = '" & TextBox2.Text & "';"
-                COMMAND = New MySqlCommand(Query, MysqlConn)
-                Reader = COMMAND.ExecuteReader
-                While Reader.Read
-                    TextBox3.Text = Reader.GetString("price_supply")
-                    TextBox4.Text = Reader.GetString("price_markup")
-                    Label3.Text = Reader.GetString("price_price")
-                End While
-                MysqlConn.Close() 'default
-            Catch ex As MySqlException
-                MessageBox.Show(ex.Message)
-            Finally
-                MysqlConn.Dispose()
-            End Try
-            Try
-                MysqlConn.Open()
-                Query =
+                    COMMAND = New MySqlCommand(Query, MysqlConn)
+                    Reader = COMMAND.ExecuteReader
+                    While Reader.Read
+                        TextBox3.Text = Reader.GetString("price_supply")
+                        TextBox4.Text = Reader.GetString("price_markup")
+                        Label3.Text = Reader.GetString("price_price")
+                    End While
+                    MysqlConn.Close() 'default
+                Catch ex As MySqlException
+                    MessageBox.Show(ex.Message)
+                Finally
+                    MysqlConn.Dispose()
+                End Try
+                Try
+                    MysqlConn.Open()
+                    Query =
                 "SELECT * FROM inventory WHERE inv_barcode = '" & TextBox2.Text & "';"
-                COMMAND = New MySqlCommand(Query, MysqlConn)
-                Reader = COMMAND.ExecuteReader
-                While Reader.Read
-                    TextBox6.Text = Reader.GetString("inv_stock")
-                    TextBox7.Text = Reader.GetString("inv_ropoint")
-                End While
-                MysqlConn.Close()
-            Catch ex As MySqlException
-                MessageBox.Show(ex.Message)
-            Finally
-                MysqlConn.Dispose()
-            End Try
-        End If
-        record_edit()
+                    COMMAND = New MySqlCommand(Query, MysqlConn)
+                    Reader = COMMAND.ExecuteReader
+                    While Reader.Read
+                        TextBox6.Text = Reader.GetString("inv_stock")
+                        TextBox7.Text = Reader.GetString("inv_ropoint")
+                    End While
+                    MysqlConn.Close()
+                Catch ex As MySqlException
+                    MessageBox.Show(ex.Message)
+                Finally
+                    MysqlConn.Dispose()
+                End Try
+            End If
+
+        ' record_edit()
     End Sub
 
     Private Sub Button6_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -599,10 +624,16 @@ Public Class Product_Form
 
     End Sub
     Private Sub Button7_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        variants.Hide()
-        Dim product As New Product_Form
-        product.Show()
-        Me.Hide()
+        'Application.Restart()
+        'Me.Refresh()
+        Dim Product_Form = New Product_Form
+        Product_Form.Show()
+        Me.Close()
+        'create New Process
+        'Application.Run()
+        '  Application.Restart()
+        '  Application.ExitThread()
+
     End Sub
 
     Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
@@ -614,7 +645,7 @@ Public Class Product_Form
             TextBox6.Clear()
             TextBox7.Clear()
         End If
-        record_edit()
+        '  record_edit()
     End Sub
     Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
         Try
@@ -661,11 +692,12 @@ Public Class Product_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-            Barcode()
-            table_refresh()
             TextBox3.Clear()
             TextBox4.Clear()
             Label3.Text = "Final Price"
+
+            table_refresh()
+            Barcode()
         End Try
     End Sub
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
@@ -675,12 +707,6 @@ Public Class Product_Form
             Query = "delete from product where prod_barcode = '" & TextBox2.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
-            TextBox1.Clear()
-            TextBox2.Clear()
-            RichTextBox1.Clear()
-            ComboBox1.Text = ""
-            ComboBox2.Text = ""
-            ComboBox3.Text = ""
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
@@ -693,8 +719,6 @@ Public Class Product_Form
             Query = "delete from inventory where inv_barcode = '" & TextBox2.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
-            TextBox6.Clear()
-            TextBox7.Clear()
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
@@ -707,8 +731,6 @@ Public Class Product_Form
             Query = "delete from pricing where price_barcode = '" & TextBox2.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
-            TextBox3.Clear()
-            TextBox4.Clear()
             Label3.Text = "Final Price"
             MessageBox.Show("Product Successfully Deleted")
             MysqlConn.Close()
@@ -716,7 +738,20 @@ Public Class Product_Form
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
+
+            TextBox1.Clear()
+            TextBox2.Clear()
+            RichTextBox1.Clear()
+            ComboBox1.SelectedIndex = -1
+            ComboBox2.SelectedIndex = -1
+            ComboBox3.SelectedIndex = -1
+            TextBox6.Clear()
+            TextBox7.Clear()
+            TextBox3.Clear()
+            TextBox4.Clear()
+
             table_refresh()
+            Barcode()
         End Try
     End Sub
     Private Sub record_edit() 'Enable / Disable 
@@ -735,7 +770,7 @@ Public Class Product_Form
                 Dim loc_data As String = Reader.GetString("prod_loc")
                 '  Dim stock_data As String = Reader.GetString("inv_stock")
                 '  Dim ropoint_data As String = Reader.GetString("inv_ropoint")
-                '   Dim supply_data As String = Reader.GetString("price_supply")
+                '  Dim supply_data As String = Reader.GetString("price_supply")
                 '  Dim markup_data As String = Reader.GetString("price_markup")
                 If TextBox1.Text <> name Or
                    RichTextBox1.Text <> des_data Or
@@ -763,18 +798,37 @@ Public Class Product_Form
     End Sub
 
     Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged
-        record_edit()
+        '   record_edit()
     End Sub
 
     Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox1.SelectedIndexChanged
-        record_edit()
+        '   record_edit()
     End Sub
 
     Private Sub ComboBox2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox2.SelectedIndexChanged
-        record_edit()
+        '  record_edit()
     End Sub
 
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
-        record_edit()
+        '   record_edit()
+    End Sub
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
+        If CheckBox1.Checked = True Then
+            TextBox5.Visible = True
+            TextBox1.Clear()
+            RichTextBox1.Clear()
+            ComboBox1.SelectedIndex = -1
+            ComboBox2.SelectedIndex = -1
+            ComboBox3.SelectedIndex = -1
+            TextBox6.Clear()
+            TextBox7.Clear()
+            TextBox3.Clear()
+            TextBox4.Clear()
+            Label3.Text = ""
+        ElseIf CheckBox1.Checked = False Then
+            TextBox5.Visible = False
+            get_value()
+
+        End If
     End Sub
 End Class

@@ -4,6 +4,7 @@ Public Class Login_Form
 
     Dim MysqlConn As MySqlConnection 'MySQL
     Dim COMMAND As MySqlCommand     'MySQL
+    Dim attempt As Integer
     'for windows to move 
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -38,7 +39,7 @@ Public Class Login_Form
         Try
             Dim Query As String
             MysqlConn.Open()
-            Query = "INSERT INTO `rmarquez`.`receipt` (`rec_date`, `rec_items`, `rec_total`, `rec_cash`, `rec_change`, `rec_cog`) VALUES (DATE_FORMAT(NOW(),'%Y-%m-%d'), '0', '0', '0', '0', '0');"
+            Query = "update receipt set rec_date = DATE_FORMAT(NOW() ,'%Y-%m-%d') where rec_id = -1"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             MysqlConn.Close()
@@ -50,7 +51,7 @@ Public Class Login_Form
         Try
             Dim Query As String
             MysqlConn.Open()
-            Query = "INSERT INTO `rmarquez`.`receipt` (`rec_date`, `rec_items`, `rec_total`, `rec_cash`, `rec_change`, `rec_cog`) VALUES (DATE_FORMAT((NOW() - INTERVAL 1 DAY),'%Y-%m-%d'), '0', '0', '0', '0', '0');"
+            Query = "update receipt set rec_date = DATE_FORMAT((NOW() - INTERVAL 1 DAY),'%Y-%m-%d') where rec_id = 0"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             MysqlConn.Close()
@@ -66,27 +67,36 @@ Public Class Login_Form
         MysqlConn.ConnectionString =
             "server=localhost;userid=root;password=1234;database=rmarquez"
         Dim Reader As MySqlDataReader
+
         Try
             MysqlConn.Open()
             Dim Query As String
             Query = "select * from rmarquez.account where acc_name ='" & TextBox1.Text & "'and acc_pass = '" & TextBox2.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
+
             Dim count As Integer
             count = 0
             While Reader.Read
                 count = count + 1
             End While
             If count = 1 Then
-
-                Dim newmain As New main_menu
-                newmain.Show()
-                Me.Hide()
-
+                Dim enable As Integer = Reader.GetInt32("acc_enabled")
+                If enable = 0 Then
+                    attempt = 0
+                    Dim newmain As New main_menu
+                    newmain.Show()
+                    Me.Hide()
+                Else
+                    MessageBox.Show("All Cashier Accounts are disabled. Please contact your Administrator!")
+                End If
             ElseIf count > 1 Then
                 MessageBox.Show("Username and Password are duplicate")
             Else
                 MessageBox.Show("Username and Password are incorrect")
+                attempt = attempt + 1
+                Label3.Text = "Attempt no. " + attempt.ToString
+
             End If
 
 
@@ -97,6 +107,21 @@ Public Class Login_Form
             MysqlConn.Dispose()
 
         End Try
+
+        If attempt > 3 Then
+            Try
+                Dim Query As String
+                MysqlConn.Open()
+                Query = "update account set acc_enabled = 1 where acc_admin = 0"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                MysqlConn.Close()
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
+        End If
     End Sub
 
     Private Sub Button1_Click(ByVal sender As Object, ByVal e As EventArgs) Handles Button1.Click

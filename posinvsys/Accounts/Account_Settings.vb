@@ -83,6 +83,26 @@ Public Class Account_Settings
         Dim Sda As New MySqlDataAdapter 'bago tong tatlo for the table
         Dim bsource As New BindingSource 'bago tong tatlo for the table
         combo()
+
+        Try '  if accounts are disabled
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "select sum(acc_enabled) as num from account"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            While Reader.Read
+                Dim enable As Integer = Reader.GetInt32("num")
+                If enable > 0 Then
+                    Panel2.Visible = True
+                End If
+            End While
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
+        End Try
+
     End Sub
 
     Private Sub Panel2_Paint(ByVal sender As System.Object, ByVal e As System.Windows.Forms.PaintEventArgs)
@@ -154,6 +174,22 @@ Public Class Account_Settings
             Label14.Text = ""
             Label15.Text = ""
             Label16.Text = ""
+        End Try
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Try
+            MysqlConn.Open()
+            Dim Query As String
+            Query = "Update account set acc_enabled = 0 where acc_admin = 0;"
+            COMMAND = New MySqlCommand(Query, MysqlConn)
+            Reader = COMMAND.ExecuteReader
+            Panel2.Visible = False
+            MysqlConn.Close()
+        Catch ex As MySqlException
+            MessageBox.Show(ex.Message)
+        Finally
+            MysqlConn.Dispose()
         End Try
     End Sub
 End Class
