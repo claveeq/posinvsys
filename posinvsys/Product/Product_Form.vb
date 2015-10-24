@@ -39,15 +39,19 @@ Public Class Product_Form
     Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
         Me.Close()
     End Sub
-    Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
-        retail_visible()
-        table_refresh() ' from the private sub table_refresh() to load from the beginning of the form
-
-        combobox_type()
+    Private Sub refresh_all()
+        Controls.Clear()
+        InitializeComponent()
         combobox_brand()
         combobox_loc()
-
+        combobox_type()
+        retail_visible()
+        table_refresh()
+    End Sub
+    Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
+        refresh_all()
         Barcode()
+
     End Sub
     Public Sub combobox_type()       'for populating the type,brand,location combobox
         MysqlConn = New MySqlConnection
@@ -182,9 +186,34 @@ Public Class Product_Form
             While Reader.Read
                 Dim permission As Integer = Reader.GetInt32("acc_admin")
                 If permission = 0 Then
-                    Panel5.Location = New Point(0, 456)
+                    Panel5.Location = New Point(0, 505)
+                    Button1.Visible = False
+                    Button2.Visible = False
+                    Button5.Visible = False
+                    Button8.Visible = False
+                    Label12.Visible = False
+                    Label16.Visible = False
+                    Label23.Visible = False
+                    Label24.Visible = False
+                    TextBox1.Enabled = False
+                    RichTextBox1.Enabled = False
+                    TextBox6.Enabled = False
+                    TextBox7.Enabled = False
+                    TextBox3.Enabled = False
+                    TextBox4.Enabled = False
+
+                    ComboBox1.DropDownStyle = ComboBoxStyle.Simple
+                    ComboBox2.DropDownStyle = ComboBoxStyle.Simple
+                    ComboBox3.DropDownStyle = ComboBoxStyle.Simple
+                    ComboBox1.Enabled = False
+                    ComboBox2.Enabled = False
+                    ComboBox3.Enabled = False
+
+                    Button9.Visible = False
+                    Button10.Visible = False
+                    Button11.Visible = False
                 Else
-                    Panel5.Location = New Point(203, 456)
+                    Panel5.Location = New Point(203, 505)
                 End If
             End While
             MysqlConn.Close()
@@ -196,62 +225,65 @@ Public Class Product_Form
         End Try
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Dim bar As String = ""
-        If CheckBox1.Checked = False Then
-            bar = TextBox2.Text
-        ElseIf CheckBox1.Checked = True
-            bar = TextBox5.Text
+        If TextBox1.Text = "" Or
+        ComboBox1.SelectedIndex = -1 Or
+        ComboBox2.SelectedIndex = -1 Or
+        ComboBox3.SelectedIndex = -1 Or
+        TextBox6.Text = "" Or
+        TextBox7.Text = "" Or
+        TextBox3.Text = "" Or
+        TextBox4.Text = "" Then
+            MessageBox.Show("Please don't leave an empty value!")
+        Else
+            Try 'product table
+                MysqlConn.Open()
+                Dim Query As String
+                Query = "Insert into rmarquez.product (prod_name,prod_barcode,prod_description,prod_type,prod_brand,prod_loc) values ('" & TextBox1.Text & "','" & TextBox2.Text & "','" & RichTextBox1.Text & "','" & ComboBox1.Text & "','" & ComboBox2.Text & "','" & ComboBox3.Text & "');"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                MysqlConn.Close()
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
+            Try 'pricing table
+                MysqlConn.Open()
+                Dim Query As String
+                Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & TextBox2.Text & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                MysqlConn.Close()
+            Catch ex As MySqlException
+            Finally
+                MysqlConn.Dispose()
+            End Try
+            Try 'inventory table
+                MysqlConn.Open()
+                Dim Query As String
+                Query = "Insert into rmarquez.inventory (`inv_barcode`, `inv_stock`, `inv_ropoint`, `inv_roamount`) VALUES ('" & TextBox2.Text & "', '" & TextBox6.Text & "', '" & TextBox7.Text & "', '0');"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                MessageBox.Show("Product Successfully Added")
+                MysqlConn.Close()
+            Catch ex As MySqlException
+            Finally
+                MysqlConn.Dispose()
+                TextBox1.Clear()
+                RichTextBox1.Clear()
+                ComboBox1.SelectedIndex = -1
+                ComboBox2.SelectedIndex = -1
+                ComboBox3.SelectedIndex = -1
+                TextBox3.Clear()
+                TextBox4.Clear()
+                Label3.Text = ""
+                TextBox6.Clear()
+                TextBox7.Clear()
+                TextBox2.Clear()
+
+                refresh_all()
+            End Try
         End If
-        Try 'product table
-            MysqlConn.Open()
-            Dim Query As String
-            Query = "Insert into rmarquez.product (prod_name,prod_barcode,prod_description,prod_type,prod_brand,prod_loc) values ('" & TextBox1.Text & "','" & bar & "','" & RichTextBox1.Text & "','" & ComboBox1.Text & "','" & ComboBox2.Text & "','" & ComboBox3.Text & "');"
-            COMMAND = New MySqlCommand(Query, MysqlConn)
-            Reader = COMMAND.ExecuteReader
-            MysqlConn.Close()
-        Catch ex As MySqlException
-            MessageBox.Show(ex.Message)
-        Finally
-            MysqlConn.Dispose()
-        End Try
-        Try 'pricing table
-            MysqlConn.Open()
-            Dim Query As String
-            Query = "Insert into rmarquez.pricing (`price_barcode`, `price_supply`, `price_markup`, `price_price`) VALUES ('" & bar & "', '" & TextBox3.Text & "', '" & TextBox4.Text & "', '" & Label3.Text & "');"
-            COMMAND = New MySqlCommand(Query, MysqlConn)
-            Reader = COMMAND.ExecuteReader
-            MysqlConn.Close()
-        Catch ex As MySqlException
-        Finally
-            MysqlConn.Dispose()
-        End Try
-        Try 'inventory table
-            MysqlConn.Open()
-            Dim Query As String
-            Query = "Insert into rmarquez.inventory (`inv_barcode`, `inv_stock`, `inv_ropoint`, `inv_roamount`) VALUES ('" & bar & "', '" & TextBox6.Text & "', '" & TextBox7.Text & "', '0');"
-            COMMAND = New MySqlCommand(Query, MysqlConn)
-            Reader = COMMAND.ExecuteReader
-            MessageBox.Show("Product Successfully Added")
-            MysqlConn.Close()
-        Catch ex As MySqlException
-        Finally
-            MysqlConn.Dispose()
-            TextBox1.Clear()
-            RichTextBox1.Clear()
-            ComboBox1.SelectedIndex = -1
-            ComboBox2.SelectedIndex = -1
-            ComboBox3.SelectedIndex = -1
-            TextBox3.Clear()
-            TextBox4.Clear()
-            Label3.Text = ""
-            TextBox6.Clear()
-            TextBox7.Clear()
-            TextBox2.Clear()
-            TextBox5.Clear()
-            CheckBox1.Checked = False
-            table_refresh()
-            Barcode()
-        End Try
 
     End Sub
 
@@ -262,6 +294,7 @@ Public Class Product_Form
         'para mag show ung addtype na from pag click ung add type sa combobox
         If ComboBox1.SelectedIndex = lastitem - 1 Then
             variants.Show()
+            ComboBox1.SelectedIndex = -1
         End If
 
 
@@ -273,6 +306,7 @@ Public Class Product_Form
         'para mag show ung addtype na from pag click ung add type sa combobox
         If ComboBox2.SelectedIndex = lastitem - 1 Then
             variants.Show()
+            ComboBox2.SelectedIndex = -1
         End If
     End Sub
 
@@ -282,6 +316,7 @@ Public Class Product_Form
         'para mag show ung addtype na from pag click ung add type sa combobox
         If ComboBox3.SelectedIndex = lastitem - 1 Then
             variants.Show()
+            ComboBox3.SelectedIndex = -1
         End If
     End Sub
 
@@ -344,7 +379,6 @@ Public Class Product_Form
     Private Sub OnBarcodeEvent(ByVal eventType As Short, ByRef pscanData As String) ' eventfunction for barcode_scanner
         Dim barcode As String = pscanData
         Me.Invoke(DirectCast(Sub() TextBox10.Text = barcode, MethodInvoker))
-
     End Sub
     Private Sub trim_rawdata() 'rawdata ng barcode label
         Dim Bar As String 'raw data from the scanner
@@ -623,17 +657,10 @@ Public Class Product_Form
         retail()
 
     End Sub
-    Private Sub Button7_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
-        'Application.Restart()
-        'Me.Refresh()
-        Dim Product_Form = New Product_Form
-        Product_Form.Show()
-        Me.Close()
-        'create New Process
-        'Application.Run()
-        '  Application.Restart()
-        '  Application.ExitThread()
 
+
+    Private Sub Button7_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button7.Click
+        refresh_all()
     End Sub
 
     Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
@@ -750,8 +777,7 @@ Public Class Product_Form
             TextBox3.Clear()
             TextBox4.Clear()
 
-            table_refresh()
-            Barcode()
+            refresh_all()
         End Try
     End Sub
     Private Sub record_edit() 'Enable / Disable 
@@ -812,23 +838,88 @@ Public Class Product_Form
     Private Sub ComboBox3_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBox3.SelectedIndexChanged
         '   record_edit()
     End Sub
-    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox1.CheckedChanged
-        If CheckBox1.Checked = True Then
-            TextBox5.Visible = True
-            TextBox1.Clear()
-            RichTextBox1.Clear()
-            ComboBox1.SelectedIndex = -1
-            ComboBox2.SelectedIndex = -1
-            ComboBox3.SelectedIndex = -1
-            TextBox6.Clear()
-            TextBox7.Clear()
-            TextBox3.Clear()
-            TextBox4.Clear()
-            Label3.Text = ""
-        ElseIf CheckBox1.Checked = False Then
-            TextBox5.Visible = False
-            get_value()
+    Private Sub CheckBox1_CheckedChanged(sender As Object, e As EventArgs)
+        TextBox1.Clear()
+        RichTextBox1.Clear()
+        ComboBox1.SelectedIndex = -1
+        ComboBox2.SelectedIndex = -1
+        ComboBox3.SelectedIndex = -1
+        TextBox6.Clear()
+        TextBox7.Clear()
+        TextBox3.Clear()
+        TextBox4.Clear()
+        Label3.Text = ""
+        table_refresh()
 
+    End Sub
+
+    Private Sub TextBox2_TextChanged(sender As Object, e As EventArgs) Handles TextBox2.TextChanged
+
+    End Sub
+
+    Private Sub Panel6_Paint(sender As Object, e As PaintEventArgs) Handles Panel6.Paint
+
+    End Sub
+
+    Private Sub Label24_Click(sender As Object, e As EventArgs) Handles Label24.Click
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
+    End Sub
+
+    Private Sub Panel5_Paint(sender As Object, e As PaintEventArgs) Handles Panel5.Paint
+
+    End Sub
+
+    Private Sub TextBox6_TextChanged(sender As Object, e As EventArgs) Handles TextBox6.TextChanged
+
+    End Sub
+
+    Private Sub TextBox6_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox6.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Numbers Only!")
+            e.Handled = True
         End If
+    End Sub
+    Private Sub TextBox7_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox7.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Numbers Only!")
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub TextBox3_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox3.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Numbers Only!")
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub TextBox4_KeyPress(sender As Object, e As KeyPressEventArgs) Handles TextBox4.KeyPress
+        If Asc(e.KeyChar) <> 13 AndAlso Asc(e.KeyChar) <> 8 AndAlso Not IsNumeric(e.KeyChar) Then
+            MessageBox.Show("Numbers Only!")
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub TextBox7_TextChanged(sender As Object, e As EventArgs) Handles TextBox7.TextChanged
+        Dim num1 As Double = Val(TextBox6.Text)
+        Dim num2 As Double = Val(TextBox7.Text)
+        If num1 < num2 Then
+            MessageBox.Show("Please enter a value below the Current Stock!")
+            TextBox7.Clear()
+        End If
+    End Sub
+
+    Private Sub Button9_Click(sender As Object, e As EventArgs) Handles Button9.Click
+        combobox_type()
+    End Sub
+
+    Private Sub Button10_Click(sender As Object, e As EventArgs) Handles Button10.Click
+        combobox_brand()
+    End Sub
+
+    Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
+        combobox_loc()
     End Sub
 End Class

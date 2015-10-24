@@ -131,7 +131,7 @@ Partial Class Payment_Form
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Droid Sans", 36.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(230, 35)
+        Me.Label4.Location = New System.Drawing.Point(165, 35)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(51, 57)
         Me.Label4.TabIndex = 12

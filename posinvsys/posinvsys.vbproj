@@ -252,6 +252,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Logo_wOName.ico" />
+    <None Include="Resources\refresh_gray.png" />
     <None Include="Resources\notif21.png" />
     <None Include="Resources\notif2.png" />
     <None Include="Resources\Cashier_inactive.png" />

@@ -177,6 +177,11 @@ posinvsys
   Looks up a localized resource of type System.Drawing.Bitmap.
 </summary>
 </member>
+<member name="P:posinvsys.My.Resources.Resources.refresh_gray">
+<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member>
 <member name="P:posinvsys.My.Resources.Resources.Reports">
 <summary>
   Looks up a localized resource of type System.Drawing.Bitmap.

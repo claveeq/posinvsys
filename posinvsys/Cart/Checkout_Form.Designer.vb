@@ -161,7 +161,7 @@ Partial Class Checkout_Form
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(152, 51)
         Me.Button5.TabIndex = 3
-        Me.Button5.Text = "VOID"
+        Me.Button5.Text = "Clear Cart"
         Me.Button5.UseVisualStyleBackColor = False
         '
         'Button2

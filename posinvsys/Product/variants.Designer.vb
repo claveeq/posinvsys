@@ -174,7 +174,7 @@ Partial Class variants
         Me.Button7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.Button7.Location = New System.Drawing.Point(323, 160)
+        Me.Button7.Location = New System.Drawing.Point(337, 160)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(76, 59)
         Me.Button7.TabIndex = 14

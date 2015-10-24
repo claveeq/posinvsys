@@ -22,13 +22,13 @@ Public Class variants
             Query = "insert into rmarquez.type (type_name) values('" & ComboBox1.Text & "');"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
-            Call Product_Form.combobox_type()
+
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-            ComboBox1.Text = ""
+            Call Product_Form.combobox_type()
         End Try
 
 
@@ -86,8 +86,8 @@ Public Class variants
             Dim Query As String
             Query = "DELETE FROM `rmarquez`.`type` WHERE `type_name`='" & ComboBox1.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
-            Call Product_Form.combobox_type()
             Reader = COMMAND.ExecuteReader
+            Call Product_Form.combobox_type()
             MysqlConn.Close()
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
@@ -140,14 +140,7 @@ Public Class variants
         End Try
     End Sub
     Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
-        Product_Form.Show()
-        If Product_Form.ComboBox1.Text = "Add Type" Then
-            ComboBox1.Text = ""
-        ElseIf Product_Form.ComboBox2.Text = "Add Brand" Then
-            ComboBox2.Text = ""
-        ElseIf Product_Form.ComboBox3.Text = "Add Loc" Then
-            ComboBox3.Text = ""
-        End If
+        Call Product_Form.combobox_type()
         Me.Hide()
     End Sub
 End Class

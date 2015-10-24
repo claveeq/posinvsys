@@ -13,13 +13,12 @@ Public Class receipt
         Try
             MysqlConn.Open()
             Dim Query As String
-            Query = "SELECT * FROM receipt WHERE rec_id = (select count(*) from receipt) ;"
+            Query = "SELECT * FROM receipt ORDER BY rec_id DESC LIMIT 1;"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             Reader = COMMAND.ExecuteReader
             While Reader.Read
                 Dim id = Reader.GetString("rec_id")
                 Dim rdate = Reader.GetString("rec_date")
-                '       Dim items = Reader.GetString("rec_items")
                 Dim rtotal = Reader.GetString("rec_total")
                 Dim cash = Reader.GetString("rec_cash")
                 Dim change = Reader.GetString("rec_change")
@@ -61,7 +60,8 @@ Public Class receipt
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Checkout_Form.Show()
-        Me.Hide()
+        Checkout_Form.Button5.PerformClick()
+        Me.Close()
     End Sub
 
     Private Sub RichTextBox1_TextChanged(sender As Object, e As EventArgs) Handles RichTextBox1.TextChanged

@@ -135,9 +135,9 @@ Public Class main_menu
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        Product_Form.Show()
+        Dim Product_Form2 As New Product_Form
+        Product_Form2.Show()
         Me.Hide()
-
     End Sub
     Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
         Me.WindowState = FormWindowState.Minimized 'minimize button
@@ -262,5 +262,9 @@ Public Class main_menu
             Button2.BackgroundImage = My.Resources.Cashier_inactive
             Button2.Enabled = False
         End If
+    End Sub
+
+    Private Sub Chart2_Click(sender As Object, e As EventArgs) Handles Chart2.Click
+
     End Sub
 End Class

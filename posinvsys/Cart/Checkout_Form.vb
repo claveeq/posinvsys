@@ -61,9 +61,11 @@ Public Class Checkout_Form
 
 
     Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
-        Dim Checkout_Form As New Checkout_Form
-        Checkout_Form.Show()
-        Me.Hide()
+        ' Dim Checkout_Form As New Checkout_Form
+        '  Checkout_Form.Show()
+        '   Me.Hide()
+        Controls.Clear()
+        InitializeComponent()
 
     End Sub
     Private Sub Barcode()
@@ -208,7 +210,7 @@ Public Class Checkout_Form
 
     End Sub
     Public Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-
+        Button5_Click(sender, e)
         Barcode()
         TextBox2.Text = "Product Name"
 
@@ -320,9 +322,10 @@ Public Class Checkout_Form
         total_price_computation()
     End Sub
     Private Sub Button1_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Button1.Click
+        Dim Payment_Form As New Payment_Form
         Payment_Form.Show()
         Payment_Form.Label4.Text = Label4.Text
-        Payment_Form.TextBox1.Text = Label4.Text
+
     End Sub
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         TextBox3.Text = TextBox3.Text + "6"

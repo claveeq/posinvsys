@@ -12,6 +12,11 @@ Public Class Payment_Form
     Private Sub TextBox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBox1.TextChanged
         Dim change As Double
         change = Val(TextBox1.Text) - Val(Label4.Text)
+        If change >= 0 Then
+            Label6.ForeColor = Color.LimeGreen
+        Else
+            Label6.ForeColor = Color.Red
+        End If
         Label6.Text = change
     End Sub
 
@@ -23,8 +28,7 @@ Public Class Payment_Form
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        Checkout_Form.Show()
-        Me.Hide()
+        Me.Close()
     End Sub
 
     Private Sub Label4_TextChanged(ByVal sender As Object, ByVal e As System.EventArgs) Handles Label4.TextChanged
@@ -34,7 +38,8 @@ Public Class Payment_Form
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        If TextBox1.Text < Label6.Text Then
+        Dim tendered As Double = Val(Label6.Text)
+        If tendered < 0 Then
             MessageBox.Show("Please enter right Amount Tendered!")
         Else
 
@@ -127,8 +132,10 @@ Public Class Payment_Form
                 MessageBox.Show(ex.Message)
             Finally
                 MysqlConn.Dispose()
+                Dim receipt As New receipt
                 receipt.Show()
-                Me.Hide()
+                Me.Close()
+                Checkout_Form.Hide()
             End Try
         End If
 

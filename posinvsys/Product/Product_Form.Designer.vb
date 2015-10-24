@@ -61,8 +61,6 @@ Partial Class Product_Form
         Me.Label18 = New System.Windows.Forms.Label()
         Me.Label17 = New System.Windows.Forms.Label()
         Me.Panel6 = New System.Windows.Forms.Panel()
-        Me.TextBox5 = New System.Windows.Forms.TextBox()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label23 = New System.Windows.Forms.Label()
         Me.Label16 = New System.Windows.Forms.Label()
@@ -76,6 +74,10 @@ Partial Class Product_Form
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.Button9 = New System.Windows.Forms.Button()
+        Me.Button10 = New System.Windows.Forms.Button()
+        Me.Button11 = New System.Windows.Forms.Button()
+        Me.Label25 = New System.Windows.Forms.Label()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -163,12 +165,12 @@ Partial Class Product_Form
         '
         Me.TextBox2.BackColor = System.Drawing.SystemColors.MenuHighlight
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.TextBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 14.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.TextBox2.ForeColor = System.Drawing.Color.White
-        Me.TextBox2.Location = New System.Drawing.Point(56, 19)
+        Me.TextBox2.Location = New System.Drawing.Point(15, 28)
         Me.TextBox2.Multiline = True
         Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(143, 20)
+        Me.TextBox2.Size = New System.Drawing.Size(178, 27)
         Me.TextBox2.TabIndex = 12
         Me.TextBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
@@ -194,23 +196,21 @@ Partial Class Product_Form
         'ComboBox1
         '
         Me.ComboBox1.BackColor = System.Drawing.Color.White
-        Me.ComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox1.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox1.FormattingEnabled = True
         Me.ComboBox1.Location = New System.Drawing.Point(13, 296)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(180, 24)
+        Me.ComboBox1.Size = New System.Drawing.Size(150, 24)
         Me.ComboBox1.TabIndex = 15
         '
         'ComboBox2
         '
         Me.ComboBox2.BackColor = System.Drawing.Color.White
-        Me.ComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox2.FormattingEnabled = True
         Me.ComboBox2.Location = New System.Drawing.Point(13, 339)
         Me.ComboBox2.Name = "ComboBox2"
-        Me.ComboBox2.Size = New System.Drawing.Size(180, 24)
+        Me.ComboBox2.Size = New System.Drawing.Size(150, 24)
         Me.ComboBox2.TabIndex = 16
         '
         'Label6
@@ -226,11 +226,10 @@ Partial Class Product_Form
         'DataGridView1
         '
         Me.DataGridView1.BackgroundColor = System.Drawing.Color.White
-        Me.DataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(203, 124)
+        Me.DataGridView1.Location = New System.Drawing.Point(203, 120)
         Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(800, 385)
+        Me.DataGridView1.Size = New System.Drawing.Size(797, 384)
         Me.DataGridView1.TabIndex = 18
         '
         'Label7
@@ -246,12 +245,11 @@ Partial Class Product_Form
         'ComboBox3
         '
         Me.ComboBox3.BackColor = System.Drawing.Color.White
-        Me.ComboBox3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ComboBox3.FormattingEnabled = True
         Me.ComboBox3.Location = New System.Drawing.Point(13, 382)
         Me.ComboBox3.Name = "ComboBox3"
-        Me.ComboBox3.Size = New System.Drawing.Size(180, 24)
+        Me.ComboBox3.Size = New System.Drawing.Size(150, 24)
         Me.ComboBox3.TabIndex = 21
         '
         'Label11
@@ -268,6 +266,7 @@ Partial Class Product_Form
         '
         'TextBox4
         '
+        Me.TextBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox4.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
         Me.TextBox4.Location = New System.Drawing.Point(12, 574)
         Me.TextBox4.Name = "TextBox4"
@@ -288,6 +287,7 @@ Partial Class Product_Form
         '
         'TextBox3
         '
+        Me.TextBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox3.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
         Me.TextBox3.Location = New System.Drawing.Point(12, 533)
         Me.TextBox3.Name = "TextBox3"
@@ -312,7 +312,7 @@ Partial Class Product_Form
         Me.Label8.BackColor = System.Drawing.Color.Transparent
         Me.Label8.Font = New System.Drawing.Font("Droid Sans", 8.25!, System.Drawing.FontStyle.Bold)
         Me.Label8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label8.Location = New System.Drawing.Point(75, 504)
+        Me.Label8.Location = New System.Drawing.Point(75, 506)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(44, 13)
         Me.Label8.TabIndex = 0
@@ -320,6 +320,7 @@ Partial Class Product_Form
         '
         'TextBox7
         '
+        Me.TextBox7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
         Me.TextBox7.Location = New System.Drawing.Point(13, 479)
         Me.TextBox7.Name = "TextBox7"
@@ -333,12 +334,13 @@ Partial Class Product_Form
         Me.Label15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
         Me.Label15.Location = New System.Drawing.Point(12, 463)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(86, 13)
+        Me.Label15.Size = New System.Drawing.Size(77, 13)
         Me.Label15.TabIndex = 3
-        Me.Label15.Text = "Re-order point"
+        Me.Label15.Text = "Critical Point"
         '
         'TextBox6
         '
+        Me.TextBox6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox6.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!)
         Me.TextBox6.Location = New System.Drawing.Point(13, 438)
         Me.TextBox6.Name = "TextBox6"
@@ -388,9 +390,9 @@ Partial Class Product_Form
         Me.Panel5.Controls.Add(Me.TextBox9)
         Me.Panel5.Controls.Add(Me.Label18)
         Me.Panel5.Controls.Add(Me.Label17)
-        Me.Panel5.Location = New System.Drawing.Point(203, 515)
+        Me.Panel5.Location = New System.Drawing.Point(203, 505)
         Me.Panel5.Name = "Panel5"
-        Me.Panel5.Size = New System.Drawing.Size(1002, 144)
+        Me.Panel5.Size = New System.Drawing.Size(1002, 162)
         Me.Panel5.TabIndex = 24
         '
         'TextBox10
@@ -491,8 +493,7 @@ Partial Class Product_Form
         'Panel6
         '
         Me.Panel6.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Panel6.Controls.Add(Me.TextBox5)
-        Me.Panel6.Controls.Add(Me.CheckBox1)
+        Me.Panel6.Controls.Add(Me.Label25)
         Me.Panel6.Controls.Add(Me.Label24)
         Me.Panel6.Controls.Add(Me.Label23)
         Me.Panel6.Controls.Add(Me.Label16)
@@ -510,38 +511,12 @@ Partial Class Product_Form
         Me.Panel6.Size = New System.Drawing.Size(1003, 85)
         Me.Panel6.TabIndex = 25
         '
-        'TextBox5
-        '
-        Me.TextBox5.BackColor = System.Drawing.Color.DarkViolet
-        Me.TextBox5.BorderStyle = System.Windows.Forms.BorderStyle.None
-        Me.TextBox5.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TextBox5.ForeColor = System.Drawing.Color.White
-        Me.TextBox5.Location = New System.Drawing.Point(56, 19)
-        Me.TextBox5.Multiline = True
-        Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(143, 20)
-        Me.TextBox5.TabIndex = 27
-        Me.TextBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.TextBox5.Visible = False
-        '
-        'CheckBox1
-        '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.CheckBox1.ForeColor = System.Drawing.Color.White
-        Me.CheckBox1.Location = New System.Drawing.Point(14, 56)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(209, 18)
-        Me.CheckBox1.TabIndex = 26
-        Me.CheckBox1.Text = "Check to enter barcode manually."
-        Me.CheckBox1.UseVisualStyleBackColor = True
-        '
         'Label24
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label24.ForeColor = System.Drawing.Color.White
-        Me.Label24.Location = New System.Drawing.Point(607, 56)
+        Me.Label24.Location = New System.Drawing.Point(647, 56)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(52, 28)
         Me.Label24.TabIndex = 24
@@ -552,7 +527,7 @@ Partial Class Product_Form
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label23.ForeColor = System.Drawing.Color.White
-        Me.Label23.Location = New System.Drawing.Point(497, 63)
+        Me.Label23.Location = New System.Drawing.Point(537, 66)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(88, 14)
         Me.Label23.TabIndex = 23
@@ -563,7 +538,7 @@ Partial Class Product_Form
         Me.Label16.AutoSize = True
         Me.Label16.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label16.ForeColor = System.Drawing.Color.White
-        Me.Label16.Location = New System.Drawing.Point(400, 63)
+        Me.Label16.Location = New System.Drawing.Point(440, 66)
         Me.Label16.Name = "Label16"
         Me.Label16.Size = New System.Drawing.Size(92, 14)
         Me.Label16.TabIndex = 22
@@ -574,7 +549,7 @@ Partial Class Product_Form
         Me.Label12.AutoSize = True
         Me.Label12.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(313, 63)
+        Me.Label12.Location = New System.Drawing.Point(353, 66)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(73, 14)
         Me.Label12.TabIndex = 21
@@ -588,7 +563,7 @@ Partial Class Product_Form
         Me.Button8.FlatAppearance.BorderSize = 0
         Me.Button8.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button8.ForeColor = System.Drawing.Color.White
-        Me.Button8.Location = New System.Drawing.Point(595, 6)
+        Me.Button8.Location = New System.Drawing.Point(635, 9)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(64, 43)
         Me.Button8.TabIndex = 20
@@ -597,12 +572,12 @@ Partial Class Product_Form
         'Button5
         '
         Me.Button5.BackColor = System.Drawing.Color.Transparent
-        Me.Button5.BackgroundImage = Global.posinvsys.My.Resources.Resources.edit_prod_inactive
+        Me.Button5.BackgroundImage = Global.posinvsys.My.Resources.Resources.edit_prod
         Me.Button5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.Button5.FlatAppearance.BorderSize = 0
         Me.Button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button5.ForeColor = System.Drawing.Color.Black
-        Me.Button5.Location = New System.Drawing.Point(395, 6)
+        Me.Button5.Location = New System.Drawing.Point(435, 9)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(87, 44)
         Me.Button5.TabIndex = 19
@@ -616,7 +591,7 @@ Partial Class Product_Form
         Me.Button2.FlatAppearance.BorderSize = 0
         Me.Button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button2.ForeColor = System.Drawing.Color.Black
-        Me.Button2.Location = New System.Drawing.Point(488, 6)
+        Me.Button2.Location = New System.Drawing.Point(528, 9)
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(87, 44)
         Me.Button2.TabIndex = 18
@@ -630,9 +605,9 @@ Partial Class Product_Form
         Me.Button7.FlatAppearance.BorderSize = 0
         Me.Button7.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button7.ForeColor = System.Drawing.Color.White
-        Me.Button7.Location = New System.Drawing.Point(6, 11)
+        Me.Button7.Location = New System.Drawing.Point(239, 10)
         Me.Button7.Name = "Button7"
-        Me.Button7.Size = New System.Drawing.Size(47, 34)
+        Me.Button7.Size = New System.Drawing.Size(73, 43)
         Me.Button7.TabIndex = 16
         Me.Button7.UseVisualStyleBackColor = False
         '
@@ -645,9 +620,9 @@ Partial Class Product_Form
         Me.Button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Button6.ForeColor = System.Drawing.Color.White
-        Me.Button6.Location = New System.Drawing.Point(934, 0)
+        Me.Button6.Location = New System.Drawing.Point(912, 0)
         Me.Button6.Name = "Button6"
-        Me.Button6.Size = New System.Drawing.Size(67, 47)
+        Me.Button6.Size = New System.Drawing.Size(88, 84)
         Me.Button6.TabIndex = 15
         Me.Button6.UseVisualStyleBackColor = False
         '
@@ -669,7 +644,7 @@ Partial Class Product_Form
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Location = New System.Drawing.Point(302, 6)
+        Me.Button1.Location = New System.Drawing.Point(342, 9)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(87, 44)
         Me.Button1.TabIndex = 5
@@ -690,17 +665,67 @@ Partial Class Product_Form
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.Font = New System.Drawing.Font("Droid Sans", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.Firebrick
-        Me.Label3.Location = New System.Drawing.Point(52, 617)
+        Me.Label3.Location = New System.Drawing.Point(53, 623)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(90, 19)
         Me.Label3.TabIndex = 5
         Me.Label3.Text = "Final Price"
+        '
+        'Button9
+        '
+        Me.Button9.BackgroundImage = Global.posinvsys.My.Resources.Resources.refresh_gray
+        Me.Button9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button9.FlatAppearance.BorderSize = 0
+        Me.Button9.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button9.Location = New System.Drawing.Point(169, 296)
+        Me.Button9.Name = "Button9"
+        Me.Button9.Size = New System.Drawing.Size(28, 24)
+        Me.Button9.TabIndex = 26
+        Me.Button9.UseVisualStyleBackColor = True
+        '
+        'Button10
+        '
+        Me.Button10.BackgroundImage = Global.posinvsys.My.Resources.Resources.refresh_gray
+        Me.Button10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button10.FlatAppearance.BorderSize = 0
+        Me.Button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button10.Location = New System.Drawing.Point(169, 338)
+        Me.Button10.Name = "Button10"
+        Me.Button10.Size = New System.Drawing.Size(28, 24)
+        Me.Button10.TabIndex = 27
+        Me.Button10.UseVisualStyleBackColor = True
+        '
+        'Button11
+        '
+        Me.Button11.BackgroundImage = Global.posinvsys.My.Resources.Resources.refresh_gray
+        Me.Button11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
+        Me.Button11.FlatAppearance.BorderSize = 0
+        Me.Button11.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.Button11.Location = New System.Drawing.Point(169, 381)
+        Me.Button11.Name = "Button11"
+        Me.Button11.Size = New System.Drawing.Size(28, 24)
+        Me.Button11.TabIndex = 28
+        Me.Button11.UseVisualStyleBackColor = True
+        '
+        'Label25
+        '
+        Me.Label25.AutoSize = True
+        Me.Label25.Font = New System.Drawing.Font("Droid Sans", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label25.ForeColor = System.Drawing.Color.White
+        Me.Label25.Location = New System.Drawing.Point(252, 66)
+        Me.Label25.Name = "Label25"
+        Me.Label25.Size = New System.Drawing.Size(48, 14)
+        Me.Label25.TabIndex = 25
+        Me.Label25.Text = "Refresh"
         '
         'Product_Form
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1002, 664)
+        Me.Controls.Add(Me.Button11)
+        Me.Controls.Add(Me.Button10)
+        Me.Controls.Add(Me.Button9)
         Me.Controls.Add(Me.Panel5)
         Me.Controls.Add(Me.TextBox3)
         Me.Controls.Add(Me.TextBox4)
@@ -796,6 +821,8 @@ Partial Class Product_Form
     Friend WithEvents Label23 As Label
     Friend WithEvents Label16 As Label
     Friend WithEvents Label12 As Label
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents TextBox5 As TextBox
+    Friend WithEvents Button9 As Button
+    Friend WithEvents Button10 As Button
+    Friend WithEvents Button11 As Button
+    Friend WithEvents Label25 As Label
 End Class
