@@ -29,6 +29,7 @@ Partial Class receipt
         Me.RichTextBox1 = New System.Windows.Forms.RichTextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.PrintDocument1 = New System.Drawing.Printing.PrintDocument()
         Me.Panel1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -117,6 +118,9 @@ Partial Class receipt
         Me.Button1.Text = "Continue"
         Me.Button1.UseVisualStyleBackColor = False
         '
+        'PrintDocument1
+        '
+        '
         'receipt
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -143,4 +147,5 @@ Partial Class receipt
     Friend WithEvents RichTextBox1 As System.Windows.Forms.RichTextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents PrintDocument1 As Printing.PrintDocument
 End Class

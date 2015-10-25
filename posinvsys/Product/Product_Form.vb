@@ -1,5 +1,13 @@
 ﻿Imports MySql.Data.MySqlClient
 Imports CoreScanner
+
+Imports System.IO
+Imports System.Data
+Imports System.Reflection
+Imports iTextSharp.text
+Imports iTextSharp.text.pdf
+Imports System.Drawing
+
 Public Class Product_Form
     Dim loc As Point ' to move windows
 
@@ -12,6 +20,7 @@ Public Class Product_Form
     Dim DV As New DataView(dbdataset) 'For Search Filter
 
     Dim cCoreScannerClass As New CCoreScanner 'Instantiating Barcode scanner class
+
     'for windows to move
     Private Sub Panel1_MouseMove(ByVal sender As Object, ByVal e As MouseEventArgs) Handles Panel1.MouseMove
         If e.Button = MouseButtons.Left Then
@@ -51,7 +60,6 @@ Public Class Product_Form
     Private Sub Form1_Load(ByVal sender As Object, ByVal e As EventArgs) Handles Me.Load
         refresh_all()
         Barcode()
-
     End Sub
     Public Sub combobox_type()       'for populating the type,brand,location combobox
         MysqlConn = New MySqlConnection
@@ -592,39 +600,39 @@ Public Class Product_Form
             End If
 
             Try
-                    MysqlConn.Open()
-                    Query =
+                MysqlConn.Open()
+                Query =
                 "SELECT * FROM pricing WHERE price_barcode = '" & TextBox2.Text & "';"
-                    COMMAND = New MySqlCommand(Query, MysqlConn)
-                    Reader = COMMAND.ExecuteReader
-                    While Reader.Read
-                        TextBox3.Text = Reader.GetString("price_supply")
-                        TextBox4.Text = Reader.GetString("price_markup")
-                        Label3.Text = Reader.GetString("price_price")
-                    End While
-                    MysqlConn.Close() 'default
-                Catch ex As MySqlException
-                    MessageBox.Show(ex.Message)
-                Finally
-                    MysqlConn.Dispose()
-                End Try
-                Try
-                    MysqlConn.Open()
-                    Query =
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                While Reader.Read
+                    TextBox3.Text = Reader.GetString("price_supply")
+                    TextBox4.Text = Reader.GetString("price_markup")
+                    Label3.Text = Reader.GetString("price_price")
+                End While
+                MysqlConn.Close() 'default
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
+            Try
+                MysqlConn.Open()
+                Query =
                 "SELECT * FROM inventory WHERE inv_barcode = '" & TextBox2.Text & "';"
-                    COMMAND = New MySqlCommand(Query, MysqlConn)
-                    Reader = COMMAND.ExecuteReader
-                    While Reader.Read
-                        TextBox6.Text = Reader.GetString("inv_stock")
-                        TextBox7.Text = Reader.GetString("inv_ropoint")
-                    End While
-                    MysqlConn.Close()
-                Catch ex As MySqlException
-                    MessageBox.Show(ex.Message)
-                Finally
-                    MysqlConn.Dispose()
-                End Try
-            End If
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                Reader = COMMAND.ExecuteReader
+                While Reader.Read
+                    TextBox6.Text = Reader.GetString("inv_stock")
+                    TextBox7.Text = Reader.GetString("inv_ropoint")
+                End While
+                MysqlConn.Close()
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
+        End If
 
         ' record_edit()
     End Sub
@@ -921,5 +929,49 @@ Public Class Product_Form
 
     Private Sub Button11_Click(sender As Object, e As EventArgs) Handles Button11.Click
         combobox_loc()
+    End Sub
+
+    Private Sub Button12_Click(sender As Object, e As EventArgs) Handles Button12.Click
+        table_refresh()
+
+        'Creating iTextSharp Table from the DataTable data
+        Dim pdfTable As New PdfPTable(DataGridView1.ColumnCount)
+        pdfTable.DefaultCell.Padding = 3
+        pdfTable.WidthPercentage = 100
+        pdfTable.HorizontalAlignment = Element.ALIGN_LEFT
+        pdfTable.DefaultCell.BorderWidth = 1
+
+        'Adding Header row
+        For Each column As DataGridViewColumn In DataGridView1.Columns
+            Dim FontColour = New BaseColor(240, 240, 240)
+            Dim MyFont = FontFactory.GetFont("Times New Roman", 11, FontColour)
+            Dim cell As New PdfPCell(New Phrase(column.HeaderText, MyFont))
+            pdfTable.AddCell(cell)
+        Next
+
+        'Adding DataRow
+        For Each row As DataGridViewRow In DataGridView1.Rows
+            For Each cell As DataGridViewCell In row.Cells
+                If (Not (cell.Value) Is Nothing) Then
+                    pdfTable.AddCell(cell.Value.ToString)
+                End If
+            Next
+        Next
+
+        'Exporting to PDF
+        Dim folderPath As String = "C:\Users\EQ\Desktop\"
+        If Not Directory.Exists(folderPath) Then
+            Directory.CreateDirectory(folderPath)
+        End If
+        Using stream As New FileStream(folderPath & "Inventory_" & Now.Year & "-" & Now.Month & "-" & Now.Day & ".pdf", FileMode.Create)
+            Dim pdfDoc As New Document(PageSize.A2, 10.0F, 10.0F, 10.0F, 0.0F)
+            PdfWriter.GetInstance(pdfDoc, stream)
+            pdfDoc.Open()
+            pdfDoc.Add(pdfTable)
+            pdfDoc.Close()
+            stream.Close()
+        End Using
+
+        MessageBox.Show("Successfully Exported. Please Go to Desktop.")
     End Sub
 End Class

@@ -149,6 +149,7 @@ Public Class main_menu
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Checkout_Form.Show()
+        Checkout_Form.Button5.PerformClick()
         Me.Hide()
     End Sub
 

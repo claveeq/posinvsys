@@ -39,7 +39,7 @@ Public Class receipt
                     "________________________________________" & vbNewLine & vbNewLine &
                     "            Total.........................................Php " & rtotal & vbNewLine &
                     "            Cash.........................................Php " & cash & vbNewLine &
-                    "            Change....................................Php " & change & vbNewLine &
+                    "            Change.....................................Php " & change & vbNewLine &
                     "________________________________________" & vbNewLine &
                     "THIS SERVE AS AN OFFICIAL RECEIPT" & vbNewLine &
                     "Thank you COME AGAIN" & vbNewLine
@@ -69,6 +69,12 @@ Public Class receipt
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        PrintDocument1.PrinterSettings.Copies = 1
+        PrintDocument1.Print()
 
+    End Sub
+
+    Private Sub PrintDocument1_PrintPage(sender As Object, e As Printing.PrintPageEventArgs) Handles PrintDocument1.PrintPage
+        e.Graphics.DrawString(RichTextBox1.Text, RichTextBox1.Font, Brushes.Black, 100, 100)
     End Sub
 End Class

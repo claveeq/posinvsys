@@ -5,11 +5,8 @@ D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.applicatio
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.exe
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.pdb
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\posinvsys.xml
-D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.dll
-D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.pdfa.dll
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.dll
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\MySql.Data.dll
-D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.xml
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\Microsoft.VisualBasic.PowerPacks.Vs.xml
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.vbprojResolveAssemblyReference.cache
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.Account_Settings.resources
@@ -29,3 +26,5 @@ D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.applic
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.exe
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.xml
 D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\obj\x86\Debug\posinvsys.pdb
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.dll
+D:\Clash\Doucuments\Clave\SAD\posinvsys\posinvsys\bin\Debug\itextsharp.pdfa.dll

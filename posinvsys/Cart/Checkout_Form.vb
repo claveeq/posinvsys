@@ -210,7 +210,6 @@ Public Class Checkout_Form
 
     End Sub
     Public Sub Checkout_Form_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        Button5_Click(sender, e)
         Barcode()
         TextBox2.Text = "Product Name"
 
@@ -231,45 +230,67 @@ Public Class Checkout_Form
 
         'DataGridView1.Columns.Insert(0, imgcol)
         ' DataGridView1.Columns.Insert(2, butcol)
+        Dim stocks As Integer
         Try
             MysqlConn.Open()
             Dim Query As String
             Query =
-            "select * FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode INNER JOIN inventory ON inventory.inv_barcode = pricing.price_barcode  where prod_barcode = '" & TextBox.Text & "';"
+            "select inv_stock FROM inventory  where inv_barcode = '" & TextBox.Text & "';"
             COMMAND = New MySqlCommand(Query, MysqlConn)
             reader = COMMAND.ExecuteReader
             While reader.Read
-                Dim qty As Integer = 1
-
-                Dim brcode = reader.GetString("prod_barcode")
-                Dim name = reader.GetString("prod_name")
-                Dim price = reader.GetString("price_price")
-                Dim psupply = reader.GetString("price_supply")
-                Dim stock = reader.GetString("inv_stock")
-
-                total = qty * price
-                supply = qty * psupply
-                Dim currentstock As Integer = stock - qty
-
-                Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply, stock, currentstock, brcode}
-                DataGridView1.Rows.Add(row)
-
-                Dim num1 As Double
-                Dim num2 As Double
-                Dim add As Double
-                num1 = (1 * price)
-                num2 = Val(Label4.Text)
-                add = num1 + num2
-                Label4.Text = add
+                stocks = reader.GetString("inv_stock")
             End While
-            'default
             MysqlConn.Close() 'default
         Catch ex As MySqlException
             MessageBox.Show(ex.Message)
         Finally
             MysqlConn.Dispose()
-
         End Try
+        If stocks = 0 Then
+            MessageBox.Show("The Product you scanned is currently out of stock or does not exist in the Record." & vbNewLine &
+                            "Please contact your Administrator.")
+        Else
+            Try
+                MysqlConn.Open()
+                Dim Query As String
+                Query =
+                "select * FROM product INNER JOIN pricing ON product.prod_barcode = pricing.price_barcode INNER JOIN inventory ON inventory.inv_barcode = pricing.price_barcode  where prod_barcode = '" & TextBox.Text & "';"
+                COMMAND = New MySqlCommand(Query, MysqlConn)
+                reader = COMMAND.ExecuteReader
+                While reader.Read
+                    Dim qty As Integer = 1
+
+                    Dim brcode = reader.GetString("prod_barcode")
+                    Dim name = reader.GetString("prod_name")
+                    Dim price = reader.GetString("price_price")
+                    Dim psupply = reader.GetString("price_supply")
+                    Dim stock = reader.GetString("inv_stock")
+
+                    total = qty * price
+                    supply = qty * psupply
+                    Dim currentstock As Integer = stock - qty
+
+                    Dim row As Object() = New Object() {cart_img, name, price, qty, total, btn_img, psupply, supply, stock, currentstock, brcode}
+                    DataGridView1.Rows.Add(row)
+
+                    Dim num1 As Double
+                    Dim num2 As Double
+                    Dim add As Double
+                    num1 = (1 * price)
+                    num2 = Val(Label4.Text)
+                    add = num1 + num2
+                    Label4.Text = add
+                End While
+                'default
+                MysqlConn.Close() 'default
+            Catch ex As MySqlException
+                MessageBox.Show(ex.Message)
+            Finally
+                MysqlConn.Dispose()
+            End Try
+        End If
+
     End Sub
 
     Private Sub Textbox1_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Textbox1.TextChanged
